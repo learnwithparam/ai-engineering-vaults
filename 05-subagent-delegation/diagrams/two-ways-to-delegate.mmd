@@ -1,0 +1,21 @@
+graph TD
+  L["Three run logs"]:::input
+  D{"Which boundary<br/>did you declare?"}:::decision
+
+  subgraph LG["LangGraph. The state class is the boundary."]
+    W["WorkerState<br/>run_id and log"]:::store
+    N["read_run node"]:::model
+    PS["ParentState<br/>reports only, no channel for a log"]:::store
+  end
+
+  subgraph CA["CrewAI. The task output is the boundary."]
+    T1["Reader task<br/>prompt holds every log"]:::model
+    O["Task output<br/>whatever the reply happened to be"]:::risk
+    T2["Release task"]:::model
+  end
+
+  R["One word: ship or hold"]:::output
+
+  L --> D
+  D -->|"langgraph"| W --> N --> PS --> R
+  D -->|"crewai"| T1 --> O --> T2 --> R

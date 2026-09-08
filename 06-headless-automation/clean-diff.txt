@@ -1,0 +1,6 @@
+--- a/refunds/chargeback.py
++++ b/refunds/chargeback.py
+@@ -14,7 +14,7 @@
+ def refund(case_id, amount_cents, idempotency_key):
+-    return psp.refund(case_id, amount_cents, key=idempotency_key)
++    return psp.refund(case_id, amount_cents, key=idempotency_key, currency="EUR")

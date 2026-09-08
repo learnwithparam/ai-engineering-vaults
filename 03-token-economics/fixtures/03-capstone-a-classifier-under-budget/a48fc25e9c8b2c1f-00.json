@@ -1,0 +1,68 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Evaluating inventory strategy**\n\nI'm acting as a retail demand planner based on the user's input about winter parkas in northern stores with a three-week cover and a mild forecast. I need to decide whether we should stock up, hold, or mark down. With a mild forecast, demand might be lower, even though it\u2019s winter. Since our current inventory can last three weeks, and demand may drop, it seems like the safest choice would be to hold for now.**Deciding on inventory hold**\n\nI'm contemplating whether to hold our inventory of winter coats. With a three-week cover and a mild forecast, it seems prudent to keep things as is to avoid markdown costs if demand ends up being uncertain. Since it\u2019s winter, the northern stores might still experience some cold spells, even with a mild forecast affecting demand. Ultimately, I think holding onto the inventory is the most sensible choice for now. user provided a scenario regarding winter parkas in northern stores with a 3-week cover and a mild forecast. I need to choose one word: stock_up, hold, or mark_down. Given the mild forecast, it seems like demand for winter parkas might decrease. Even though it's still winter and northern stores usually have higher demand, the mild weather suggests I shouldn't take the risk of stocking up. So, holding seems like the best option here.**Deciding on winter inventory**\n\nI\u2019m considering the scenario where we have a 3-week cover of winter coats and a mild forecast. To avoid markdown costs, it might be wise to hold the current inventory instead of making any drastic changes. Even though winter coats typically see higher demand in northern stores, the mild forecast suggests a potential reduction in that demand. So, holding seems to be the safest option to navigate the uncertainty without incurring extra costs.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Evaluating inventory strategy**\n\nI'm acting as a retail demand planner based on the user's input about winter parkas in northern stores with a three-week cover and a mild forecast. I need to decide whether we should stock up, hold, or mark down. With a mild forecast, demand might be lower, even though it\u2019s winter. Since our current inventory can last three weeks, and demand may drop, it seems like the safest choice would be to hold for now.**Deciding on inventory hold**\n\nI'm contemplating whether to hold our inventory of winter coats. With a three-week cover and a mild forecast, it seems prudent to keep things as is to avoid markdown costs if demand ends up being uncertain. Since it\u2019s winter, the northern stores might still experience some cold spells, even with a mild forecast affecting demand. Ultimately, I think holding onto the inventory is the most sensible choice for now. user provided a scenario regarding winter parkas in northern stores with a 3-week cover and a mild forecast. I need to choose one word: stock_up, hold, or mark_down. Given the mild forecast, it seems like demand for winter parkas might decrease. Even though it's still winter and northern stores usually have higher demand, the mild weather suggests I shouldn't take the risk of stocking up. So, holding seems like the best option here.**Deciding on winter inventory**\n\nI\u2019m considering the scenario where we have a 3-week cover of winter coats and a mild forecast. To avoid markdown costs, it might be wise to hold the current inventory instead of making any drastic changes. Even though winter coats typically see higher demand in northern stores, the mild forecast suggests a potential reduction in that demand. So, holding seems to be the safest option to navigate the uncertainty without incurring extra costs.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoHpIPKnwR8aRGU0OV-AsJ30uZJc56seD9VPeVtE9tQL2OhoXiGvQ2Or0kC4M4MQcWhlbnPma_hxyem6qyB4Gq1agTnTRH4oZ0oPRJ4dmCNUx7UJLVxsQUHM3uicpJN3uVQ_UeyC6vpmAs7kyse1SLqKFSyqYxGQkd75iNNaiLVyptK2OIVW9iHCPvIUvqu9QsHC1Wiz6GXIStJ1qivTusqJEsuuU-bl85Nm4vRTMNBnPSQdPqzZiCfaUlTbqzcQrzK12FT8LdJL864z-EJbhynOFL1fiWOfNh2Wg-01XLa5bg9_LH2hS20tJZmgJCgAUq8Tl4miE4e_NyYg3Rupjz0FAjY6FdErXq_OZcEzIhnGB7dsHHrmTxL0vTfjoTILwUAROKW0lZZ6oaU5k3nEtNTg2z6T89ffehlvtH5KolfyQAjdKj6cBsOnBpiHVyZ_gHhJFenhjrKIRiWw2BVn9tj-2kYvlTZs1OMO-roHjvI4135BtcIhnO3oGP2DoMcYVqIFX4PoaDCt82XzzG7ZLoTQXF1lzlMyoDVrxUV2A4rLZR-szcwjaMjGunc4LVFBaTOCcQEtZo-ifeiSWi1DSgASNysPMsUoFRgx9yeNAMS7icoesHw-hTtKg17pLc02y1RrbscEnSo4vu-Fcmym7u5V0xHvc-6f6A2HZs8p0vaIaXYg2d88ULjB15JPoJ6qy9im6XYO3kt1CfSZbgd9B18TPA7Kq5AaCtzDkcPWLPxZrNQJb_WxGXkhw0tXZQyhS6g6jxMIdF7ApYO3oNJzL694dRCEvCPtLqfMUcxElRm3Wy9tcb0mXex6g-sGfNOOdJXG4SlbtVB0tGRsGYV0yWUYV9C0ag6VvhKGpC3saGms2PaxLRROAiLWi6F50lz1Ox2Pyfs9rZj8GKi_KQ60OFiDV5sNqBFKEOpQkzv5KGkANgDvMHomfs1OBAb0dtP4AgQVlH5hTgiWLo709PJMcBwzvASNap6wodTXjtJN_YBm-EtEyqnS5jjiD-jfCHGaD0Iq326HO6kVtWKhasYTfYGkV46q5GepTd2vPOZKIFkg73X3z2phPH8A07CG2SSmOW3YI5ZiKCJYAuC6Ped4tW0yWrWPeINI7BRzoBn451YZoYZ146B1EecPMeL6DtY3C_k9iYf-ck50GMBbwMSoM4U4Pa7au4tGZ-OFhLEhCRoCej1gRkPdvBQn4NpHFsz-htIhoSLl3R2Gnf0JzJ02GmlBBa-uacJxlJtfEH4Xt3QNBl5NxVvaZnnYUyHwtynvLSEmJMXE9OEjIXxOhgYBxotax1Fdbja2vOzH369_rf0pGjeIBlMTQDixXI1q_dOiuDZHiCu2ISkIXJeEa_tqcW5f-KWtKtVydlTjEHGHGsVEcE0wIWGDYKYvLL4d47FfyfUkUfS5DlHb8FPfT4y3P9T0-RubhkjUceL6x0Careak6LYO7K6ufoyG6kBxzlH8QQkbSu-ijuBTBsRNSbUIJw63kg7uuO-CSDMAUZ6uT76iYY0kGsF7rxwT6iclLxAgUYrVF4r9SwSEE93Qzgohmz8Wh7PiD9Y2BSn8OrKuDssnsb8sv5HTrwhaer7ahtFCIJ64WsxmuOdcE23PqllAT9dNh-KjfeFMBsVNoUXjK6CzELQsTM6PnJQ76fsbxGFfHHEAnvSoChaBWEIpm_ET2ImgkCSnIaMJCP183pQI_VSRrI_xA040VttbfqH0be18hvfbWxzgpJNixQPc8zseE4rLrIcgwrIDHLUml-CoXrIlvZ5n0aHJzSMTz12kQNHD_uZYFLf5kCNXlkWLogJnibVXfYnZiB4vQVrtPmMwLEobUJjKATk9Zoxw2fXBbx-EEvzXWKio55bTcOF26OTvehGVIBCb-VaRv5kALaNa9uCEHHKjPLcM4DPXcHjt4uxc0HVHOXoOrUxwv9u0VyvziU-3Hrp5c3MmUnku997e9fMAyRKiRZCW95SQOirPdEoTfQiH5JynvBdzycZCA6jF6gSa7J2YwQ-bveeVPRSPjuG6-KDRDpFZfMBwt929MmZlvpw2yVn2pxrFEEzApIjQHuUs1rr1ma9XBr2n6g66jntIsYLwYZFthbvyYdnpjoLK-iLsPrukNpe3ZuYTz-AjNdXP3diy0XiVikVA5pItsUcUwvmWtL14lnslztlWttI2VYXjBSGGx6J7Ke1g1G4Q4IpwyRdbli8Y8Be3izAWqi7UNhu0gYrRonuzAo_qJ293bG0QUrKKJePfuqq-20dyELSMZI0Z1nX7mjY2jqg7qV4GYqdxiKd9pFohP-DT1QlAMBK4VdXALlrbv3Sj92xH0SySJVdavmyAYv_dUeUdrvGsrus5nIouQyn9kUhosZjG2zT1_px2S9yrsF81ns-PThqdcg4i9-U3XFW0_BSjUOP1dxg0qqBpI42YGUEvleulKQ3-agld30BCuv9LdzMfhNoUM5JDu9hHn8pJdNOiJCXSIgOtzZ-fUkxdjON7YwmikPei4honn0nJnPrXtLCKf6DcP_YTryFEiOEruPYzr266BL3dVH4GyQVdqyP8OOJeG2ngKny6y782FmNhBDffxW-CfyN7-WjKY85vJmt2KMroMgsLiGbVMj9Nv_pohutnzh8a5JxDJOdZow_6gdsxY3s6-EXu2RK4D8AXuIlTRgLsEQsEnMvoxrt-w-5T1O_JQctdXR9SXi_zsynNHgBiVEntgaAXqeOQ39skJRwn2GrsBYXT3VbPkabOnFN4jt_w3rSPbCqHRkqa88iBLMAQtPD0E31jeBqLHl6ScZjpPMP_J0wt66gZysuEe_r2CLf0kXbEEXYyAihjN5R9wIvuDVHIrbW2cxRnCvEBmcBxigBsm_Uk0e_tqlyIyQqKJUMA8vVUfisUlw-fxbQZIiUavt3rTZvWkH0bOsz3SI7aTjLHiUIymhh3yPd2g2zm1ixFURGQWG3DT7yXsCtucEvgiWxnN3hZ8ne42k3ViwlssZW5juXpw7UecRQt3cC3xolQ_FtaL7PDhM7n1vRGMaokVd-ge4oVozQuQzpexsPmovX0OzikuLtHNp2agm2ozj1dIN8xZ9rtpCgJbUCqitIO8cfdlhrHXvZ2-NRe7Hp7AdqP2CZc2bMl-S69S6a53EXeiyQdd.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_0fe4025c186131e9016aa07a435dd487d1bba9af84c7d414db",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "max_output_tokens"
+    }
+  ],
+  "created": 1788901954,
+  "id": "gen-1788901954-0ddELz4ha7ji1J1ErYrn",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 256,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 256,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001046,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0001024,
+      "upstream_inference_cost": 0.0001046,
+      "upstream_inference_prompt_cost": 2.2e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 44,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 300
+  }
+}

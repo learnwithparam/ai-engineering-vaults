@@ -120,11 +120,14 @@ def _language_tail(n: nb.Notebook, glossary: dict, out: list[Finding]) -> tuple[
                 break
 
     analogy = (n.meta.get("analogy") or "").strip()
+    # Prose is hard wrapped, so an analogy can span a line break and still be
+    # present. Compare on collapsed whitespace or the check fires on formatting.
+    flat = " ".join(n.prose.lower().split())
     if not analogy:
         out.append(Finding(n.rel, "language", "metadata.vault.analogy",
                            "no plain English analogy declared",
                            "add one, and use it in the prose"))
-    elif analogy.lower() not in n.prose.lower():
+    elif " ".join(analogy.lower().split()) not in flat:
         out.append(Finding(n.rel, "language", "prose",
                            f"the declared analogy {analogy!r} never appears in the prose",
                            "use the analogy in the lesson or change the metadata"))

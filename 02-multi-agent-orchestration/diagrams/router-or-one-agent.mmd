@@ -1,0 +1,15 @@
+graph LR
+  A["SOC alert"]:::input
+  B["One agent<br/>five playbooks in scope"]:::model
+  N["No tool call<br/>the alert runs nothing"]:::risk
+  C["Classify<br/>one question, no tools"]:::decision
+  D{"label"}:::decision
+  P["phishing branch<br/>one tool in scope"]:::model
+  E["exfil branch<br/>one tool in scope"]:::model
+  X["Playbook executes"]:::output
+
+  A --> B
+  B -.->|"tool_calls empty, stop"| N
+  A --> C --> D
+  D -->|"phishing"| P --> X
+  D -->|"exfil"| E --> X

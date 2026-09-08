@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "verdict": { "type": "string", "enum": ["block", "pass"] },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule": {
+            "type": "string",
+            "enum": ["missing-idempotency", "logged-secret", "unbounded-retry", "other"]
+          },
+          "severity": { "type": "string", "enum": ["low", "medium", "high"] },
+          "evidence": { "type": "string" }
+        },
+        "required": ["rule", "severity", "evidence"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["verdict", "findings"],
+  "additionalProperties": false
+}

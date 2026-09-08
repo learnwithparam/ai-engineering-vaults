@@ -1,0 +1,13 @@
+graph TD
+  C["Host calls a tool<br/>readings_for asset PM-14"]:::input
+  A{"Name in the<br/>query allowlist?"}:::decision
+  R["Refused<br/>no SQL reaches the database"]:::risk
+  B["Bind the arguments<br/>never string formatting"]:::decision
+  D["Connection opened<br/>in read only mode"]:::store
+  T["Allowed tables<br/>assets, readings"]:::output
+  K["scada_logins<br/>never named by any query"]:::risk
+
+  C --> A
+  A -->|"no"| R
+  A -->|"yes"| B --> D --> T
+  D -.->|"blocked"| K

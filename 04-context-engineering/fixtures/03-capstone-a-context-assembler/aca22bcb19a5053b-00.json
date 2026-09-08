@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "This week's practice plan for learner LR-2024-0881 should focus on reinforcing factorising quadratics and minimizing sign errors. As LR-2024-0881 has an accommodation for extra time on all assessments and no timed drills, **timed drills should be avoided**.\n\nThe practice should include a mix of exercises on factorising quadratics, with a specific emphasis on identifying and correcting sign errors. Incorporate strategies that help the learner double-check their work for sign mistakes, such as writing out each step carefully or using a different color pen for signs. Since attendance has been good and homework is submitted on time, continue with regular practice sets, ensuring they include a variety of quadratic factorisation problems.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788902565,
+  "id": "gen-1788902565-noSuTYc30BLMU5VwD9h1",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 152,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001638,
+    "cost_details": {
+      "upstream_inference_completions_cost": 6.08e-05,
+      "upstream_inference_cost": 0.0001638,
+      "upstream_inference_prompt_cost": 0.000103
+    },
+    "is_byok": false,
+    "prompt_tokens": 1030,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 1182
+  }
+}

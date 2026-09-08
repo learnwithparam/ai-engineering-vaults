@@ -1,0 +1,405 @@
+{
+  "choices": [
+    {
+      "finish_reason": "error",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_risk_score"
+            },
+            "id": "tool_get_account_risk_score_YKyMZSF7nhphrYbDGO5C",
+            "index": 0,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_churn_prediction"
+            },
+            "id": "tool_get_churn_prediction_9hP76BTJLBGQKbmy3ZPW",
+            "index": 1,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_health"
+            },
+            "id": "tool_get_account_health_q8pbCMHSiDkNY6m0DpCH",
+            "index": 2,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_customer_health_summary"
+            },
+            "id": "tool_get_customer_health_summary_ZyXVCP8193V8VwsAUDDT",
+            "index": 3,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_summary"
+            },
+            "id": "tool_get_account_summary_vWmxt1VYcSfMng48zHte",
+            "index": 4,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_overview"
+            },
+            "id": "tool_get_account_overview_p7J2zH4GQbtiN4X7HSIQ",
+            "index": 5,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_health"
+            },
+            "id": "tool_get_account_health_sPszgCkqfkCecz0S1AJX",
+            "index": 6,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_risk_score"
+            },
+            "id": "tool_get_account_risk_score_0WXEAGj50GPI5eXf8GCi",
+            "index": 7,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_churn_prediction"
+            },
+            "id": "tool_get_churn_prediction_8uJwPM6MUyGlZRZvl7U3",
+            "index": 8,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_customer_health_summary"
+            },
+            "id": "tool_get_customer_health_summary_J95uW3pFLRUsFZvS3toI",
+            "index": 9,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_overview"
+            },
+            "id": "tool_get_account_overview_7arXohocTnAVN5BvfhME",
+            "index": 10,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_summary"
+            },
+            "id": "tool_get_account_summary_fCdgQqIHBKRVIA5ZlFMT",
+            "index": 11,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_health"
+            },
+            "id": "tool_get_account_health_Y1J9F0h3WBtM0GSCsmQt",
+            "index": 12,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_risk_score"
+            },
+            "id": "tool_get_account_risk_score_tggDGyGxwj9gyonA77ZV",
+            "index": 13,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_churn_prediction"
+            },
+            "id": "tool_get_churn_prediction_dulLbV9QPhJF73SCl9EN",
+            "index": 14,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_customer_health_summary"
+            },
+            "id": "tool_get_customer_health_summary_7PEac1VqiYdnBzFfgtLw",
+            "index": 15,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_overview"
+            },
+            "id": "tool_get_account_overview_MfBhpWFvSdslOqFlA56n",
+            "index": 16,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_summary"
+            },
+            "id": "tool_get_account_summary_Bgs7jN9HufOtFcoFECbF",
+            "index": 17,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_health"
+            },
+            "id": "tool_get_account_health_B4nLA4r3pRySGqecM9DW",
+            "index": 18,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_risk_score"
+            },
+            "id": "tool_get_account_risk_score_KLFHKT3iJ7oxjugIXA5o",
+            "index": 19,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_churn_prediction"
+            },
+            "id": "tool_get_churn_prediction_wHoxqO9m4oRcY221MT2k",
+            "index": 20,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_customer_health_summary"
+            },
+            "id": "tool_get_customer_health_summary_K45wRLwEWd0XYD6JXniE",
+            "index": 21,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_overview"
+            },
+            "id": "tool_get_account_overview_xtctGQTEbxMqKVbc7zhe",
+            "index": 22,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_summary"
+            },
+            "id": "tool_get_account_summary_i7RGJSxvdm9XiykkafUR",
+            "index": 23,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_health"
+            },
+            "id": "tool_get_account_health_mTzeeNEGXEmGsnnU6cUO",
+            "index": 24,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_risk_score"
+            },
+            "id": "tool_get_account_risk_score_A9xk1HUIGrG2lhspZigK",
+            "index": 25,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_churn_prediction"
+            },
+            "id": "tool_get_churn_prediction_AoiAWbvFczA0aeK90sXp",
+            "index": 26,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_customer_health_summary"
+            },
+            "id": "tool_get_customer_health_summary_pGHD5oOUGs8NjSV3gVw4",
+            "index": 27,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_overview"
+            },
+            "id": "tool_get_account_overview_HBXBriUpL0i8692Tc5rG",
+            "index": 28,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_summary"
+            },
+            "id": "tool_get_account_summary_J31CmtDLG5nRBiGYqmLe",
+            "index": 29,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_health"
+            },
+            "id": "tool_get_account_health_HhIE6BM3nUHiUk55T9VJ",
+            "index": 30,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_risk_score"
+            },
+            "id": "tool_get_account_risk_score_qwZoK7BTlXBPBjWste0k",
+            "index": 31,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_churn_prediction"
+            },
+            "id": "tool_get_churn_prediction_MnB3SA6Ph91kKeINCrO6",
+            "index": 32,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_customer_health_summary"
+            },
+            "id": "tool_get_customer_health_summary_yjxriuYkHElhFZOjxUT6",
+            "index": 33,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_overview"
+            },
+            "id": "tool_get_account_overview_R0yhkwyAgZJwHqIid1dg",
+            "index": 34,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_summary"
+            },
+            "id": "tool_get_account_summary_ejCkHNQpnXaef5kipIQV",
+            "index": 35,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_health"
+            },
+            "id": "tool_get_account_health_cOfQho5tUy1GOmTvFe9v",
+            "index": 36,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_account_risk_score"
+            },
+            "id": "tool_get_account_risk_score_uPPoLwBYEZG5aSRD85lr",
+            "index": 37,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"account_id\":\"ACME-88\"}",
+              "name": "get_churn_prediction"
+            },
+            "id": "tool_get_churn_prediction_TDtBPQaBtnQRjnZqaHx4",
+            "index": 38,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "MALFORMED_FUNCTION_CALL"
+    }
+  ],
+  "created": 1788902128,
+  "id": "gen-1788902128-jjp1GxbZE6otquPEamW5",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 0,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0,
+      "upstream_inference_cost": 0,
+      "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 0
+  }
+}

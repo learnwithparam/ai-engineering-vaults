@@ -1,0 +1,63 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"question\":\"A 200m conjunction is 40 mins out, and the spacecraft is still in recovery from safe mode. Recommend executing an avoidance burn now with 120 mm/s delta-v. Confirm or deny.\",\"spacecraft_id\":\"AQUA-3\"}",
+              "name": "page_flight_director"
+            },
+            "id": "tool_page_flight_director_TWoj13QW2d1RzhdHNypq",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788902577,
+  "id": "gen-1788902577-s3hXSsgYuXdt2bCsRBF3",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 61,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 4.01e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.44e-05,
+      "upstream_inference_cost": 4.01e-05,
+      "upstream_inference_prompt_cost": 1.57e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 157,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 218
+  }
+}

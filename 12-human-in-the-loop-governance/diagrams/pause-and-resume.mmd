@@ -1,0 +1,15 @@
+graph LR
+  I["investigate<br/>one turn, one tool call"]:::model
+  S["Signature<br/>name plus sorted args"]:::decision
+  C{"Same signature<br/>3 times, nothing learned?"}:::decision
+  K["Checkpointer<br/>the paused run on disk"]:::store
+  P["interrupt_before<br/>hold_for_human"]:::risk
+  A["update_state<br/>the human answer"]:::input
+  R["invoke(None, config)<br/>resume from the checkpoint"]:::output
+
+  I --> S --> C
+  C -->|"no"| I
+  C -->|"yes"| P
+  P --> K
+  A --> K
+  K --> R

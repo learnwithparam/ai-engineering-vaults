@@ -1,0 +1,78 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Dispatching telecom engineer**\n\nI need to handle a telecom network fault by dispatching an engineer quickly. The user provided the fault ID NF-3392 at site LDS-11, with a 4% packet loss indicating degraded service. I think the correct priority is p2 since p1 is for total outages and p3 is for minor issues. So, I\u2019ll use the `dispatch_engineer` function with the fault ID, site, and priority set to p2, and provide a confirmation message.**Confirming engineer dispatch**\n\nI need to call the tool to dispatch an engineer and then provide a quick confirmation. Since it\u2019s just one tool call, I\u2019ll use the `dispatch_engineer` function to proceed. After that, I\u2019ll confirm the dispatch and any feedback received. I don\u2019t need to use the multi_tool_use wrapper because I\u2019m only making a single call. I should make sure everything is set up correctly, then go ahead with the dispatch.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Dispatching telecom engineer**\n\nI need to handle a telecom network fault by dispatching an engineer quickly. The user provided the fault ID NF-3392 at site LDS-11, with a 4% packet loss indicating degraded service. I think the correct priority is p2 since p1 is for total outages and p3 is for minor issues. So, I\u2019ll use the `dispatch_engineer` function with the fault ID, site, and priority set to p2, and provide a confirmation message.**Confirming engineer dispatch**\n\nI need to call the tool to dispatch an engineer and then provide a quick confirmation. Since it\u2019s just one tool call, I\u2019ll use the `dispatch_engineer` function to proceed. After that, I\u2019ll confirm the dispatch and any feedback received. I don\u2019t need to use the multi_tool_use wrapper because I\u2019m only making a single call. I should make sure everything is set up correctly, then go ahead with the dispatch.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoHoLAOy5aEjlV7Xzd-G3BGPHFbnqF_u1cuflTCNe8Q98h3aL5F6T8BTlNgFMr_tT3uLyzR1iNW8A-VA4AIbJrgNj5RUeDdwVronHBusSzgBy4c0XIj2-WyDpaKn7qq34SgkwuKAmRsc2pEAES-fMwLxIv94_lp7dQuBHxHNANu3DH1kpRihy4l1j1zFav1Vh1dxF_M4JAxnJ_558ZOq9Q4Ug3jS8f8EYUnFwsb1b1ocbUCLqVmJxoQrOjgNmv-GwK4EwgniE8ViPUH1bVe0PFVgvj0lOrrN5VqDKo_s70rTlSnVAoAb-D_rCRSD1HOt_9ycnkAd6C9ui0jNoivFzbi1lyuwO1j0inRk8Ef6O5PTfNXkDkvL0_faT8rJqyx1EGZX25AFG1yFPRYZoE45iFg4Me2enXmTQb-ib_kkmx4WDYUYM-meDVQoZntcKScLQbWFJQ_UpRI2BYuLaAI_IMAFOzG53YTS7KQf3UHzmEoccfY0qNgoto2kVmNoyhbUOaNDjmkB5R_7NvH8YDQkqv4MWVlO8gLbyk6p00BJZ4hBS_etlkfk5NfthZGGd_a_STgMw11EFpBn4_CWHsi5OEmypC35j6et4TVtKpDo69R80jdg5DGqY0pNexVUuDaSxHbbweN7qypqem7Mt6StaLWFIb23uVCsSOya-pX_WBXiQ3-LEaI2i3Dr3v4zS0HiiZpHVAlVhr_u6Rm90gbvzug_V5A7UJ3Jm45otHkAZdPU1Oj_dl5OWy0lxzsqjo3hbxWfuESvAcKm09z05S0Crd2WwNM7vQY2fSBIaHm-d42U5D7qoodZjJ_0AKlxqBdtGevxnHekRf-hPEQ0NBu-HpK9yceyMz7Qz5v9p1gaN6OYZk-NCDXNOM8MreiBY-gGC7YK1ZAYstZAF7X1IWN3W7BUbQir86OfDt-4oJ121XJyXZ4W1XNE_JDEksGVrJEo_C-cJfFCSIQSRlYtybvdmIVZ0wWGwU3Ie5hoUaRZxGkkkLUQF8AvXS9YSJoIaCSH0mLPqkNnt2BK1Pk_XYMS-KkyUDtCqGsgsBkg6Ta-cR3sMlwnq7xaxH5-7cV5fPfQeQ-j3FgqK-SWVchSPHKzGuwb1gXP8Z3huejmCTv7hBi2zAMAFkoTGwuWT7_47-JBm38J-NIfFpv69HZtYUT6RhmtYH-746cxPmyOt6UagvTQqWidD2lLpAOK53T5lbS9g0t85s5VaxBFPY0N36J8xPz7TdeEooZOkoN2J0leA04W2bzn3w1_Pdj1X7x1apKqwdUQCvcVuMQk0xATMuRBdIn-pB_X7-GQHhxHgbvEXkCPKyUv37PRAXhYmVc8ClcZhBI61-3Y-BFb_mvstdUsbvdYZ8k2HrpL2ejlxcWUrBi-EO6VbtvcaBhh9WFa1mnhmDrNvFfyVZlp88raI5WUJ0pXtKmg9OwOCKnKXLTT_raRgbLt3sVh9WYxNhyYK76dseDpq-0VkIbTjhVWC96NMk03BKfgGZuIaRKyIQ5cLVeof6YXIpT488nCdypDFT-FC6fPpQ05fceAmLdF6LXdFcSj-i_Mv6uj2OwS3x8Wyheh8rykIivp2tu4Vn7R1nfMwIYoliF5WSSYigZSqYlU4r2FTGoJ6PhRZiZ0KqyusdBoiZIEMO8gf-UxpTC-pMLB8SFBvO6OoQBQS-hqtsxQ4Y1-Y-j91DLcV25LE-kNAsi3zyspwUVdA7JemVPcfL9_WqAtFJrcDJF72fDbkuH9jrkDpxVdPjskieYDRlbKBhNAtmL0RcMcLhyEgAhMdDhCqvPSZltle22XfD9leXkNAzA2gKtu3fdT1V-6eOIwnHCX6ciBvf2sB1tZAhdfZ35ilAJ70UdWr8fEOzdort0i2_93MJIkR7TrqXbUsoOtDkDd9XX2CIdg95gaQi_F3pJ9ysl3h9k72SxNo517LsItz503pzT_aIwbqPu9jN9VgmTKy_6Naj45xxYlRBlf779WpxZc0KIclQAFZLK0DB3Zf5FgZrqL46fs5Wv9X2YX3_IjMpCx07OulaJiOJTm3ZQftgtrYOc0FmQD0nXRNmshdOtihouv2Sz02VwvpEVtNu4eK4mrK64-FWR40vBVzCo3J_sdDusO9ZoEjFgywz6QQfiLFm2G7kcx8_uPkpgVfp757YrNSHPyAreJ1bG1E9iXlnOaD2WUHSvfxFASWd-1LvaFNT8f8zJ6O20lmi2Z8pBaKYk7NAZXAVD3c27BGU2Ft_9O_xLG3qdl84HzkL7ELXdGmcU5eRCusaCzZJWeNr8cSvgrvRbnZ60O10oVCty1gxvKENicKcGICRDdL1MRArGANbE1sfrS0IjrqSkgBz2Lc0wAXa8hRDNVlu6uIkovs3Vju0CYvBajdHpwZQx7yxMi5Kb-BJR90XOSoDMgGdK0sqG_PeqFOaleKF-NAl60X2sKL23XDy_3PipPrqmta78EEDqs1WdrfPOSMXryaGtqnn0gtQDQGRs0acEc3UzOUN0_amAvtfC9GjkXY-8FvnHYYNz_7hdNF70boT3SkR2N2EoWBFRv2IIWpUDdlqWjUU8vH69gGA2Q5jiKl_M4lBk0YQcv-TIMintsURQfy2sEbZNzeb3EAXe2Xgsod_xFZIYrWg7CtNhkxuTvcs0YWwbwQ0zroB9mZkch0FX812dCLKlWrAbc__H1d08nX6ZSsAFRrEAVgazir1fbZzFeJaHQ1A1HCV2dnEfrxxeR872oDR9BK9gSXYuyh39x500G5av7cMA0ADwRy7mxDWPQ5ZquL2YrJ70Ehmc0uNFPEU9--Np8QyFxKWsLZcB7CvVyWXqUvHheuv1gpXh5J5aKA3x-MEiU6rYKY3RkA4svHy5GrvFvYjUU6EIZXY11kiy4XyyL41S6Y2w8kIGCXppypVV0yKG0CHNGIKUt6BYKLdEP3Q3tUlV2jqJl93-G6o1BBNTgpO6U1v3SskE5YPhm-eUnr6hnrKs62VHsKoyjDBoPQdRAxKz8jYnDkPhS3r-0c38hEiAAYPCZaokoFEkQgVr7wpDs3jHmdiVmT1CmPypJTARreu4pOv3HRva5owAr6e3KwNthwpF1NoXWj4_X9DZQhW8OeipFjRKRjaY_rTPfJlN8=.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_0c8cb3d7e8448431016aa07a07686c87d19149623fb7772c82",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"fault_id\":\"NF-3392\",\"site\":\"LDS-11\",\"priority\":\"p2\"}",
+              "name": "dispatch_engineer"
+            },
+            "id": "call_xyu9bWyiWKmUSFliKo4vQr8Y",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "completed"
+    }
+  ],
+  "created": 1788901894,
+  "id": "gen-1788901894-PDLuWH6fjPHCoDMDF25p",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 340,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 256,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001421,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.000136,
+      "upstream_inference_cost": 0.0001421,
+      "upstream_inference_prompt_cost": 6.1e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 122,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 462
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Dispatching an engineer**\n\nI need to respond to a telecom fault reported by the user, specifically fault NF-3393 at site BRS-02, where a business line has been dead since 09:00. The instructions are clear: I must dispatch an engineer without asking questions. I\u2019ll prioritize this as p3, since it's a single line issue, not a total outage. So, I\u2019ll call the tool with parameters: `{ fault_id: \"NF-3393\", site: \"BRS-02\", priority: \"p3\" }` and provide confirmation once done.**Preparing to dispatch an engineer**\n\nI need to prepare for a tool call in the \"commentary\" channel to dispatch an engineer. Once the tool returns data, I should summarize that an engineer has been dispatched with priority p3 to site BRS-02 for fault NF-3393, including expected wait times. However, I can't infer what the tool will return, so I\u2019ll need to call the tool first. I'll execute functions.dispatch_engineer with the necessary parameters and then present the resolution result in the next message.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Dispatching an engineer**\n\nI need to respond to a telecom fault reported by the user, specifically fault NF-3393 at site BRS-02, where a business line has been dead since 09:00. The instructions are clear: I must dispatch an engineer without asking questions. I\u2019ll prioritize this as p3, since it's a single line issue, not a total outage. So, I\u2019ll call the tool with parameters: `{ fault_id: \"NF-3393\", site: \"BRS-02\", priority: \"p3\" }` and provide confirmation once done.**Preparing to dispatch an engineer**\n\nI need to prepare for a tool call in the \"commentary\" channel to dispatch an engineer. Once the tool returns data, I should summarize that an engineer has been dispatched with priority p3 to site BRS-02 for fault NF-3393, including expected wait times. However, I can't infer what the tool will return, so I\u2019ll need to call the tool first. I'll execute functions.dispatch_engineer with the necessary parameters and then present the resolution result in the next message.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoHoPp--zQeuIt5eG10IoNvRwHl1P33W4rwhNkwaDIQS58Hnkh3tGWGLfWmQfq5ti6-Rs1lTdl8AVUhDrNj22fLy6VDlTrkx5MkLc7_ar_cg01QNMa8I1lm_hWjJf4-iPUFMm6reb2w4JQjRUCy9KdG230mEGGV24exrd_lJZWrjW1QIJkE1o4K4tyKxJ24JEUqpER6ByiK9a7nN8ulYsAlVtBOPkkPsVH_yyq2g3rv05ROtHjLE_AUSdxJb_w1hxaEKifnyHFONK334qNyYWFusaaJ7NbeCU-6qBqI3TXNrbmDAcpN4WyfGAitqm7HNNo4IUToyn0Vjq-DyF7OpvJVLtv4F8nVI2cs88VN-OO3k_wgiejBrFYGrUUVbkC1TQvWsMkAnYg5bOtVoJESZb0PWDvw6NRGxr91Hp4NHfiC7BU8Cy232fBpD7Pj8O0ELg-2akDjkp3KeCJUlVykurT7ZfFEAXcVxUELvM7XkZnhXA9McmoB-8rWqT4yqtO6QLHD2l3UBPx-glA5WuAUb48QpzP6AD8sKEi3r0NsVWcIjWdY3SvzYZhMVAoSSdV9HNnblffeTru8AGJXMITKKqWvGPGm8LbM0WGizzzZQ_OEihVMRHHd8c6SnAKtwjWlmDmDeAt4kIa4bEY6uP1hJ8tQ1heJhEUHOlNos5pTpSpQcOVJ0xVFQCLnXRNe2v0DwPh_WPbmDtm0SrucD7hXlUuUMAwhyB4GwjGAxR5QZj0GhmJ2MknJCvOe6QRcmvirGhwiuFx4O6n_-RbDF8Hk0cYs_SlDgMRv3QGSdZXb12MLyUtQjZNnHXLBknSKOan2tXL-o-J5cIJHn2vmEUoQliKCdhPuDihvcWla8ZNB_ASqH0E5UY_VWPZJHBu4n2MVrrI-YzJmLM0CBttM_bZjomSSZBjCWaFBakYV_tphvfHCmybHxqH6Owbqx4ORQZR_XXeLpi5NhoVlYYceYnRSy_WdwHmIXDxTU3YUOR9BRX6GS67FE1CiIsBxKxRPX97OBWk5f1cUq5aytdxQ5E-w_6d0ie2m9DNLyswKp2vV6tR9sLArxzdzd4tylN71wbrvVTv0b8grcLTwnXaJ9nQUzkl7388Uxoc_L8SwdFH8Nq7MrJTwP6iBf2R-NPwsVqxVVFsphK6wHNwvB5DS6GV9oUZhHMdWDjIAgPRrYQhHmeRO2MPUA-7RsgxdigGys6pf46Jhw7i9cbw8VAYJXYi5g8GZXY-aWQo_QtPOkPazeqhJAu1HE3VkMzJxgw9w3aPvs0T8KMQoy8OJJLi7ysFK3wCy7_i5QU3asn6TYMWFhf7uqiGt0JSoSDj8ePlM15N5cRJQhYPc2cgVMm4taypXK0_2p3C7lnS1-njcoiGhJ_nM1rn7QjJZp9tJMLmx_grHs9WB7el7vrud-a-IvxOb2C99F75UjWceV7ZykqkUyqH79XBIk1lSjhU-HyqV2-c0gqrVBYF4jAFU0nHSlFQxZzFIydrYSX17SwujLxA6YkCa2H63-8KZpJf9TXoEFYRQBAsKyrL0Ala3iq7Fb3AUaD0WrO4jVff6bceaOUq5QQB-dS7HaxkQAyh-Zd6Q-1HHDnclacKZRDZoAUykoRIDWsGH4rUSwAuO5ACikkkfcQ0HrG08_0jRHYtapM1aZU66oRrLG8yH-Y19MWFB-J0oePjVWRft4i-phK6sZkJb4hglxOaLJG4f8wlGuZDgnYcLutNPds7zwKbUBH7gYHBPX5KAWySJABd6AEUuhot0u5qBl2PpAGpXXJ51lxazJOcztGF7KgLIvhpbZ01Ju6crfcMiPJd4W_phSJaerEkkY3aZ9hKCwIsDJTXYXY644e0unvjk7dnR4G4jNh3487ZK4aQIHNCNxbdOJ1o_NIelY4APWDGPgiI25CJXKTBVH1iHCHX8Q3cWjEeCDAM2Vq1zLj8jK-iR-RjSz-GYJ8tC94T94hAEJNpfO6Ikoqtu11B02liyf-QuOyGixrhJqAFXDiNqaWrC40xegkR6fuKsUZUa7dprJdh7T0j6kvBzwwxD-BO6UY7mYjBy8OGoB8CufHGL9z4RUj9CdVfQL6pYBOS0Kr9Lmo8GWH-mqLKA8b8eV6FdXJWakQ8dRuQ3tY31DqsG3mwKyU56jFvXlrnupaEvHU7kfNAnm-COa2FhjHDzfahtLzW7_4g79yhjI4wje2p_Kw5uZ7yLJ6-g1qem8Wvc_J1tlmSJao2J4yM35MV8GmvDKi61TG7DWvkLJAdofj7_EceEw7ROiDOp5OeHfyj1mqPDNP5Bx_7nYuQKi9RMbEYJPc9pDvTHwT3WnChdi3oGteRI0YqOcA4t9rcsDiO2-V9IKVgH-cPg94ejs9pjhkj_sUewRS7_4wycjaFEiL1afaYed1INcXA0oLIUg3BNG1RD6goAVYn4nLxKeD1OZp6hS31bVn5T5UkVRs06Qkyho3duut80gFLzWYKq_PtZcgLeQR6JK2kUjBY1QHRYJy7FI-qJKNX37ebJN3G-jV6prckT7KQS7KTi-73wjw_Urm3M9MNMcbgz9t5ef1EG5oh9a5r5jNWRUllIP89T6DzHv5M4oPBWhsk8V2gzDPWpsNxylc_1B8-kqRMLEfqC_SfY8ra8ouNJ3aLeyA64Oj_MYc0b5FN2jPYSWN6mLW6dUnVkSC7WZZZkE-6Skn-E972BioB8oyrXJwDIlwKJtYSIV4iqBMU9WfKWPKhgb2HqnLx726CnvtcDu63oaNn0P1pXfzOwEc9ZgNMLxQl6P-g8HD5vrcbbLR_aiLgssS1lGvqe-AoeyCkz7gNJoE2-u37sGoCJUgJn07oj87pTdfESj0WcmzAVuO7KGTRTpfAaeq_lXAcTY-GxHNN3d4Li9cNjukTuJl2Tf5qEVws7H5fnX3qS3woEqn02kYY2u6-3Ma5qWCIMnXRAlIhRexXCpiDhLhgJG40EUv_CTVe_KkxsDFGxqEEW0N9SuM19nORrc1MmzSL5QtZ7MQml7W7toRQUXPcWhxtuECmUewmgh5Kpdh2VTW9YugKfPbuitKZSnXqZBaaR9fQX6RIl1OSpwWVTgpLppdIYIvcAA2U9KioieBEgWRxoRrrUqxb76cLoaHqlz7IMH9q0jeGB98YKa2GM3_sLUwyFA5zp4WQDAbNuH0-f-PDN-QY7JZM0e-RsXd-lTinY5Sk8gcfGAsX7QHoqL7PfEKd5xuun_fyBjatcvz5_McaTsqw6mbeut7adAiP7oyw1hwL8EF6S9E7e1-gPWSrhaA4MsqYA5z9EEqtzHWYNqW9wdspt-OnMrsG-xiK8qOLLJJpP0q0bSb0Xmj3YBXIaOYveslSkfJ2xu749rpzsYV-x5ENVr0YC9_vXHQMTmGPMvSpmWrgtETRq4GnLQhAHvZOUtpKFnd2S4bU6dkAKXmn1RbEGrmJmfTfZ799lkMbhXzG5fScVMqECUXUCXDhlqDtz1sYRI0IYWXWlynD16y5rUhAMetQTMLULblFcMEt8INo-tepLlJy8WR_DjtHUQG5ujhOWCqLp940URxMqlTckTFucW0X4NYuBrDjB49BgouPr5M7x21F3cZ3Y-3UW4UZopGsT3ZGZqjzqqvV8-71PIH8RmtXUodCa-uKwkM7H-hHCipZLjMjn-Cv4lv.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_0f1dda1d2215d52a016aa07a0c626487d18369733230015f25",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"fault_id\":\"NF-3393\",\"site\":\"BRS-02\",\"priority\":\"p3\"}",
+              "name": "dispatch_engineer"
+            },
+            "id": "call_KTZrglcmCf7CnO1etmmWOfN2",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "completed"
+    }
+  ],
+  "created": 1788901899,
+  "id": "gen-1788901899-zUtnfQgiCF5LbqQRFZRD",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 430,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 384,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.00017815,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.000172,
+      "upstream_inference_cost": 0.00017815,
+      "upstream_inference_prompt_cost": 6.15e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 123,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 553
+  }
+}

@@ -1,0 +1,18 @@
+graph LR
+  J["Job runner<br/>no keyboard, no terminal"]:::input
+  S["Your step"]:::decision
+  I["stdin<br/>closed, or it waits forever"]:::risk
+  M["Model call<br/>bounded by a timeout"]:::model
+  O["stdout<br/>the payload only"]:::output
+  E["stderr<br/>narration for a human"]:::store
+  C{"Exit code"}:::decision
+  P["0 clean<br/>the pipeline continues"]:::output
+  B["2 finding<br/>the pipeline stops"]:::risk
+
+  J --> S
+  I -.->|"the hang"| S
+  S --> M --> C
+  S --> O
+  S --> E
+  C -->|"0"| P
+  C -->|"2"| B

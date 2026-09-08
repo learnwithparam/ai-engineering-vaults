@@ -1,0 +1,261 @@
+{
+  "choices": [
+    {
+      "finish_reason": "error",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\"}",
+              "name": "get_spend_pacing"
+            },
+            "id": "tool_get_spend_pacing_qQI7ToBbGZld2Gh8sQwq",
+            "index": 0,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\"}",
+              "name": "get_bid_floor"
+            },
+            "id": "tool_get_bid_floor_9qx6GhxcVvZZc0ofPjZf",
+            "index": 1,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\"}",
+              "name": "get_reserve_price"
+            },
+            "id": "tool_get_reserve_price_d8B5966QL5vZDi1opaDj",
+            "index": 2,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\"}",
+              "name": "get_auction_stats"
+            },
+            "id": "tool_get_auction_stats_EixUCmuYmcunGFMoswAN",
+            "index": 3,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\"}",
+              "name": "get_win_rate"
+            },
+            "id": "tool_get_win_rate_olP7HaZxW7JKvfK9LHTD",
+            "index": 4,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\"}",
+              "name": "get_delivery_report"
+            },
+            "id": "tool_get_delivery_report_tFKQoWQ1YYpGN9nLISc9",
+            "index": 5,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"multiplier\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "set_bid_multiplier"
+            },
+            "id": "tool_set_bid_multiplier_jK40JRGvRfaOb9wAJK4d",
+            "index": 6,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\",\"modifier\":0.8}",
+              "name": "update_bid_modifier"
+            },
+            "id": "tool_update_bid_modifier_iFKeJjslJkXWc3nayDFf",
+            "index": 7,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_WULMrXp7uZjPe8BkUVbS",
+            "index": 8,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\",\"amount\":0.8}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_09wJPsWcHWDIfEBlfFNr",
+            "index": 9,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_YJuGCpTSNFNqC4qgpRZr",
+            "index": 10,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_SEB9tVlgxxCmXzBtUMHo",
+            "index": 11,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_xp6tQtaW1oUtjcAM5cdE",
+            "index": 12,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\",\"amount\":0.8}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_V2ZMhwIc7cYOD6ieRruz",
+            "index": 13,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_FgwkjdhxmdGiGgQwWo8s",
+            "index": 14,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_1Qd97tC8ut11f7vXLgqI",
+            "index": 15,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_CHqvY6hPvlkiywartSDd",
+            "index": 16,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_LfvvwUovTz6MPAunbpOe",
+            "index": 17,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_Ohd7HMKS4lZ6bcMhVHIn",
+            "index": 18,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"line_item_id\":\"LI-4471\",\"amount\":0.8}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_9SKomghkNZWuY0QeMcDu",
+            "index": 19,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_xuF3I4UkKwDBUg0tVXf0",
+            "index": 20,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_1h7TVzkfpoS7z89qD5dZ",
+            "index": 21,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount\":0.8,\"line_item_id\":\"LI-4471\"}",
+              "name": "adjust_bid"
+            },
+            "id": "tool_adjust_bid_xRqQhhrDkErURzxZC2d3",
+            "index": 22,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "MALFORMED_FUNCTION_CALL"
+    }
+  ],
+  "created": 1788902735,
+  "id": "gen-1788902735-mBeaMbfeoWUr2r76twdX",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 0,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0,
+      "upstream_inference_cost": 0,
+      "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 0
+  }
+}

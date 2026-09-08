@@ -1,0 +1,78 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Dispatching engineer for telecom fault**\n\nI need to respond to triage telecom faults and dispatch an engineer using the provided tool. The user reported a critical fault (NF-3391) at site MAN-04 due to a fibre cut affecting 12,000 subscribers. This definitely qualifies as a P1 priority outage, so I'll call functions.dispatch_engineer with the necessary parameters: fault_id \"NF-3391\", site \"MAN-04\", and priority \"p1\". Then, I'll confirm the dispatch with a summary, including next steps.**Dispatching engineer for telecom fault**\n\nI need to call the tool through the commentary channel to dispatch an engineer. I'll use: functions.dispatch_engineer with the parameters: fault_id \"NF-3391\", site \"MAN-04\", and priority \"p1\". After the tool responds, I should present a clear confirmation: \"Engineer dispatched for NF-3391 at MAN-04 with priority P1 due to a fibre cut affecting 12,000 subscribers.\" If I get a dispatch ID from the tool, I'll include that too. I can also suggest next steps like informing customers and switching to backup networks.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Dispatching engineer for telecom fault**\n\nI need to respond to triage telecom faults and dispatch an engineer using the provided tool. The user reported a critical fault (NF-3391) at site MAN-04 due to a fibre cut affecting 12,000 subscribers. This definitely qualifies as a P1 priority outage, so I'll call functions.dispatch_engineer with the necessary parameters: fault_id \"NF-3391\", site \"MAN-04\", and priority \"p1\". Then, I'll confirm the dispatch with a summary, including next steps.**Dispatching engineer for telecom fault**\n\nI need to call the tool through the commentary channel to dispatch an engineer. I'll use: functions.dispatch_engineer with the parameters: fault_id \"NF-3391\", site \"MAN-04\", and priority \"p1\". After the tool responds, I should present a clear confirmation: \"Engineer dispatched for NF-3391 at MAN-04 with priority P1 due to a fibre cut affecting 12,000 subscribers.\" If I get a dispatch ID from the tool, I'll include that too. I can also suggest next steps like informing customers and switching to backup networks.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoHoFT49cW8Sl2y8bq40XfnEIUGWpa68oeKPVGsc47GO5leOkzxgYi0JZDKxgFrf7e2ZoHkSx3uvo3IC2L4CRrttmGt5PQxvGgCLj5KDz6XXL2TIVmxD5fTQAOWQUjAYgChbkQrKgMjqUz1xr-wwgxIUUz7jOD78YQAtI6SezTCZBdwJUV-49VV9BuJenHTBpr8KhcaG6zNS4KoLW40mAvVxeKCM2PZd-ynoe7cAty606BJxIvcBAAAmMcLN05IrtM_QbTL09QfPEuuEIrUXgj3rBvH5naRm4HhIcidO2_yM-dWzt_snqt4EkQXieGfg5Koc8LfzV6uqXUzF-6vyyzItHe54xY-zcodhL4SFqWmOy7wv0lnzGiHdaDGL7tQVBqCtier8a-1C9obympFthx5hALXIi4uQUjJaezISLeN5xQOL7iiPsYf5cUIUimkFwgFRoVIu38VBxOyjkNL_OOYtnV5gkYaDu_f9ZoGTvvmpMIRbmfcoi-x-aHbxHSa_YgaSotcfE05wntukypZXlK7HCD_ZODx95eojumfagE-zPzNueMqR9u6MfNXwqzTB7g5TEwjjhakwJVJTx1lDQnUshGvf5FJpB81xYM8KPV27qleHfhJc_IXp96OU7-Empql0QInbfgsXRgo1ycX7VLhEaCrHw65Ydylr5BT4A8AcLRe5kTIRAi_KOB-sL7W5CXndaGe5IixeQMy3TDsehX9oYajs88qp5VqRKsVaf9dRvtSapPOI51r6q2C5AO_-7_30uxhDR_BQC42M-_nmlxGmLnplmwJo5KNDMF9YdNlusS2QaJ6xP_rywf2Si1Z_PNNBiyk46T7A_gHnhlaL2v5a_NqwHnPAqoQ6Qosd6u-NCEwQntI2vOBtKa7bIwEBM9nB0PM4BXNFNbCme3ESVIh4YNM_65I7GTVblXTou-q4ITm5YYLP_J90-zsyfUJnEwX-b5hNmOIvSYqEGoTGm3WvHYoBRRbIwOj9q87u67rKxfbQngJQagVqvZBQHfQMy3_yjnrlzQuV8Z5uPcrIYXlVV5vygOy0_KxVn55KIMxm3CruSG25RKvwuzfb-vjFtmPJea71180TClJPLcX9SaVg7fSSwwaYrmUZH7IJ5qkMfTca4PgKgeXcBt391I_zA-0wv1lOTKJEgkTpKfDou-KGg6Z4SliyemBFqYG8xrt4-TaoxBPo0TK-I9M0pTmKm_a3fwDwz3w4Jf4FRCvtzAUPjxSdm5xRpSzC70lqZZfBQdZa3Fxox8HsSZvhZVzoPwXlQKN2Wh9RXjRhRNfWg1jzvUvtYDHh2MH-wL0TSLnfDNGBq_wViX5uLC1HZRkUW65VXS4fR6Fuj0aUKzFV__Zhdt0mn1jC3gIWocfKIjU-XomLzO0fUGsIise1k8wDDMwtFT9cqisjOCZI6bDKXLJmwqBNrMAUOcT7-Ala6yYH9ejUEPHymtu9lFziET4oml6wtvwaoR89lLxOFNgtCnRCV4u8Tm4nDsIWddnrNITFjL7P4XJJNDXJ75JxgP9H8-1zxCgKYADGPKR4Hrmz6dm05_b4l4e9-oQtxmqHnlOG7-bZyLaqb7rznz1nUxg5EzzOeO9urcxLjVkO-vbgTK5B60kkLNu2NJsIOzMxlWz5n_MyMoEU5jl7QOSoq2dNV2NxQOhcaIjJdhX2qMoW4YGIbz29xNbCbSKFBDkfKFXhfI-z4ht-NdSClXBmUgvbeCYweglYZabJItWJyT_1T2loKweQ6rZ7XjuT_LHGg8mi_2MouUE0kUP4NyX8vfTD9GvisltkJCy85CwKAVomqkgSXllDB2E7CxU515082_mjWWizrtJIREKamJQ6Da7z5hIEhlKeQkXH_8j2hL0HxvZrG38Sl43c-ufteupBKBpjFacEzaWKa8xN8jqbgTOGF_-E_WHTZF4hMDK87pPMb6-BOdJfuCBQY1GRkrt81_WYyaOYwl0ZMZs3jh-BjA0fKnpPHlIaNkjEK7ddjp-Yo5QnSawOBJVXXnKoVrnNlaDqxKSONuzMxA05yjSEzBJXFBCIpw9rVBhP-Xs1pgFrCCgaOD9bYgkeui0r5LRmzqwCzXVaI5UFOeTT-tnJ6-IdCXlHKnCiYhLoBGX3NxuoNOl_yIS9zTO4sSy3Cj501e09eVYljo9tJCXfMnZHI27gAXuRi6J7MHZ69M0E-sDTW1klNg9ZYHKVweMfIr4qnL87m4_yqFpmBJM15pI6J5BQa14EplmwZSJQtKrXkfVYCcgt7wPHftS8TRIOLFJYiCpUZ9eGwjVQp5ysOEu2pwj44UOTGXRQp6KxV8KKLgHNSdT7pAFqKH-glwm9Rs18ye_AAVghKR9iRJoen5gZ41UnT9mW5fzMGXnAJNYtZZKyM0PvcFzaaULsit-AtUbUT9PNAXYB4dSDm4ntLrK2bktn0s8FHyNO3N3z89MXNAmgJmtFYOSK31p-bBS74L5ghXBiPhX8O3igkhZoBgfnomyfouMRGOV2Pa25T9rNtpBkr8X-xSziIJdyUznad7S69aj9BDzcGOUpxOQ7e6Y1cGsv_EepAscBumiIaIsbmk4jfgveOibWB6Oz_K5XImIGhFLqA3RyZI7aAdKaiGhby8r5NJjd3tG341bicUAYjNr81zq3TTzeC3FkfDWy9SuaQ7cLkva2Lp5eMppxJ71gJdBwhhIvLA2_LmqOCIyFJedCTTVvh3z8_hA53goNATGn42-6molmjHavb0SCdO7EQQ7gy2r_pT52Q9RIbL8ZqXJstSQR8zzER47EZ9G6J7otHG91oXAy8Hu6BsOugw9Ig73nUJjhmx027UoxSpr9tCpP0NHzKGb4T83-mOhKdVG8c1UDMb3LtCEzDWDOJnkmEhyzPzbOrzfS7gO5fn2zzREHhsPEeqZKDmvlA8mjJFf2pW7AZiRBHkYX5vR9WapyQKOboBNS-6uUtRcwBeXsHK4ADmizD43Y9LU87_0_od_VVo9XGGY_pWKzdrzobh6zhjyKIDqbFOygBCNVKcBVNSTKfzgP-lVPXkz-WrbCuzH4GehV30o598d2ze6FxgaqyPaoF-ZifV2m_FpU_2E3emkEh4LSbxA8vkNIV3xvU52tpvd5gVogvXMAjAdiZFfCed_EPQDm71MpQOLOFcEBh8F85LMrPYr63OodRVZYNkv7ikhaXRS81pyQxQ3gJnBSVNXH3QojYT1QkrgdIQ0GZdtL1nbnzZpkZAKc4rMTabn9nA7Azscd9fAbCoqyP11VMixvIFmfSWhxdU94ylP-NIekztcKCsT23MFPqB-ZWEP1HDGv0ADqfyWDkjvMYFcn_rndircw186q505z1bDEaZ-Wr31fHdgJiSTDZoGxoor2MWyq0ZiMo8UBZJ3WoV_4ggGjK7bfbTVnkZYWNtn4NzViN8xafzgc-7v0OYER-qq8N1fSmy5PkN2CDyc2M_FAkbUwB5ssXsYwjWz__Ne36hr6gB8F0jtvkJw3iifKA8FYWRUsUDe9FRqp8KOyz8lQs_NHrYYLRzGcMaA-o42x7QTYnJFSZ_e_BBohStBwMQZZQrYeRaPiUIb019iEzfspywj9iXDJ5sm2YGpm3Jj7CmQxfqZ6uAN5tLpS897-cjq-rxpZG-Tg2dEQ0IfWsEbV0CWXNnBjHa_J_yoUR9w1OwHh-LoIhItv-3wr4THO6sPM3gIxeyWCenDnp81IDgVXdnzQYeUN-1HpygNBWEGMJvMRG4PBtpwQYotWdsjUsepVAWVVQZ-Wfplm3u_KE9Xkl_JQjPUmR.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_0cd586d6a6864aa3016aa07a01c00487d1ba64b3b8b3544516",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"fault_id\":\"NF-3391\",\"site\":\"MAN-04\",\"priority\":\"p1\"}",
+              "name": "dispatch_engineer"
+            },
+            "id": "call_e9315ZFEWxr9bgiwxp0agu97",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "completed"
+    }
+  ],
+  "created": 1788901888,
+  "id": "gen-1788901888-gnzDt8D9SwiX9LZ3Nmrc",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 458,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 384,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.00018925,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0001832,
+      "upstream_inference_cost": 0.00018925,
+      "upstream_inference_prompt_cost": 6.05e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 121,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 579
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "**Fab Shift Log Summary (Under 100 Words):**\n\n- Chamber pressures (1, 13, 25, 37) drifted slightly, within tolerance.\n- Metrology queue behind (2, 14, 26, 38) minutes, no blockers.\n- No recipe changes for photoresist batches (3, 15, 27, 39).\n- Brief self-clearing vacuum alarms on implanters (4, 16, 28, 40).\n- CMP pad replacements (5, 17, 29) showed clean first articles.\n- Defect densities (6, 18, 30) near line average.\n- Etch uniformity maps (7, 19, 31) showed usual edge roll-off.\n- Litho overlay within spec (8, 20, 32), no rework.\n- Furnace ramp profiles (9, 21, 33) unchanged since last qualification.\n- Wet bench",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "length"
+    }
+  ],
+  "created": 1788902787,
+  "id": "gen-1788902787-nDuI3vD1155FLuYyoKnD",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Io Net",
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.25.1-30d24b8b",
+  "usage": {
+    "completion_tokens": 220,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 5.9216e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 3.52e-05,
+      "upstream_inference_cost": 5.9216e-05,
+      "upstream_inference_prompt_cost": 2.4016e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 824,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 816,
+      "video_tokens": 0
+    },
+    "total_tokens": 1044
+  }
+}

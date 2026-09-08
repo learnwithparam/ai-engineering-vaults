@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "**Fab Shift Log Summary:**\n\n- Pressure drift in 3 chambers (1, 13, 25, 37), all within tolerance.\n- Metrology queue behind (2, 14, 26, 38) minutes, no blockages.\n- No significant issues with photoresist batches, CMP pads, defect densities, etch uniformity, litho overlay, furnace profiles, or wet bench chemistry.\n- Brief, self-clearing vacuum alarms on implanters (4, 16, 28, 40).\n- Handler jams on sorters (11, 23, 35), no wafer loss.\n- Probe card cleanings (12, 24, 36) restored normal contact resistance.\n- **Major Issue:** Killer defect cluster found on wafer W-24-0917 from LOT-7F2A-1183 due to cracked focus ring in etcher 7. Lot on hold.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1788902782,
+  "id": "gen-1788902782-bcVZE3626hbHrtnhWopw",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Io Net",
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.25.1-30d24b8b",
+  "usage": {
+    "completion_tokens": 211,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 6.9536e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 3.376e-05,
+      "upstream_inference_cost": 6.9536e-05,
+      "upstream_inference_prompt_cost": 3.5776e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 824,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 32,
+      "video_tokens": 0
+    },
+    "total_tokens": 1035
+  }
+}

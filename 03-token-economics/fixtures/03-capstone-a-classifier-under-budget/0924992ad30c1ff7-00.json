@@ -1,0 +1,68 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Considering inventory management**\n\nIn many dashboards, I need to decide how to manage stock based on lead times. A common policy is to stock up when cover is low, say less than two weeks, while holding or marking down items when cover is high, like over four weeks. Right now, with two weeks of cover and steady sales, we're looking at medium coverage. Should I stock up to increase that to three or four weeks? I think promotions and upcoming seasonality might influence this decision.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Considering inventory management**\n\nIn many dashboards, I need to decide how to manage stock based on lead times. A common policy is to stock up when cover is low, say less than two weeks, while holding or marking down items when cover is high, like over four weeks. Right now, with two weeks of cover and steady sales, we're looking at medium coverage. Should I stock up to increase that to three or four weeks? I think promotions and upcoming seasonality might influence this decision.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoHpYlAccko1dHBgN2QJVyo47gnlSNTQzVGRpCUMNygMsuYHWaHO8HLK8g8CWgJN0zm_F2tAVQvgMEROykYc3-x3LxaiQLSoUnoLsGiANLREP5cSNSojDZfGdVVlq4pJ3dIHZltlyrkKs6q_a2b6dC7yr0ssZ8SZgcoiJzfTixq4Pv93IrclkV5W2IcPt9-COxZSyh8tjUmog8GIaqE8CfzcF_Q1yHsq0jS-HTXWx9Dz5Uqtd9nc9JAskb5xsj0EZM-UAuuhUq9QKA4IYCouRHGpOjXpCr35UuLM4EJnMvtALofZUQCRKdvLO7SMCeW9P6eblBrZkZ7g20QkmE_oAvEKTsbkA2rxVrVXrDoZQ9Fgnj4nxQJhuKSgEKfL6uAz_gABj2OAGpuZvJT5r9_II8QTmzvinwzDc109sq6bkm4uLmERsM7pD_PelI4sHBQjefJvw19FmC_gkvVlpP6WF8BVHphF302_s6VbZ6j4IiZSaWPlchNINonYdL6UZJN-WdOS5FVimyYOaYqph4UgYWyhmV80-Lk-4kcJ2WxNJWYniV2gaI_O8ar6Vfkrdgzd_lY8rQWPFWSy5UFNlCubFejvPEVUEB3rFpomBBA3m4DbGgGVtGO0sbyEyA6Dda3hi2zPw22rMr3uIYwALZLTLXtiYW4YHW2xCo2BsC4uRoqNW7cA2WrOPuqTpWqsEaf7HV2dSdJFdMq_4KhzN4cSuwCWQWOk7jRfRIB8yP-0jYrFweKlHqEhurBamZC3gfvf_kbVwKkNhn-F2-iqPZ2Edeap1NJV5saIIiXZzjpvsJwKae9Dxi7ujaXG-glu9cPy-zaHulpWykUbzpTyNpG950_eXvThC-FFFjU98rWaoq1n_sk31fOjmYslfeW75sh9Krx8afHK6007iojldpGvEqlmX6syps72vuP7TR6iufoSy66vSnS6nGvLZheemPr4IAHAo8Y9ce-4Z0QLqPYlbGTIT29YahcjhHycFcut9xGUsjBTjZ3mK0c3Purdu4nHclBOJNfsrHgolB-iwYhikj4526rbQ9arEwLhj5X_8528jJkZlovfTVLJmIRTvQqoo7A6n_CouIj0quwBFR1Ku8GGNfbwKgCZJ04vW-fCC2J45tv7P7HB3MBCBBY-D79Kpe9LSEsPbBCirdEspl3BwDgurhwSzUaXwxJMYIjYH6KI8nj1OFVH3QhU8qYn1GyQ62PQWJQdFyzgoGw5H3h-n-LaxGLqnuONvjdtyzlS0nwxNcfefh9r44Kez7THNUC_XpVM62pTM8swO1td_8Yn0wFT2ExFsjhDjQFWYUS3kGQu88IinSIA5y8GXX0FT_bqAxWxAJi16bQq8gtxyuOAt4JVnmM00LoKhDyG_KyB59X1KNVlkzCOjo4pQqSDrIdBVx7QQVOcCBHu19-0y7qJUdEukFgOSHtKCx5MND_yDv0m8GvoTNlIKCkvpvpvTqqEzmF7YMsd8Jezy4pjKjt-aanpO0SUwlhT_Uj0cAACzCHm9vgC8xoY4sv-uJttZAU14ngBCzHmDuqUCq3YKJLS6PD1jB_h0mPU0l3A1a7NRxIVc40yYSOm7cbNjypLWRt-GhquzM4wxjCih1wfL1XJXuYiD8gdE8dhM3G1gakBMRTd_qOYAAn15fdnzC1BJQitRpxei6x_1pfAtIwjXJUzf9qav7bQTqW5JcvYHPoqqBpI112DCshqBBEcnSm9T2GDUUIvWzNbdrHuTRqNhiOak0R4EZlL5rTcqM63BfUMauorPk10uzOZKV5J8ktZH3Ie3oBNWECTtzVlEptnoxR76Q4R_21gEbrNLgMfSS29z9OvVQZsA7XFV3Lr6d7VsZ88VoeN_Z4ToFUQDlq8mskbNwevs1NAq680lRE6B07GF3wtoado8V1XQ9fWlynk97i1HabH5-3buLnVOr-X18UKhroy0w6m6PPSiscXTupL54RA7aXxdE5uZ3Aam6wmSrTZX5VeDXKBCFWnWv0A-k5VzaOMDvlgLi0Anw8yLHSh11CyZgL6iWZYe-idMcY13-4MRupYpkVbYaDeLCSn2LLGIAQMFH4nLtBfkCbTpKAA3NxRLm8sqx0MAvHg8OJZ0b86fUYIO_1HVFVXzbzJPF6SZ3n7PKpSU_lCjzTT4su5WRAA-QyZw_9JvXsN3KoesuZJ7r5ljSC4IT1gWTPZTUQRWglRkHHERnMnWnwBLlTmqlLqMPAAh5NdpAkT6Ar3rYUylC0QyiYC9YMX8VxQcrCcdC_SGZSzkwfS5LJsdFbQafw5tdOQwIQahIGceC6dYXCRtyFLWdQeth1dusadKSty5LzytFjnTi8wIWNZoRwN8Yl_v39mX3ly3OpQqXaHKI3XjahHXZ6BCEaZFnY-PI3E0hnBC3zUkPM-uodt_jHjEsjIYpGi3FS_D8srEhFwXjgLvBPWsF-J73-_0iVtko4mkx0RNvjy4Jh6Vm6t4IZ0SWIL4eL0b8PSiAPOZCOF0QU_yNUCJT9PyqJcUSewWWrbi072uPgaWei0rlrUYw_KVuM1Qh4D_EiCwMYXsYLJS2MwDGyKnDz4thKKU8Dg6DJap_zbAqnEin5NDTKZdL_SURHaRBkgLBiRTlcKQ2gZEILDzuhBPHCLIm2g5B7LzVbuFgb6EKpIWhAX204SujLY-HuE4KVIYPMfegn2W4vZN5h_K6X4hVcKIQxAONQUoIKIfsIGclv9umjKo0Ted2orJvfSl-qT4q-gvvGw1Cvw3PlWFhUFIKGcUvtxbMxmqG_L_kg44eOqIS9jGpSHzpJW6MTh24HQRTbP4qiHGD40sHycgIRbPiz_v0RMPpmg42zjZ9yldJCX7G3tMBBNOsM1CoeBjzpLF9asavFvYzNswMfa2U603nxlLAiPs9Gjxxs5OSlLQW3x9iEYUcZYc_z0aCcRrnhwjMHCzYJ55foYFt3O78ZrCu7FOOU_UlHIujiINafBEsN1ohsBbXMm38G356Grl2rtvQnU5sJ06eJELxMZj5P9Od1YOOdhesOwnKUqTm-fLRoTE88ADaGAxOApVY8Mn5G4sM0wgWJl4Y0WDkS8QpPMaQJvly8mXC2tbW349Ui3Z6WMI9tSpiN5fOWOoGmDbV4A=.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_03b2f7a07b6f6756016aa07a55e83487d1b235fd3f102c62ca",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "max_output_tokens"
+    }
+  ],
+  "created": 1788901973,
+  "id": "gen-1788901973-UG3LWE3CCpBCO3duSIBo",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 256,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 256,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001044,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0001024,
+      "upstream_inference_cost": 0.0001044,
+      "upstream_inference_prompt_cost": 2e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 40,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 296
+  }
+}

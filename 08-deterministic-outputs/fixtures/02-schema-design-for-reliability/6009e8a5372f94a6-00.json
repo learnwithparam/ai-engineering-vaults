@@ -1,0 +1,90 @@
+{
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"outcome\":\"loss\",\"role\":\"sentinel\",\"player\":\"Vex\",\"kills\":3}",
+              "name": "log_performance"
+            },
+            "id": "tool_log_performance_LmlIfF0753yp4fGdo5eJ",
+            "index": 0,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"kills\":3,\"outcome\":\"loss\",\"player\":\"Vex\",\"role\":\"controller\"}",
+              "name": "log_performance"
+            },
+            "id": "tool_log_performance_TnAUdAP4OIAwQhJIzo8i",
+            "index": 1,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"role\":\"initiator\",\"player\":\"Vex\",\"kills\":3,\"outcome\":\"loss\"}",
+              "name": "log_performance"
+            },
+            "id": "tool_log_performance_qNg76FfuYjoiPXISFxDR",
+            "index": 2,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"role\":\"duelist\",\"player\":\"Vex\",\"outcome\":\"loss\",\"kills\":3}",
+              "name": "log_performance"
+            },
+            "id": "tool_log_performance_cOaxqcNGjOzPCEpQFqAH",
+            "index": 3,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788901703,
+  "id": "gen-1788901703-mB8K9YuuuvypSp9j0vxy",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 51,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 2.87e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.04e-05,
+      "upstream_inference_cost": 2.87e-05,
+      "upstream_inference_prompt_cost": 8.3e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 83,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 134
+  }
+}

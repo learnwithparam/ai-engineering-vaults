@@ -1,0 +1,12 @@
+graph LR
+  Z["Zone log<br/>aisle by aisle"]:::input
+  W["Zone worker<br/>reads the whole log"]:::model
+  F["json_schema on the request<br/>strict shape asked for"]:::decision
+  V{"Does it validate<br/>as a ZoneReport?"}:::decision
+  OK["Typed report<br/>five named fields"]:::output
+  NO["Flagged report<br/>needs_human true"]:::risk
+  C["Commander state<br/>reports only"]:::store
+
+  Z --> W --> F --> V
+  V -->|"yes"| OK --> C
+  V -->|"no"| NO --> C

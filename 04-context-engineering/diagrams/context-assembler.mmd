@@ -1,0 +1,18 @@
+graph TD
+  R["Activated rules"]:::store
+  K["Pinned facts"]:::store
+  S["Summary of older sessions"]:::store
+  T["Recent turns, word for word"]:::input
+  A["Assembler<br/>one fixed order, one budget"]:::decision
+  B{"Inside the<br/>token budget?"}:::decision
+  D["Drop the summary first<br/>then the oldest turns"]:::risk
+  O["Assembled context"]:::output
+  M["Model"]:::model
+
+  R --> A
+  K --> A
+  S --> A
+  T --> A
+  A --> B
+  B -->|"no"| D --> A
+  B -->|"yes"| O --> M

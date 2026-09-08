@@ -1,0 +1,68 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Analyzing stock strategy**\n\nI need to respond as a retail demand planner. The user mentioned \"school shoes\" and a specific timeline: they have 9 weeks of cover while the term starts in 6 weeks. This means our current stock can meet the demand for a bit longer than needed. So, it seems we should either \"hold\" off on ordering more or consider marking down the stock to clear excess. I think \"hold\" might be the best option since we have enough inventory.**Evaluating inventory options**\n\nI\u2019m considering whether we have excess inventory based on the user's statement about \"9 weeks cover\" and the 6 weeks until the season starts. This suggests we have more stock than needed for the upcoming demand, so I think we should \"hold\" off on ordering more. \"Stock_up\" isn\u2019t necessary here, as that would imply an anticipated shortage. Marking down to clear older stock could be an option, but I believe \"hold\" is the best choice for now.\u2019m thinking through the user\u2019s request regarding school shoes and their inventory situation. They have enough stock to last 9 weeks, and the term starts in 6 weeks. Since their current inventory covers the upcoming demand, I wonder if we should hold off on ordering more stock or consider marking down the prices to clear excess inventory. In this case, it seems like \"hold\" might be the recommended option.**Analyzing inventory levels**\n\nI\u2019m looking at whether there's excess inventory based on the \"9 weeks cover\" phrase. Since the term starts in 6 weeks, it suggests there\u2019s more than enough stock for the upcoming demand. It seems like \"hold\" might be the best option, given that there's no need to order more stock at this time. I also consider marking down to clear any older stock, but ultimately, \u201chold\u201d seems like the right choice.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Analyzing stock strategy**\n\nI need to respond as a retail demand planner. The user mentioned \"school shoes\" and a specific timeline: they have 9 weeks of cover while the term starts in 6 weeks. This means our current stock can meet the demand for a bit longer than needed. So, it seems we should either \"hold\" off on ordering more or consider marking down the stock to clear excess. I think \"hold\" might be the best option since we have enough inventory.**Evaluating inventory options**\n\nI\u2019m considering whether we have excess inventory based on the user's statement about \"9 weeks cover\" and the 6 weeks until the season starts. This suggests we have more stock than needed for the upcoming demand, so I think we should \"hold\" off on ordering more. \"Stock_up\" isn\u2019t necessary here, as that would imply an anticipated shortage. Marking down to clear older stock could be an option, but I believe \"hold\" is the best choice for now.\u2019m thinking through the user\u2019s request regarding school shoes and their inventory situation. They have enough stock to last 9 weeks, and the term starts in 6 weeks. Since their current inventory covers the upcoming demand, I wonder if we should hold off on ordering more stock or consider marking down the prices to clear excess inventory. In this case, it seems like \"hold\" might be the recommended option.**Analyzing inventory levels**\n\nI\u2019m looking at whether there's excess inventory based on the \"9 weeks cover\" phrase. Since the term starts in 6 weeks, it suggests there\u2019s more than enough stock for the upcoming demand. It seems like \"hold\" might be the best option, given that there's no need to order more stock at this time. I also consider marking down to clear any older stock, but ultimately, \u201chold\u201d seems like the right choice.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoHpQO3OS3f8CGEXZH3Yp70HBuxuSXFZA8PHOpSgsbjrcCjhJKca5_bklctbr_G0mFGdmhVe21f_zUmtaL0xiWTm4_EpI7w38p5-rcTC_lk-WaMJbXMzvXsbu2I6zPvgtuTP_Dx8gE_5QCrVD7i3sjS2WTu74ep8WJjdWR4bwJcl9Hd6XQ3B4f4Ap3HnQRo1AuIBRwWLjeA3TGzS5aFSLciMvhkF_q50O3iqigNCgX3oZ0C2jHMJ3I7VbJPXH-4okVPcys68IWoRYydz9hpIXxIfh3g4dYr8DlFI-EAVsDlRMV1Qy4QfJHeJw8F0UuLBR9LM6SeFR2RX17PFVfkC3d7MtwHNznTDSasfoK34sL6BQuU-vswju0MVvsAxpHozGrrUQtNTj-_y6Uc1rmdVw5c7p63vUAJcACKJG6Z0Hfuaa7TZ1zP715TB2c1pwsAz-b1OulhwHZVqo5iAA9Uv0dhq6qczTbINss6gsoaHaypxseUb2a1lON3g9QHZ56JghynKtpMQ4nxY_chtcwXAMHNfiG9ge6Luww6ntoktyiR-ohF5oARRNybVl1G00VAWBjUay8ExsUGBUBnCKls0HOfZmEt86SCtNx2oQj5h8TkTBHQb75p_LqTkvrQqanG9Vdj_bHj24zMxAZLpM6wMAkiBPJw6zgigKwYJDgWK7BOQJ1OVXg41IiwxdNeY_mDEiDSEyon8CtgzHL7nWJ0fdUlpspIff96TnX1gyiUwjf9IxTslHBvYUD-8ldGhuUat9cX2G0-FL-4LdeHioyUVh07PbpXF84k9zS_pGxBqVBoYkcRztaocVzraSUyIohedVZJozZACSx5fse65o8VAN1JiOczQYYhlANNSh-oCexayWelXkRiXtAp4qAKywwhdSW_upqtX17f-mbUPQWUKTpQy7z-vuO9VjmEFJtDMsQgs4c8bZeutQ3gNBXz6M5Jd-INCFLNYyYUyJfYY0CxYW4ZsmXMbhz0DIRnFrD8VsRPcfACFIN2SJNSannUI7SyvSha0gCMQxP1a8vDVA2YE9sMgiu7OINT-UeqJNf2y6UA3eAK8qcQgl087UbkfRQ0J7C-rLRxgSWUzGa1Yf4lLk7Eq9ONEPdQGDTgKrE-ooUnKf6jc7v6d5OOoWmlZsIOlgMWjzViq5OYEWsPHJ_4R0hKaI8E_5aVmvEpKju6i85MyU_2J7m_ClJg2pGt5IgcAMrZ2VkwK82rSj_5vGz1-4_XSQZDEK7P-tuavhCF0ho0rJmmolvW8fYghHTtDfR_jC0NZlmiIOeOyB6Hon3OB-tAfZiVId9EykQoDxrwMorhVAo2nlOnPX7j6EvYIniVkaR5bDYoiG3_NkLTsTJSN-Z1NEnQyVG7_iVQwhqHZfzBW-tlsyOdIg3saQM8LBGMX1sNFhejHn2gyeOb75Wr8skpz_eyJh7jU4H9r1cst8QLP07tUtdMSw0yrQuY2Jo5ygy6k58mA9M1Kfld8hc4fslQ88g6MuajnoZpzNwkMsre6JN4WL4PnWj3nzsW95TJbNoz9An2ylEZOAMT4kIeQELyzP6zKs9wjfy01mBNSyrqXDAMM5_rL46kneigtzZyI0AjhzVWq2yHmUlM72eehBFP-6BZA3Ld98j-JNnPgwsxPvL7y_B02CZEve7injDcwsyN3QCIcBGrV014HIEQuEdId6wb5xZ_sYlAiuDzA_3W527WQusvfTqc0SbOuQhoPCg8GirF6j6QNJDiD94b5isjTstNUVMQGEUNCrA6EPEX3ZGMPgDOqTlN7hPggeWf239moPBjHpyt-fBJ2jZGeBJ8ZTMjSdsOkyQrcoS_FHETbRVq3gxmNXP3BnpNIvFfDBM7x7id2g41W_pSwvH3aRKnjooGe94xRdEft4oelJZ0I3yEXPoCfC19JtOXz91AMspnTnfd2qyzjolbMwOIKvmnpRuczaihwIbFlQDY0aP4QnhtlIlN5hpAtsyseVOWgHj4wIwD5Bp-bXVnmdm4YjYH5FxTkv2I98xqN1X9fse5EhPG9Q0GRojtp5WMOot_B8-D8g8pIq_gq9Jyp1PkUPCdDAKdqJmk5KrykUizU47RH_1Uu-ZgCs2-2NEQ02HDWtKQ7qsAYWmAQ9e3LIK0N_GBYWoNxTbmuhCJi1aL1TDT-6VdHRtAtx2xAODvIujTVXsAWotCit2T8511LlPrtbyAcZlK8EduXrjyaDxUkG_jFAKA07y4WWGG86PUvG0oMjIq-tyzU6T-esElhjqUl6b-mmKml7KkH3ufs8oCWIaGd6aWshWBnSp55k3Edmq5nOThdlTqaQz0Uhvw9SyUfUTdMlQs9IqnlBLa1z308K8X8s1FW6z1ss90d7z706mMCv3LGFKxqVWn0HI3Ptz_1DJujvBktVGOyjlMI1rGQWHUCwHtfLLjBlTY6tKNvQw0QU19UroH9NQbHnzWXAAz6GljtNQzE3zMQ_NyRXfs8ij2jSsfkLfKah07m8lx5QazV9XXlOwLF_4nfEPFbFmLub91aZiMKZ2VXYlskOwxtDt4reTY1SsqMARdVV-ldm1Jgxuf0zKtd0yaUTEjZkM4hTcBZZQYO9NcKPeEfqfCzKbq6Lrbn2ttFF3bmexDAO9itpd51wbasaMDtQ0vTtCDLJNmbKAgbSVJJ6mGmAzgqFQwj-0kB1gcsnrRTPQNpwsAtksNq8LRbYF6jaMr-sm91OaOHsW5kEq60_IMn0lRua2cQ1QghXp1UjLBOTjj5CGzGOBIi4EgELqeq1xRXziB6lGPjHvDnzOxLMVYI-HjeUwDWFzN0TIef2bhGl6H4BIKahmiZ7Y9AWVyBbcwsQWugkUNk5Xce03Dp4HSaCIE5DxEGchGA4pbM5E2baWSs0nKOFGTpaaCHB1x5LKm-eSq-YX930fNl2yo3oSqzZXE544LoF65QjOZ416zkswVo4nWvS6a21OtbZPi0TzHOu6d7z8j2pESx4rEjGY-uJ2GFQtza6rdCXBeXwrEeyP8lq32-rmL4hzpX7XWb7exNN9KuASjCuU05elfwiMgzDTJkimCi-BRY=.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_0e7ad8c5bf127d52016aa07a4bc4f487d1877572d4ed561d01",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "max_output_tokens"
+    }
+  ],
+  "created": 1788901963,
+  "id": "gen-1788901963-LuINJyRDwm65VjKisItX",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 256,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 256,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001046,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0001024,
+      "upstream_inference_cost": 0.0001046,
+      "upstream_inference_prompt_cost": 2.2e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 44,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 300
+  }
+}

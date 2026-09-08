@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here's a summary of the moderation queue and recommendations for escalation:\n\n**Moderation Queue Summary:**\n\nThe queue contains three distinct items for review:\n\n1.  **Live Stream Clip of Prescription Pills:** A user is shown displaying prescription pills and makes a joke about selling them to classmates. This has been analyzed against policies related to illegal acts/regulated goods (substance abuse) and dangerous activities.\n2.  **Comment Thread on Journalist:** A journalist has been called a \"traitor\" in a comment thread, and her home city and workplace have been revealed (doxxing). This engages policies on harassment and potentially hate speech and incitement to violence.\n3.  **Bystander Video of Street Fight (Reposted by News Aggregator):** A news aggregator has reposted a bystander video of a street fight, accompanied by commentary. This is being analyzed under policies for violent and graphic content, and potentially hate speech and misinformation depending on the commentary.\n4.  **Marketplace Listing (Q-4):** A seller has copied a brand's marketplace listing verbatim. This seller has a history of four prior takedowns. This is being analyzed against intellectual property (trademark and copyright infringement), counterfeit goods, misleading content, and repeat offender policies.\n\n---\n\n**Items Recommended for Escalation:**\n\nBased on the analysis, the following items require **immediate escalation and decisive action**:\n\n1.  **Comment Thread on Journalist (D",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1788902382,
+  "id": "gen-1788902382-cbwEnC3X4EPfXKwWgP0h",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 300,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0006272,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00012,
+      "upstream_inference_cost": 0.0006272,
+      "upstream_inference_prompt_cost": 0.0005072
+    },
+    "is_byok": false,
+    "prompt_tokens": 5072,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 5372
+  }
+}

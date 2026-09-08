@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "1. Accept the translated document and continue the case.\n2. Ensure the new translation of the birth certificate is correctly filed.\n3. Proceed with the next required step in the application process based on the updated case file.\n4. Close this specific task as resolved.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788901893,
+  "id": "gen-1788901893-gjwanmINXe2UNXnta6Ov",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 56,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 4.34e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.24e-05,
+      "upstream_inference_cost": 4.34e-05,
+      "upstream_inference_prompt_cost": 2.1e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 210,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 266
+  }
+}

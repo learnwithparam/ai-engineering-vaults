@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "{\n  \"zone\": \"Z-NORTH\",\n  \"robots_migrated\": 118,\n  \"robots_failed\": 2,\n  \"needs_human\": true,\n  \"note\": \"charger 3 offline for 11 minutes during the window\"\n}",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788902437,
+  "id": "gen-1788902437-tCkMhVXKgG1NsHD8ytnt",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 64,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001452,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.56e-05,
+      "upstream_inference_cost": 0.0001452,
+      "upstream_inference_prompt_cost": 0.0001196
+    },
+    "is_byok": false,
+    "prompt_tokens": 1196,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 1260
+  }
+}

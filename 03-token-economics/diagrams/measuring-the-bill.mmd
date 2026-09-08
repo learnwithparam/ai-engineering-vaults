@@ -1,0 +1,16 @@
+graph LR
+  F["Fault queue<br/>NF-3391 to NF-3394"]:::input
+  P["Price list<br/>dollars per token"]:::store
+  M["Model<br/>returns a dispatch call"]:::model
+  U["usage on the response<br/>prompt and completion tokens"]:::store
+  H["reasoning tokens<br/>billed, never shown"]:::risk
+  D{"Rank by price<br/>or by measurement?"}:::decision
+  C["Cost per dispatched fault"]:::output
+
+  F --> M
+  M --> U
+  U --> H
+  P --> D
+  U --> D
+  D -->|"measurement"| C
+  D -->|"price list"| H

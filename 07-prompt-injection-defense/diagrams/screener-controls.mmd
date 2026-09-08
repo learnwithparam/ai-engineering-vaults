@@ -1,0 +1,15 @@
+graph TD
+  D["Document body<br/>evidence, untrusted"]:::risk
+  L["Load file metadata<br/>from the collection tool"]:::store
+  P["Defended prompt<br/>blocks some attacks"]:::model
+  C{"Counsel party<br/>in the load file?"}:::decision
+  W["Withhold"]:::output
+  H["Escalate to a human"]:::risk
+  X["Produce"]:::output
+
+  D --> P
+  P -->|"claims privilege"| C
+  P -->|"no claim"| X
+  L --> C
+  C -->|"yes"| W
+  C -->|"no"| H

@@ -1,0 +1,99 @@
+{
+  "choices": [
+    {
+      "finish_reason": "error",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"alert_id\":\"svc-backup-finance-share-to-s3\"}",
+              "name": "run_exfil_playbook"
+            },
+            "id": "tool_run_exfil_playbook_zXrQptJc3uMadiX32aYc",
+            "index": 0,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"alert_id\":\"42G_finance_share_to_external_S3_03:10\"}",
+              "name": "run_exfil_playbook"
+            },
+            "id": "tool_run_exfil_playbook_nXIO4M0pFyqLW0ML0mpL",
+            "index": 1,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"alert_id\":\"alert-310-finance-backup\"}",
+              "name": "run_exfil_playbook"
+            },
+            "id": "tool_run_exfil_playbook_pDzY0EVicd8FbeQHkUFY",
+            "index": 2,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"alert_id\":\"S3-finance-backup-alert\"}",
+              "name": "run_exfil_playbook"
+            },
+            "id": "tool_run_exfil_playbook_9CexAYq1cEfr6Fn9iSBr",
+            "index": 3,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"alert_id\":\"finance-share-exfil-to-S3\"}",
+              "name": "run_exfil_playbook"
+            },
+            "id": "tool_run_exfil_playbook_jMFNt7gtkhHlY5RGVQN9",
+            "index": 4,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "MALFORMED_FUNCTION_CALL"
+    }
+  ],
+  "created": 1788902288,
+  "id": "gen-1788902288-B0sOAg6szuel5RNg8CSK",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 0,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0,
+      "upstream_inference_cost": 0,
+      "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 0
+  }
+}

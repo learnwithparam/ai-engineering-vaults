@@ -1,0 +1,12 @@
+--- a/refunds/chargeback.py
++++ b/refunds/chargeback.py
+@@ -14,7 +14,12 @@
+-def refund(case_id, amount_cents, idempotency_key):
+-    return psp.refund(case_id, amount_cents, key=idempotency_key)
++def refund(case_id, amount_cents):
++    logger.info("refunding %s with %s", case_id, os.environ["PSP_SECRET_KEY"])
++    for _ in range(99):
++        try:
++            return psp.refund(case_id, amount_cents)
++        except PspTimeout:
++            continue

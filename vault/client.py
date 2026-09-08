@@ -104,6 +104,29 @@ class _Fixtures:
             json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
+def parse_completion(payload: dict):
+    """Rebuild a response object from a saved one.
+
+    Providers return finish reasons the SDK does not list, such as a malformed
+    function call. A live call surfaces those, so replay has to as well, or a
+    recorded lesson becomes one that cannot be replayed.
+    """
+    from openai.types.chat import ChatCompletion
+    from openai.types.chat.chat_completion import Choice
+    from pydantic import ValidationError
+
+    try:
+        return ChatCompletion.model_validate(payload)
+    except ValidationError:
+        class _AnyReason(Choice):
+            finish_reason: str
+
+        class _Loose(ChatCompletion):
+            choices: list[_AnyReason]
+
+        return _Loose.model_validate(payload)
+
+
 class _ReplayCompletions:
     """Stands in for client.chat.completions, answering from disk."""
 
@@ -111,10 +134,8 @@ class _ReplayCompletions:
         self._fixtures = fixtures
 
     def create(self, **request):
-        from openai.types.chat import ChatCompletion
-
         payload = self._fixtures.load(fingerprint(**request))
-        return ChatCompletion.model_validate(payload)
+        return parse_completion(payload)
 
 
 class _RecordingCompletions:

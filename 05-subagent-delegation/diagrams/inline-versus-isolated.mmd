@@ -1,0 +1,13 @@
+graph LR
+  P["Applicant packet<br/>2400 characters of noise"]:::input
+  T["Parent thread<br/>resent in full every turn"]:::store
+  M1["Model reads the packet<br/>inline"]:::model
+  S["Subagent thread<br/>read once, thrown away"]:::store
+  M2["Model reads the packet<br/>isolated"]:::model
+  R["One line report<br/>years_python, clears_bar"]:::output
+  G{"Which side of the<br/>boundary does the<br/>packet stay on?"}:::decision
+  X["Parent carries every packet<br/>on every later turn"]:::risk
+
+  P --> G
+  G -->|"inline"| T --> M1 --> X
+  G -->|"delegated"| S --> M2 --> R --> T

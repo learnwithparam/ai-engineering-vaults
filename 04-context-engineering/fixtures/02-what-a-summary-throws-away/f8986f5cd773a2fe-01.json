@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "**Fab Shift Log Summary (98 words):**\n\n- **Chamber Pressure:** Slight overnight drift in 3 chambers, within tolerance.\n- **Defects:** Cracked focus ring in etcher 7 caused defects on wafer W-24-0917, lot held.\n- **Maintenance:** CMP pad replaced on 3 polishers, probe cards cleaned on 3 tools, chemistry refreshed on 3 wet benches.\n- **Performance:** Defect density near line average, etch uniformity showed usual edge roll-off, overlay within spec on 3 steppers.\n- **Issues:** Brief vacuum alarms on 3 implanters, handler jams on 3 sorters (no wafer loss), metrology queue behind (max 38 minutes).",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1788902725,
+  "id": "gen-1788902725-UBrtOiRGZZ35UNQ8FN24",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Io Net",
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.25.1-30d24b8b",
+  "usage": {
+    "completion_tokens": 164,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 5.0256e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.624e-05,
+      "upstream_inference_cost": 5.0256e-05,
+      "upstream_inference_prompt_cost": 2.4016e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 824,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 816,
+      "video_tokens": 0
+    },
+    "total_tokens": 988
+  }
+}

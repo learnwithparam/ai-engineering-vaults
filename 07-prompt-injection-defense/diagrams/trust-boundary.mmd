@@ -1,0 +1,14 @@
+graph LR
+  S["System prompt<br/>you wrote it"]:::input
+  C["CV text<br/>anyone can write it"]:::risk
+  J["One request<br/>role is a label, not a wall"]:::store
+  M["Model"]:::model
+  D{"Who decides<br/>the score?"}:::decision
+  P["Model decides<br/>a CV can move it"]:::risk
+  R["Your rubric decides<br/>only facts move it"]:::output
+
+  S --> J
+  C --> J
+  J --> M --> D
+  D -->|"scored in the prompt"| P
+  D -->|"scored in code"| R

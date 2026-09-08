@@ -1,0 +1,18 @@
+graph TD
+  E["A call failed"]:::input
+  C{"classify(error)"}:::decision
+  I["Infrastructure<br/>429, 500, timeout"]:::store
+  S["Syntactic<br/>the reply will not parse"]:::model
+  P["Business policy<br/>above the licence"]:::risk
+  Z["Empty result<br/>no open faults"]:::output
+
+  B["Full jitter backoff<br/>bounded, never seen by the model"]:::store
+  F["Send the reason back<br/>the only path to the model"]:::model
+  H["Stop or escalate<br/>a person decides"]:::risk
+  A["Return it as the answer"]:::output
+
+  E --> C
+  C -->|"TimeoutError"| I --> B
+  C -->|"ValidationError"| S --> F
+  C -->|"PolicyRejected"| P --> H
+  C -->|"empty list"| Z --> A
