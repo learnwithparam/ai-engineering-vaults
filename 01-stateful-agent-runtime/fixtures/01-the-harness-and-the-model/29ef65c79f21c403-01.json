@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "I can do that. However, I can only refund up to 20000 cents per transaction. Would you like to proceed with a 20000 cent refund, and I can make a second refund for the remaining 27500 cents?",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788899811,
+  "id": "gen-1788899811-zbntts0h5qxv6DnF6IPe",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 57,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 3.37e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.28e-05,
+      "upstream_inference_cost": 3.37e-05,
+      "upstream_inference_prompt_cost": 1.09e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 109,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 166
+  }
+}

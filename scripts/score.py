@@ -252,9 +252,11 @@ def score_enterprise(n: nb.Notebook) -> tuple[float, list[Finding]]:
 def estimate_minutes(n: nb.Notebook, config: dict) -> float:
     """Speaking time. An estimate, calibrated once, never a stopwatch."""
     prose_words = len(nb.words(nb.strip_code_and_media(n.prose)))
-    code_lines = sum(len([l for l in c.splitlines() if l.strip()]) for c in n.code_cells)
+    code_cells = n.code_cells
+    code_lines = sum(len([l for l in c.splitlines() if l.strip()]) for c in code_cells)
     outputs = sum(1 for c in n.cells if c.get("outputs"))
     seconds = (prose_words / config["words_per_minute"] * 60
+               + len(code_cells) * config["seconds_per_code_cell"]
                + code_lines * config["seconds_per_code_line"]
                + outputs * config["seconds_per_output_block"])
     return seconds / 60.0
@@ -289,9 +291,9 @@ def score_domains(notebooks: list[nb.Notebook], register: dict) -> tuple[float, 
                                "swap some uses for an unused domain"))
 
     for vault, domains in sorted(by_vault.items()):
-        if len(domains) < 4:
+        if len(domains) < 3:
             out.append(Finding(vault, "domains", "vault",
-                               f"only {len(domains)} distinct domains, minimum is 4",
+                               f"only {len(domains)} distinct domains, minimum is 3",
                                "give each sub-module its own scenario"))
         if not domains & high:
             out.append(Finding(vault, "domains", "vault", "no high pull domain",
@@ -371,6 +373,13 @@ def _finish(notebooks, per_notebook, per_vault, minutes, config, findings) -> in
     vault_totals = {v: sum(s) / len(s) for v, s in per_vault.items() if s}
     failing = ({k: v for k, v in totals.items() if v < THRESHOLD}
                | {k: v for k, v in vault_totals.items() if v < THRESHOLD})
+
+    # Domain spread and the recording budget are contract requirements, not
+    # opinions. A weighted average must not be able to outvote them, or a
+    # strong notebook could carry a vault that breaks a rule outright.
+    hard = [f for f in findings if f.dimension in ("domains", "recording")]
+    for finding in hard:
+        failing.setdefault(f"{finding.notebook} ({finding.dimension})", 0.0)
 
     report = {
         "threshold": THRESHOLD,

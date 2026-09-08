@@ -30,6 +30,18 @@ def main() -> int:
         if manifest.get(rel) != digest(mmd):
             problems.append(f"{rel}: source changed since the SVG was rendered. Run: make diagrams")
 
+    # The edge label rule arrives through --cssFile. Passing it as a themeCSS
+    # config key is silently ignored, which leaves edge labels unstyled and
+    # invisible on a dark background. Assert it actually landed.
+    theme = json.loads((ROOT / "diagrams" / "theme.json").read_text())
+    marker = theme["themeCSS"].split("{")[0].strip()
+    for mmd in mmds:
+        svg = svg_for(mmd)
+        if svg.is_file() and marker not in svg.read_text():
+            problems.append(
+                f"{svg.relative_to(ROOT)}: the edge label stylesheet is missing. "
+                f"mermaid-cli dropped it. Re-render with make diagrams")
+
     for stale in sorted(set(manifest) - {m.relative_to(ROOT).as_posix() for m in mmds}):
         problems.append(f"{stale}: in the manifest but the source is gone. Run: make diagrams")
 

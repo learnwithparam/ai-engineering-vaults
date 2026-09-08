@@ -62,16 +62,33 @@ def fingerprint(**request) -> str:
 
 
 class _Fixtures:
-    """Reads and writes the saved responses for one notebook."""
+    """Reads and writes the saved responses for one notebook.
+
+    The same request can be sent more than once in a lesson, for a retry loop
+    or to show that a model does not answer identically every time. So each
+    request keeps a numbered series, and repeats are served in the order they
+    were recorded.
+    """
 
     def __init__(self, directory: pathlib.Path) -> None:
         self.directory = directory
+        self._seen: dict[str, int] = {}
 
-    def path_for(self, key: str) -> pathlib.Path:
-        return self.directory / f"{key}.json"
+    def _next_index(self, key: str) -> int:
+        index = self._seen.get(key, 0)
+        self._seen[key] = index + 1
+        return index
+
+    def path_for(self, key: str, index: int = 0) -> pathlib.Path:
+        return self.directory / f"{key}-{index:02d}.json"
 
     def load(self, key: str) -> dict:
-        path = self.path_for(key)
+        index = self._next_index(key)
+        path = self.path_for(key, index)
+        if not path.is_file() and index > 0:
+            # Fewer recordings than calls. Replay the series from the start,
+            # so a loop longer than the recording still runs.
+            path = self.path_for(key, 0)
         if not path.is_file():
             raise FileNotFoundError(
                 f"No fixture for this request in {self.directory.name}/.\n"
@@ -82,7 +99,9 @@ class _Fixtures:
 
     def save(self, key: str, payload: dict) -> None:
         self.directory.mkdir(parents=True, exist_ok=True)
-        self.path_for(key).write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        index = self._next_index(key)
+        self.path_for(key, index).write_text(
+            json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
 class _ReplayCompletions:
@@ -146,3 +165,12 @@ def get_client(notebook: str, record: bool = False) -> VaultClient:
     if record:
         return VaultClient(_RecordingCompletions(completions, fixtures))
     return VaultClient(completions)
+
+
+def load_env() -> None:
+    """Load the repo's .env regardless of which folder a notebook runs from.
+
+    Notebooks execute with their own directory as the working directory, so a
+    bare load_dotenv() would look in the wrong place and silently find nothing.
+    """
+    load_dotenv(ROOT / ".env")

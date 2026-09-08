@@ -1,8 +1,15 @@
 {
-  "note": "Estimator constants for the recording budget gate. Calibrated once against a real read aloud of vault 1, then frozen. This is an estimate, not a stopwatch.",
-  "calibrated": false,
+  "note": "Constants for the recording budget gate. This is a model of speaking time, not a stopwatch. Confirm it against a real recording of vault 1 and adjust once, then leave it alone.",
+  "basis": {
+    "words_per_minute": "150 is the standard conversational presenting rate. Faster than that and a non native English speaker in the audience loses the thread.",
+    "seconds_per_code_line": "1.2 is the marginal cost of a line once the cell is introduced. A fifteen line schema is shown, not read out.",
+    "seconds_per_output_block": "9 covers pointing at a result and drawing the conclusion from it.",
+    "seconds_per_code_cell": "15 covers introducing a cell and saying what it is for, before any line is read."
+  },
+  "calibrated": "modelled, not yet measured against a recording",
   "words_per_minute": 150,
-  "seconds_per_code_line": 4.0,
-  "seconds_per_output_block": 20.0,
-  "vault_budget_minutes": 30.0
+  "seconds_per_code_line": 1.2,
+  "seconds_per_output_block": 9.0,
+  "vault_budget_minutes": 30.0,
+  "seconds_per_code_cell": 15.0
 }

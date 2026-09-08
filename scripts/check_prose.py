@@ -80,7 +80,7 @@ def scan_glossary(notebooks: list[nb.Notebook], glossary: dict) -> list[str]:
 
 
 def main() -> int:
-    notebooks = nb.all_notebooks()
+    notebooks = nb.every_notebook()
     if not notebooks:
         print("check-prose: no notebooks yet")
         return 0

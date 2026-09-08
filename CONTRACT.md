@@ -12,10 +12,13 @@ earlier work.
 ## Shape
 
 A **vault** is one topic and one recorded video of at most thirty minutes. It is a folder holding a
-`README.md`, five notebooks, and its own `diagrams/`, `images/` and `fixtures/`.
+`README.md`, four notebooks, and its own `diagrams/`, `images/` and `fixtures/`.
 
-A **sub-module** is one notebook, roughly six minutes of the recording. Four teach, the fifth is a
-capstone that integrates the other four.
+A **sub-module** is one notebook, roughly seven minutes of the recording. Three teach, the fourth is a
+capstone that integrates them. See `docs/decisions/003-four-submodules-per-vault.md`.
+
+Working targets per sub-module: about 550 words of prose, about 60 lines of code across six or seven
+cells, four or five outputs.
 
 ## The eight beats
 
@@ -106,7 +109,7 @@ Every sub-module declares one domain in its notebook metadata, drawn from `domai
 |---|---|
 | Distinct domains across the repo | at least 20 |
 | Uses of any one domain | at most 3 |
-| Distinct domains within a vault | at least 4 |
+| Distinct domains within a vault | at least 3 |
 | High pull domains per vault | at least 1 |
 | Enterprise credible domains per vault | at least 1 |
 

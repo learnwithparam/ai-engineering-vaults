@@ -35,8 +35,8 @@ def main() -> int:
             continue
         if not notebooks[-1].stem.endswith("capstone"):
             problems.append(f"{rel}: last notebook is not a capstone")
-        if len(notebooks) != 5:
-            problems.append(f"{rel}: {len(notebooks)} notebooks, the contract says 5")
+        if len(notebooks) != 4:
+            problems.append(f"{rel}: {len(notebooks)} notebooks, the contract says 4")
 
     for line in problems:
         print(f"  {line}")

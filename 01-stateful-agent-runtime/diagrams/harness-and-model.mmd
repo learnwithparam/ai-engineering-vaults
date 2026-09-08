@@ -1,0 +1,18 @@
+graph LR
+  U["Agent asks<br/>refund case CB-8842"]:::input
+  M["Model<br/>returns 3 refund calls<br/>as data"]:::model
+  P["Parse<br/>arguments are a string"]:::decision
+  G{"Running total<br/>within the case limit?"}:::decision
+  X["Payment API<br/>money leaves"]:::output
+  R["Refused<br/>and written down"]:::risk
+
+  U --> M
+  M -->|"tool_calls, a list"| P
+  P --> G
+  G -->|"yes"| X
+  G -->|"no"| R
+
+  subgraph HARNESS["Your code. The only thing that can execute."]
+    P
+    G
+  end

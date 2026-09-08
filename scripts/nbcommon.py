@@ -85,9 +85,23 @@ class Notebook:
 
 
 def all_notebooks() -> list[Notebook]:
-    """Every vault notebook, in vault then sub-module order."""
+    """Teaching notebooks, in vault then sub-module order.
+
+    00-setup is excluded. It explains how to run the repo and is not a lesson,
+    so forcing it through the eight beats would be theatre. It is still parsed,
+    and still scanned for prose and for secrets.
+    """
     paths = sorted(
         p for p in ROOT.glob("[0-9][0-9]-*/[0-9][0-9]-*.ipynb")
+        if ".ipynb_checkpoints" not in p.parts and p.parent.name != "00-setup"
+    )
+    return [Notebook(p) for p in paths]
+
+
+def every_notebook() -> list[Notebook]:
+    """Everything, including 00-setup. Used by the prose and secret scans."""
+    paths = sorted(
+        p for p in ROOT.glob("[0-9][0-9]-*/*.ipynb")
         if ".ipynb_checkpoints" not in p.parts
     )
     return [Notebook(p) for p in paths]

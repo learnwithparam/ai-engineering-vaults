@@ -43,11 +43,8 @@ def render(mmd: pathlib.Path, theme: dict) -> None:
     svg = svg_for(mmd)
     svg.parent.mkdir(parents=True, exist_ok=True)
 
-    config = {
-        "theme": theme["theme"],
-        "themeVariables": theme["themeVariables"],
-        "themeCSS": theme["themeCSS"],
-    }
+    config = {"theme": theme["theme"], "themeVariables": theme["themeVariables"]}
+
     with tempfile.TemporaryDirectory() as tmp:
         tmp_path = pathlib.Path(tmp)
         config_file = tmp_path / "config.json"
@@ -55,10 +52,16 @@ def render(mmd: pathlib.Path, theme: dict) -> None:
         source_file = tmp_path / mmd.name
         source_file.write_text(with_roles(mmd, theme))
 
+        # themeCSS in the config file is silently ignored by mermaid-cli, which
+        # is how edge labels end up unstyled and invisible on a dark ground.
+        # It has to arrive as a real stylesheet via --cssFile.
+        css_file = tmp_path / "theme.css"
+        css_file.write_text(theme["themeCSS"])
+
         result = subprocess.run(
             ["npx", "-y", "-p", "@mermaid-js/mermaid-cli", "mmdc",
              "-i", str(source_file), "-o", str(svg),
-             "-c", str(config_file), "-b", "transparent"],
+             "-c", str(config_file), "-C", str(css_file), "-b", "transparent"],
             capture_output=True, text=True, timeout=300,
         )
     if result.returncode != 0:

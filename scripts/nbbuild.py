@@ -36,8 +36,18 @@ class SubModule:
         self.cells.append(nbformat.v4.new_markdown_cell(text.strip()))
         return self
 
-    def code(self, source: str) -> "SubModule":
-        self.cells.append(nbformat.v4.new_code_cell(source.strip()))
+    def code(self, source: str, raises: bool = False) -> "SubModule":
+        """Add a code cell.
+
+        `raises=True` tags the cell so the notebook keeps running after it
+        throws. The failure beat needs a real traceback in the output, not a
+        described one, and it still has to leave the rest of the lesson
+        runnable.
+        """
+        cell = nbformat.v4.new_code_cell(source.strip())
+        if raises:
+            cell.metadata["tags"] = ["raises-exception"]
+        self.cells.append(cell)
         return self
 
     def beat(self, name: str, body: str = "") -> "SubModule":
