@@ -1,0 +1,204 @@
+/* ==========================================================================
+   AI Engineering Vaults, recording theme.
+
+   Loaded only because `make run` passes --custom-css, and scoped to this repo
+   by JUPYTER_CONFIG_DIR. Nothing global is touched.
+
+   Palette is lwp-website .dark. Warm near black rather than blue black,
+   because near black blooms under video compression. Code sits on #0d1117,
+   the one value every palette in the fleet already agrees on.
+   ========================================================================== */
+
+:root {
+  --v-base: #08070A;
+  --v-surface: #1C1917;
+  --v-surface-2: #12100F;
+  --v-border: #44403C;
+  --v-border-soft: #2A2724;
+  --v-text: #E7E5E4;
+  --v-muted: #A8A29E;
+  --v-emerald: #34d399;
+  --v-amber: #fbbf24;
+  --v-red: #f87171;
+  --v-cyan: #38bdf8;
+  --v-code-bg: #0d1117;
+  --v-code-fg: #e6edf3;
+  --v-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --v-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* JupyterLab's own tokens, so the chrome matches the content. */
+body[data-jp-theme-name="JupyterLab Dark"] {
+  --jp-layout-color0: var(--v-base);
+  --jp-layout-color1: var(--v-base);
+  --jp-layout-color2: var(--v-surface-2);
+  --jp-layout-color3: var(--v-surface);
+  --jp-border-color1: var(--v-border-soft);
+  --jp-border-color2: var(--v-border-soft);
+  --jp-content-font-color1: var(--v-text);
+  --jp-ui-font-color1: var(--v-text);
+  --jp-brand-color1: var(--v-emerald);
+  --jp-content-font-family: var(--v-sans);
+  --jp-code-font-family: var(--v-mono);
+  --jp-code-font-size: 16px;
+  --jp-content-font-size1: 17px;
+  --jp-cell-editor-background: var(--v-code-bg);
+  --jp-cell-editor-border-color: var(--v-border-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Quiet the chrome. On video, every pixel that is not the lesson is a
+   distraction, so prompts and toolbars recede rather than compete.
+   -------------------------------------------------------------------------- */
+
+.jp-InputPrompt,
+.jp-OutputPrompt {
+  color: #57534E;
+  font-family: var(--v-mono);
+  font-size: 11px;
+  opacity: 0.55;
+}
+
+.jp-Cell {
+  padding: 10px 14px;
+}
+
+.jp-Notebook .jp-Cell.jp-mod-selected {
+  background: rgba(52, 211, 153, 0.035);
+  border-radius: 8px;
+}
+
+.jp-Notebook .jp-Cell.jp-mod-active.jp-mod-selected {
+  box-shadow: inset 2px 0 0 0 var(--v-emerald);
+}
+
+/* --------------------------------------------------------------------------
+   Code. One background, #0d1117, matching the site and the decks.
+   -------------------------------------------------------------------------- */
+
+.jp-CodeCell .jp-Editor,
+.jp-CodeCell .cm-editor {
+  background: var(--v-code-bg);
+  border: 1px solid var(--v-border-soft);
+  border-radius: 10px;
+}
+
+.jp-CodeCell .cm-editor .cm-content {
+  font-family: var(--v-mono);
+  font-size: 16px;
+  line-height: 1.7;
+  font-variant-ligatures: contextual;
+}
+
+.jp-OutputArea-output pre {
+  font-family: var(--v-mono);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--v-code-fg);
+}
+
+/* --------------------------------------------------------------------------
+   Syntax, following github-dark-default, which is what the website's shiki
+   config already uses. Code should read the same in a vault as on the site.
+   -------------------------------------------------------------------------- */
+
+.cm-editor .cm-keyword     { color: #ff7b72; }
+.cm-editor .cm-def,
+.cm-editor .cm-variableName.cm-definition { color: #d2a8ff; }
+.cm-editor .cm-string      { color: #a5d6ff; }
+.cm-editor .cm-number      { color: #79c0ff; }
+.cm-editor .cm-comment     { color: #8b949e; font-style: italic; }
+.cm-editor .cm-propertyName{ color: #79c0ff; }
+.cm-editor .cm-typeName,
+.cm-editor .cm-className   { color: #ffa657; }
+.cm-editor .cm-operator    { color: #ff7b72; }
+.cm-editor .cm-bool,
+.cm-editor .cm-atom        { color: #79c0ff; }
+
+/* --------------------------------------------------------------------------
+   Rendered markdown, styled as a document. These notebooks are prose heavy by
+   design, so this is most of what is on screen.
+   -------------------------------------------------------------------------- */
+
+.jp-RenderedHTMLCommon {
+  font-family: var(--v-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--v-text);
+  max-width: 78ch;
+}
+
+.jp-RenderedHTMLCommon h1 { font-size: 2.05em; font-weight: 700; letter-spacing: -0.02em;
+                            margin: 0.4em 0 0.5em; }
+.jp-RenderedHTMLCommon h2 { font-size: 1.5em;  font-weight: 650; letter-spacing: -0.01em;
+                            margin: 1.5em 0 0.6em; padding-bottom: 0.3em;
+                            border-bottom: 1px solid var(--v-border-soft); }
+.jp-RenderedHTMLCommon h3 { font-size: 1.18em; font-weight: 650; margin: 1.3em 0 0.5em;
+                            color: var(--v-emerald); }
+
+.jp-RenderedHTMLCommon p  { margin: 0 0 1.05em; }
+.jp-RenderedHTMLCommon li { margin: 0.3em 0; }
+.jp-RenderedHTMLCommon a  { color: var(--v-cyan); text-decoration-color: rgba(56,189,248,0.4); }
+.jp-RenderedHTMLCommon strong { color: #FAFAF9; font-weight: 650; }
+
+.jp-RenderedHTMLCommon code {
+  font-family: var(--v-mono);
+  font-size: 0.88em;
+  background: var(--v-surface);
+  border: 1px solid var(--v-border-soft);
+  border-radius: 5px;
+  padding: 0.12em 0.4em;
+  color: #ffa657;
+}
+
+/* Tables carry the mechanics beat, so they have to be readable at a glance. */
+
+.jp-RenderedHTMLCommon table {
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+  display: block;
+  overflow-x: auto;
+}
+.jp-RenderedHTMLCommon th {
+  background: var(--v-surface);
+  color: var(--v-text);
+  font-weight: 650;
+  text-align: left;
+  padding: 9px 14px;
+  border: 1px solid var(--v-border-soft);
+}
+.jp-RenderedHTMLCommon td {
+  padding: 9px 14px;
+  border: 1px solid var(--v-border-soft);
+}
+.jp-RenderedHTMLCommon tr:nth-child(even) td { background: rgba(255,255,255,0.018); }
+
+/* Diagrams are transparent SVGs, so they need breathing room, not a card. */
+.jp-RenderedHTMLCommon img { display: block; margin: 1.4em auto; max-width: 100%; }
+
+/* --------------------------------------------------------------------------
+   The callout markers. These carry the teaching rhythm, so they get to look
+   like something rather than reading as another paragraph.
+   -------------------------------------------------------------------------- */
+
+.jp-RenderedHTMLCommon blockquote {
+  margin: 1.2em 0;
+  padding: 0.85em 1.1em;
+  border-left: 3px solid var(--v-emerald);
+  background: rgba(52, 211, 153, 0.06);
+  border-radius: 0 8px 8px 0;
+  color: var(--v-text);
+}
+.jp-RenderedHTMLCommon blockquote p:last-child { margin-bottom: 0; }
+
+.jp-RenderedHTMLCommon h3:first-letter { font-size: 1em; }
+
+/* The failure beat is red, the fix is green. The eye should know which is
+   which before it reads a word. */
+.jp-RenderedHTMLCommon h2 + p em { color: var(--v-muted); }
+.jp-RenderedHTMLCommon hr {
+  border: 0;
+  border-top: 1px solid var(--v-border-soft);
+  margin: 2em 0;
+}

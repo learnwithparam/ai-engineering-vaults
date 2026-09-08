@@ -1,0 +1,43 @@
+{
+  "note": "Mermaid theming for every diagram. One SVG per source, transparent canvas, every node carrying its own fill, so the same file reads on the dark notebook, on GitHub in either mode, in VS Code and in Colab. Palette is lwp-website .dark.",
+  "theme": "base",
+  "themeVariables": {
+    "background": "transparent",
+    "primaryColor": "#1C1917",
+    "primaryTextColor": "#E7E5E4",
+    "primaryBorderColor": "#44403C",
+    "secondaryColor": "#0F1714",
+    "secondaryTextColor": "#E7E5E4",
+    "secondaryBorderColor": "#34d399",
+    "tertiaryColor": "#101816",
+    "tertiaryTextColor": "#E7E5E4",
+    "tertiaryBorderColor": "#22d3ee",
+    "mainBkg": "#1C1917",
+    "textColor": "#E7E5E4",
+    "nodeBorder": "#44403C",
+    "nodeTextColor": "#E7E5E4",
+    "clusterBkg": "#12100F",
+    "clusterBorder": "#33302C",
+    "edgeLabelBackground": "#12100F",
+    "lineColor": "#A8A29E",
+    "arrowheadColor": "#A8A29E",
+    "fontFamily": "-apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, sans-serif"
+  },
+  "themeCSS": ".edgeLabel, .edgeLabel p, .edgeLabel span { color: #A8A29E; } .cluster text, .cluster span { fill: #A8A29E; }",
+  "roleClasses": [
+    "classDef input fill:#1C1917,stroke:#A8A29E,color:#E7E5E4",
+    "classDef store fill:#0E2A38,stroke:#38bdf8,color:#E7E5E4",
+    "classDef model fill:#0F2A1E,stroke:#34d399,color:#E7E5E4",
+    "classDef decision fill:#2E2410,stroke:#fbbf24,color:#E7E5E4",
+    "classDef risk fill:#331517,stroke:#f87171,color:#E7E5E4",
+    "classDef output fill:#33241A,stroke:#fdba74,color:#E7E5E4"
+  ],
+  "roleMeaning": {
+    "input": "something arriving from outside, usually untrusted",
+    "store": "durable state, a database, a queue or a file",
+    "model": "the model deciding, never executing",
+    "decision": "a branch, a gate or a human approval",
+    "risk": "where it goes wrong, the failure being taught",
+    "output": "what the system returns or commits"
+  }
+}

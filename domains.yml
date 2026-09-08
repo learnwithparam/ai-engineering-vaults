@@ -1,0 +1,41 @@
+# The domain register. Every sub-module declares one of these.
+#
+# Two lists on purpose. Fascination earns the click, credibility earns the
+# subscription, and a course made only of one loses the audience that pays.
+# check-structure asserts every vault carries at least one from each list.
+
+high_pull:
+  f1-race-strategy: Formula 1 pit strategy and live car telemetry
+  satellite-operations: Satellite tasking and ground station passes
+  esports-analytics: Live match state and player performance
+  autonomous-fleet: Self driving fleet supervision and disengagements
+  warehouse-robotics: Pick and pack robot coordination
+  genomics-pipeline: Variant calling and sequencing runs
+  climate-modelling: Weather and climate ensemble runs
+  threat-hunting: Security operations centre alert triage
+  music-recommendation: Catalogue and listening recommendation
+  semiconductor-yield: Fab defect and yield analysis
+  realtime-bidding: Ad exchange bid decisioning
+  ticket-anti-scalping: High demand ticket drops and bot defence
+  content-moderation: Platform moderation at scale
+  onchain-analytics: Blockchain transaction tracing
+  smart-grid-ev: Grid load and EV charging orchestration
+  incident-response: Production incident command and postmortems
+
+enterprise_credible:
+  payments-chargebacks: Card payments, disputes and chargebacks
+  insurance-claims: Claim intake, triage and catastrophe exposure
+  aml-compliance: Anti money laundering alerting and case work
+  clinical-trials: Trial protocol, sites and adverse events
+  medical-imaging-triage: Radiology worklist prioritisation
+  legal-ediscovery: Document review and privilege calls
+  immigration-casework: Visa and residency case processing
+  recruiting-screening: Candidate screening and scheduling
+  airline-crew-scheduling: Crew rostering and disruption recovery
+  port-logistics: Container terminal and supply chain flow
+  telecom-faults: Network fault correlation and field dispatch
+  predictive-maintenance: Industrial asset failure prediction
+  customer-success: Account health, renewals and escalations
+  retail-demand: Assortment, pricing and demand planning
+  education-progress: Learner progress and intervention
+  public-services: Citizen service requests and benefits

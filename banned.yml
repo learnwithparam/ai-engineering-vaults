@@ -1,0 +1,55 @@
+# What must never appear in prose.
+#
+# words: the house rules AI slop list.
+# provider_constants: another provider's numbers. The source this course was
+#   built from teaches Anthropic's figures, and this repo runs on OpenRouter.
+#   Every number in a lesson must be printed from a live response instead.
+
+words:
+  - delve
+  - leverage
+  - seamless
+  - paradigm
+  - robust
+  - landscape
+  - realm
+  - crucial
+  - cutting-edge
+  - game-changer
+  - unleash
+  - revolutionize
+  - straightforward
+  - notably
+
+phrases:
+  - "let's dive in"
+  - "in today's world"
+  - "buckle up"
+  - "here's the thing"
+  - "the reality is"
+  - "it's worth noting"
+  - "it's important to note"
+  - "at its core"
+  - "without further ado"
+  - "in this comprehensive guide"
+  - "a testament to"
+  - "stands out as"
+  - "whether you're a beginner"
+
+provider_constants:
+  - "1,024 tokens"
+  - "1024 tokens"
+  - "2,048 tokens"
+  - "2048 tokens"
+  - "5 minute TTL"
+  - "five minute TTL"
+  - "1.25x"
+  - "1.25 x"
+  - "0.10x"
+  - "90% discount"
+  - "25% surcharge"
+  - "four breakpoints"
+  - "4 breakpoints"
+  - "200k tokens"
+  - "200,000 tokens"
+  - "529"

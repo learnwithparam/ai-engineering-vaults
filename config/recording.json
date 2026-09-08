@@ -1,0 +1,8 @@
+{
+  "note": "Estimator constants for the recording budget gate. Calibrated once against a real read aloud of vault 1, then frozen. This is an estimate, not a stopwatch.",
+  "calibrated": false,
+  "words_per_minute": 150,
+  "seconds_per_code_line": 4.0,
+  "seconds_per_output_block": 20.0,
+  "vault_budget_minutes": 30.0
+}

@@ -1,0 +1,16 @@
+{
+    "codeCellConfig": {
+        "fontFamily": "JetBrains Mono, SF Mono, Menlo, Consolas, monospace",
+        "fontSize": 16,
+        "lineHeight": 1.7,
+        "lineNumbers": false,
+        "lineWrap": false,
+        "autoClosingBrackets": true
+    },
+    "markdownCellConfig": {
+        "fontFamily": "JetBrains Mono, SF Mono, Menlo, Consolas, monospace",
+        "fontSize": 16,
+        "lineHeight": 1.7
+    },
+    "windowingMode": "defer"
+}

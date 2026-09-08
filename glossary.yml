@@ -1,0 +1,34 @@
+# Terms a junior will not know. Each must be defined in plain English the first
+# time its vault uses it. check-prose enforces that, so nothing is assumed.
+#
+# The definition is what the notebook should say. Short, concrete, no jargon
+# used to explain jargon.
+
+harness: the ordinary code you write around the model, which decides what actually runs
+finish_reason: the field on a response that says why the model stopped talking
+tool call: the model asking your code to run a named function, as data, not as an action
+idempotent: safe to run twice, because the second run changes nothing
+token: the unit a model reads and bills in, roughly a short word or part of one
+context window: the total amount of text a model can hold in one request
+prompt caching: the provider reusing work on a repeated prefix so you pay less for it
+prefix: the unchanging start of a request, which is what caching can reuse
+compaction: shrinking a long conversation so it still fits and still makes sense
+prompt injection: text inside your data that tries to give the model new orders
+delimiter: a marker that shows the model where untrusted text starts and stops
+structured output: forcing a reply into a fixed shape your code can rely on
+schema: the written shape of allowed data, including types and required fields
+tool_choice: the setting that forces the model to answer through a named tool
+validator: code that rejects a value that is the right shape but the wrong answer
+backoff: waiting longer after each failed retry, so you stop making things worse
+jitter: adding randomness to a retry wait so callers do not all return at once
+entropy: how spread out a choice is, used here for how confusable your tools are
+subagent: a second agent run with its own context, so its noise never reaches the first
+checkpointer: storage that lets a paused run resume later from exactly where it stopped
+interrupt: a deliberate pause in a run, usually so a human can approve something
+middleware: code that runs between two steps, able to inspect or block what passes
+blast radius: how much damage one wrong action could do before anything stops it
+transport: how two programs carry messages to each other, such as pipes or HTTP
+stdio: talking over a program's own input and output streams
+JSON-RPC: a small convention for calling functions over a stream using JSON
+replay: running a lesson against saved responses instead of calling the real API
+fixture: one saved response, kept so a lesson runs the same way every time
