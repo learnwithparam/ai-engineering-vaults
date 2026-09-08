@@ -1,0 +1,69 @@
+{
+  "_vault_latency_seconds": 2.464,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Triaging insurance claims**\n\nI need to respond to the user regarding their stolen bicycle claim\u2014there's no forced entry, and they\u2019ve provided a receipt. My focus should be on clarifying next steps and what additional information or policy questions I might need to address, all while avoiding any legal disclaimers. need to respond to claims about a stolen bicycle, with details like no forced entry and a receipt provided. My focus is on determining the next steps and needed information while making sure to avoid giving legal or medical disclaimers.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Triaging insurance claims**\n\nI need to respond to the user regarding their stolen bicycle claim\u2014there's no forced entry, and they\u2019ve provided a receipt. My focus should be on clarifying next steps and what additional information or policy questions I might need to address, all while avoiding any legal disclaimers. need to respond to claims about a stolen bicycle, with details like no forced entry and a receipt provided. My focus is on determining the next steps and needed information while making sure to avoid giving legal or medical disclaimers.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoJAtMZPuqZvluQ7fNfxAdu1zofxf3B8bV6acHfWQyEhipwEwdORlMo5mj3ZiJ5m36yVIiLP9fDh0KdfytQZnC_bwrmVtVe8R062qhnfpdJl3n5rK1_LmQSQi04TFW3JWuUsvFVFdctMEJ4XYAhIwb_1EpuRS1UWuYDAeTlGbK5NXHIyWea-wZwRPiqhD8nZra-Q7xW55R53M7hMecypb8xvcNve0qhlQbeWATWeWJ5FAeDMyyESzKJMKgjd3TkStjaBQEzh0o3WvdVz-eIYW6RJO-XewhEJ2Ek28rqx6L48q0uuhYIp-uh2IzCYJTqWcdXc2ieC0RpT3tTUTQg7fLd_z0NfidSbqE2Yfd8roRW2UhgnhqV82_lbFtha4CIxI3NMKWPqIoChtTejjVWGMMfy5xtObeq3tXFz6wn_eGUrDL0P8O00rXElTOgm0KGdJMNUVD3MSLkIvEbIGHgSdpdINgq0RWR0is1scQCIzlFSmdwIzdw82KHJJAvC3HRKoQEB4Kp13uX6t2wifFabEtISIz9M8Yb6pcQBKd2SAXcW3UODFYB8ftn3liWvuvF2PMkGfVOw95L24tVttx8PPIqMXrWWELTRI8vDtYRFeqZCdmHLToBqwTnc4ll45evRNJFlYM_bVP4nst2gDUvAL2JPqlxsf9XajlugAyXJaR4r1iHWqhCAS4moaAPUMJkjDcuIKhyXo6yr8duBRhFDaLs_YYQYSkqGvB2mY2mGeFo9_IbYsCFpjxKdhOI3BrHx6pmCZUZXLY-tqKhvr5MKWLT_RH9i3nIwUH835kRmDvI0gf_qhcf-gzZkcMuIDOz3a5Nns_xHWVOeQEox1yERPN4mJTw4wb6XWsGhcCHs5nSrxGIJtuC4onpvTddbGGpM2Ep-VtXPmyy8jlXN5CC3iqOsmpppGt0qzjxQk-SCHpywcYAeF6cEKY31YXe00YnVx2j6H_nDT8LztH3w1KHWAtBhnyZJgG79hTbzR2tdv5C2Vfkt7h1ej6C5BHJlMUzJiA_1gWWIYhi5-4SC0Ql5FY7Y6xIUaOTbmSc_ErA3DTRuzBjiIoXGxwq9Y9QXBcw9h4MSoICt7T-XNtHBiEsL5WhTKgXY2plu4M9-1ecz69R0CPJwpfc5_mosOkp498tQCjlxLvsxXxNy8Io7O9ZwxXkG2kdzLBjwz2XCWa67DM7JZtx2NUqivNhoEKhnQiueClbApzphNHhrqi4dHXaf5dq1oprc411aHuyasL3Erbki4rf5zCFpwK1_UmE3ukfAVdeFUqt_8OXd5axbyMRN3-8i3AZg1E6Voi99r9eq-UYwNHOaXBqqlEMcyKtc729CiDRq68FypL9dm1j8QW_DlK7XFwy6h7mJFQ8KxcaIgsAJTkXNdbdW4Yqmo8fbsn3tpvg4l_bdgTq5y2KnSoMxyKvzXsNU6whAND9jVMpr-PeETDMZWJ1wwLgjFdBGxW7FgANCg9q6udtkZ1dxU7BdEmsbfrwWI_5Ea9XzkyZTJIabBx3rquwlWMNFn0nYUCH2Z7twUVAky-tUNNXbkOCyDf58z9II4g1ozZPq3afhSvSGe15Ekikz48q9Y0RvjoD4YIm1vl4qjB-XBQJEEFsFT7A-vjtchBWdvFdwyPh7Gu_wmx6gAZlJG1irma-s9DpFGhevD1neyTfRZh1Y09_7j15bex3Kz60-aqwFbkwDLr8HJGIZGep6pzEXwujzu-13t-OKp_ZGrEimSoPSRddyQttmTfJKCkZ-Y7e4Ai1p3SWLfpCpC0wtoZkeS5iZK-KdhHvuIAHk0OR7QVhujvRqOSqlrdue1CwUUUyxEho8vsYaFOIES5a9BbFCYAYYWFMQ8Vj9Ndbch9C61E7VODkKhExTGXo11qc4lh5elE7d-61uzy18badiOZDBSh8DWFVVs0PDNdUpZTcTgEthJxCYmDkA9B7qifMFMNAzxvYmHY6h1Fz6owBSuWSLZeRAqGkAuUX0BIPlcIn3EX7sWCMICqzTcwSMNNHHfynF9sjWKB9LfwZVWcMxfU7CSYDWknQUvfAxt1AiveaDVlM26Vp1_a1BmKEheMvMBpkjaDaxCdap0fmJVcikXTLIulWE7wRYkTs_bzKllS0jecrlQPdBR1fqmqw==.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_076aad89495ebe0f016aa0902b69e887d1b122c85b1ab280ff",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "max_output_tokens"
+    }
+  ],
+  "created": 1788907562,
+  "id": "gen-1788907562-ZYprZGc6A8lejGDbwyNh",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 64,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 64,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 2.705e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.56e-05,
+      "upstream_inference_cost": 2.705e-05,
+      "upstream_inference_prompt_cost": 1.45e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 29,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 93
+  }
+}

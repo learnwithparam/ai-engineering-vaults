@@ -15,12 +15,16 @@ import hashlib
 import json
 import os
 import pathlib
+import time
 
 from dotenv import load_dotenv
 from openai import OpenAI
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE_URL = "https://openrouter.ai/api/v1"
+# How long the recorded call took. Replay waits the same, so a timing lesson
+# reads the same whether it is replayed or run live.
+LATENCY_KEY = "_vault_latency_seconds"
 TIMEOUT_SECONDS = 60
 
 
@@ -128,13 +132,21 @@ def parse_completion(payload: dict):
 
 
 class _ReplayCompletions:
-    """Stands in for client.chat.completions, answering from disk."""
+    """Stands in for client.chat.completions, answering from disk.
+
+    Replay waits as long as the recorded call did. A lesson that measures wall
+    clock would otherwise print a real number when recorded and near zero when
+    replayed, which makes the committed output a lie about the code beside it.
+    """
 
     def __init__(self, fixtures: _Fixtures) -> None:
         self._fixtures = fixtures
 
     def create(self, **request):
-        payload = self._fixtures.load(fingerprint(**request))
+        payload = dict(self._fixtures.load(fingerprint(**request)))
+        waited = payload.pop(LATENCY_KEY, None)
+        if waited:
+            time.sleep(float(waited))
         return parse_completion(payload)
 
 
@@ -146,8 +158,11 @@ class _RecordingCompletions:
         self._fixtures = fixtures
 
     def create(self, **request):
+        started = time.monotonic()
         response = self._real.create(**request)
-        self._fixtures.save(fingerprint(**request), response.model_dump())
+        payload = response.model_dump()
+        payload[LATENCY_KEY] = round(time.monotonic() - started, 3)
+        self._fixtures.save(fingerprint(**request), payload)
         return response
 
 

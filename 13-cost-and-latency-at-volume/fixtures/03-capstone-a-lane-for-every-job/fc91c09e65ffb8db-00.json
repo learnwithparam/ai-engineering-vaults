@@ -1,0 +1,69 @@
+{
+  "_vault_latency_seconds": 2.338,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Triage insurance claims**\n\nIt sounds like there\u2019s storm damage to the roof tiles, which is impacting your neighbor too. Please check the extent of the damage and let your insurance provider know for immediate assistance. user mentions storm damage affecting roof tiles, which has also impacted their neighbor. I need to respond concisely with two sentences, focusing on initial triage steps and showing awareness of the situation without overwhelming them with questions.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Triage insurance claims**\n\nIt sounds like there\u2019s storm damage to the roof tiles, which is impacting your neighbor too. Please check the extent of the damage and let your insurance provider know for immediate assistance. user mentions storm damage affecting roof tiles, which has also impacted their neighbor. I need to respond concisely with two sentences, focusing on initial triage steps and showing awareness of the situation without overwhelming them with questions.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoJAvIw8q74kl3NmqQAEzzSbJllL-Z9fmCbs3SQtdApVUQXtlt6xdmV-1xQ9zs_Wkteu7lIuRkxz3ZuABW4QaKn8xdWvBl6k1LixmfRHUV7SoKAVaB8jT4pclZvelVFE9ozaFQ0QwxyKHBtjZSrODQgYSSg7SBJxq5IDqPqeWUMu4rk8t7vF3aM9VNbDmFddWE3BxxB3nUIlhR41YyriA3VKYnf1Vwc2-ggNtkAUJfSR6gWNjNRF0A_KD7J5G7qz0R3vtLQ8llhBbLxCaYiw1qqW988gpKkBbbe0XMG0L6E-uMUSedz_B7421l4sE_DtNWvmFYnvo2xMKBAKfROowX-JV2ZSdVhBZaYrSQVUOxPUgW_Js8qcxiS55_qIPFw6n4tEvfm11DX_CnhPK2GtIfgx9X_QDSGupA0SNV2sna10sRk01R979XZPwCotmiKLsAI4gP6-tmXcXULg-kOjavPPoKBoGVx_XdAlw5QZXFizPymtYLk4uoxXpfSRiWpG7_gJWg_NIFk33H8lln1vBvoJKiLqCUqS88BCpK_yhOEndNGHbodymsAElp68JJjRyxjqD8teltA_fV9y6Kc8G6JEw8kX8DmPwyfbBzoGgYdYaqClOYDrzEcSn9BUpjTL-LjgpxO5UQnMh_-J6PRVVfXajlUngfqe-b8LFhNxmrw9rpLDdTHRBaLPW332gI_ps_QlJn6kKd5xs124-1ZDqadjsI4XAy0_BSVpRryduKDtQYJU2Z2IC0tpB_a2v2OWSdNsFNHJIp26H6Z2CkDzl-JhXTVeVKsPIG339abGPWtUDtcnq4cboEu5ZopUPX02o9H82gpq8ZuuoTC1aR5hhpjeSfqRTAHvQQ4UG2bsnRqE8zpG1aBM07j7Uzsw_T91gLmmTss-Dog5cTAV_EArL2cbPRcdHrltY5pLdOd8V5osFCPoDzHreS_x1RFJ8sg3IgH2ollbzvG0UCiTzGUAhq13TXxfpig3DQqCvonXzgA4LXws5sbJ07eSGKYUPbhze-Ot36I6Hv292ZYrFEjyHkmVB1xcTc5yOFstzKrDei4kmq4NPzn322JbFLRAabBiM4zivmiFVJIwa7JyvvsvWF2mugHteNYc9RwLMSpw2UbDkcjdcpf5h72oIRqlRCcVO7dItL4UaKoUxT09eRhxr8w84szplg2HqVL9QpnEj92nT4bJyySYBesQOX2JiV8AEyR5puqPhZtmsO_RHSpLxgchGMt9GxQqPQNUuIRrp4GOWb2LcAFL5d8HIWyg5yhH0fIn3gvowBOtn_nyGf2VxlZ0cg5p5YGZC-56OjpgUFzB9ssghVkMCfuFDdHWBVx5zDrNiPhHibWxh5iQsHRWwhoW71PTcEfcnynvHFBkgPgB0vj5SbBq8pr5d-Yg2O4Frf-hzjG3R_pg9nCddzRo1aq0Uyz34jjL6Rics6DYLPWV9wU40oTwkXs9W_SDUWrcr63YN6BZYgDi9TEe6Fs6IbCpSauagleBsg53omMbUnGKrJRq3XOmjm2Vlj7MSe-IZaPnDLuPgKSmJUREPqyFgaGG3Mi7miUbe_86sO8D8bWl9KFRFhINBRtAysF3hS-4nfQw0YR6oCrSrV4N-AEvHK7K0WIESKdJeUMlWD3roXtFNPMnpxmtWuDZQtkR52Sj2v6t0goxhrNxF0qGYo-Ow_11Go82IC82NCDULMlKzNPPbtncpDQXhnQ2SanKZbX6r1dRmuHbc0jdPzK3vTSOmxJQkIqsvCMijwVueYYi6AXA7KYYSES2lU-Gq5kFL2JzelOpYUHoocbAI4Dnq2dZXg2VWC7FT3EkhxfFdp--huC2r_FDDFSkaeHlXxcxbAy98DoHkzF12k5xgN9TT7I8_DwrbBbVQX0vC0XioGrXDCg4vDACH9hIykC94E5utQc_lNf3_2dagRcD8k1eya_1UksURgWBvv2H-ZhkI4gZTv0my4phXgAQb4hgQjJNBFSl-50NXlkvpfcf-E9hIO9fF81BgHRsNoz8QenhkCEAgyUlh6er6y9CKTnIkEj6QQozn-miyqa4vFqwCF3462TPlA-AnaYDbBpICXXU9aIQjTmxPMMbzHo1zGhOomkzk8lP5EzdqdvFjznWY2paf6-UOdI028g==.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_092f539e4be74b77016aa0902dcbf887d1a2f965e0b6f960f2",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "max_output_tokens"
+    }
+  ],
+  "created": 1788907565,
+  "id": "gen-1788907565-1orhyBmKl2VtADCovL2U",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 64,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 64,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 2.7e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.56e-05,
+      "upstream_inference_cost": 2.7e-05,
+      "upstream_inference_prompt_cost": 1.4e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 28,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 92
+  }
+}

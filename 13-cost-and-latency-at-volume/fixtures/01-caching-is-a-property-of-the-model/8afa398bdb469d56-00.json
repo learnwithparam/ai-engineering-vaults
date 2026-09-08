@@ -1,0 +1,68 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Identifying reviewer tiers**\n\nI'm working on figuring out which reviewer tier is responsible for handling RULE-012. It seems essential to clarify the responsibilities tied to specific tiers since that can impact the review process. I should probably gather information on the different tiers and their associated rules to ensure the right tier is referenced. Okay, let's take a closer look at the documentation regarding reviewer tiers to find out exactly where RULE-012 fits in.",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Identifying reviewer tiers**\n\nI'm working on figuring out which reviewer tier is responsible for handling RULE-012. It seems essential to clarify the responsibilities tied to specific tiers since that can impact the review process. I should probably gather information on the different tiers and their associated rules to ensure the right tier is referenced. Okay, let's take a closer look at the documentation regarding reviewer tiers to find out exactly where RULE-012 fits in.",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoIyMKKRvEEXcHHoV6lOHCJwQlO5FQ63V3Qi7yPYcL9XuYcCf72Z8up9GFg0dwzU79tfE1X94nC-YTq-zWJMYjopLShBh1YjXNJPwZw4UsqyWk5AtvjUz8RbKxYG2E6pxP2HP3AMZI_fhKWoY1h_ZZsT59W6Tn0SQU8gDVQYEWULQ-7CE4QRW8DcUrtkvqR1YrTjjpw9v0ENazq938c2V-szHEcRK8mPK-GwMtnwxW2tJbrz45_b75VhrUhUIdsKC-ti18c5ECe_JZ-Vlg8Yj04SxTPyqtqid_coU2j3Zeni-ZH72Xr77fbA5QLdFIEvFD_zKvSHleumDKJJmSdJTc_cQ1FDZO2sP2uT0qGmnWwWw8RvZaJvVT_kkcHcqXLOyDF7SG6D1zrfqTj_2NLlzGoYlaWnyMsMvl28jfo5-mc5lymxIlGkUye_CKApFWAg-FbDsO-OsUy0LOOLXPMgHDmIrclNRVBUym5yZqOEFe7HaARh6cn5wBsDPWbNm3QVVePPXryYMLF_--oOxkf3x_fCc-wcXDn9dT_F6ynQ6Eq7NW50zQMiJQwMDrhJePzbHbFVXaHU3nviDf0B2Ni4KoGK-V3ZPqTZ7rgLs_242A2z3NXBt3DGVR-mW6aegHXmqhhPbzWMJd-YFnscBRwQp9PdkZ5BKZx4laq-22hhmP9lxpUK1--jHVh3IV9KISSPaFhgaZLh8rYUp3w74FYI0fS6inyPv60H_C0GNshfJYkrFITbLrhiW850D-pqnsJHtFkg9NIBT-OxkkrZ-vCTYp4TXQxyhFf83PtrnNaq2RZ7ZtGZvkZVOUH9Wjy18tqffp48Thbxq6b8z8ujkxVUz8ryMQEXqwLAgg3cil_CFrEzFHmuRfFkqcL2voah-MDOeFiytWuPOf0elDzcr2Wp8NJ92Tvxk_N2M6V6VvX7DwvDToS-hC-ROo0iju0bhQL06MayqJ01guf_MsIIdqGjAnPfXTpzCjMhsb2OvrJUMWHADBHtEPvQCh_EvqmomBilWjVKuD1mBMtD1E_0ISvijhgwHBaSlJy-LUYRqf3z0VzHNVitZv3M07RNtUNpGxMTulfg873cLi9PMdlVBdyHz5hgmDHuicPsnQvmLpaOv7LSkN9sEq89vCJjcczmdu6v7gYdbmm0OMBOFnHwc7fml-T211GPXJBDekCNUl0cnlIJ4EW19-6kwBS_D_wfo3jWXz7xIjYIoZcyuWDJNLdAZl_xHJUqOFHR7oVqZqHRYBSFV6nNpqJuJLguqo3mPbNhByraaZN_G4dWnhWUQbonf4qlsmc7K3BylBeHZvFXTH1y-bJ0x3njdGSEkBz1npkf-aFGPxiqJhjZSw5TVwwB-t6jHi7HcCP_hstpAmtQZ5HVS1M5YFQUpfXeXGxXVsliLiCiVSXpLjlaeKp2FPHHbYtP5AH2MNhVytSe8RIIcRBcv36_QNkEgmO9VkSoIuahWKT9YEaWi6wwshlwDC0oq2zVqkGG9FL2jpn7A1KaoTwTC0KbeONV6qmfUQq5bOSQk7UN_DPcz-VoPwvA6QJr3yUfsjA==.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_0f6d6e5cba53f81b016aa08c8a645087d1bf5d4ec457dd8cb3",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "max_output_tokens"
+    }
+  ],
+  "created": 1788906633,
+  "id": "gen-1788906633-B0Y6qTDj8GPAUxeFBUFi",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 0,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 121,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0003314,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0,
+      "upstream_inference_cost": 0.0003314,
+      "upstream_inference_prompt_cost": 0.0003314
+    },
+    "is_byok": false,
+    "prompt_tokens": 6628,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 6628
+  }
+}

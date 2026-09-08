@@ -25,3 +25,9 @@ Vault 1 is worth doing first. The capstone leans on `finish_reason`, which is ta
 A meter that reports cost per unit of work rather than cost per call, a chain that pays for its
 evidence once and proves the digest kept what later steps need, and a batch that holds a hard
 budget by degrading to cheaper answers rather than by stopping.
+
+## Where this continues
+
+`13-cost-and-latency-at-volume/` picks up where the counting stops: whether your model
+caches, whether your work is shaped to overlap, and which lane a workload belongs in.
+

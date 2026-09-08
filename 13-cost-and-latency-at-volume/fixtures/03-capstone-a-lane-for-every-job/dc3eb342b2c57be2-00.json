@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 7.857,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "\"Water damage in kitchen ceiling, tenant unaccounted for, potential mold growth and structural compromise.\"",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1788907533,
+  "id": "gen-1788907533-ggscVgvAPy6JOymZDDDX",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "DeepInfra",
+  "service_tier": null,
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 21,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 1.048e-06,
+    "cost_details": {
+      "upstream_inference_completions_cost": 6.3e-07,
+      "upstream_inference_cost": 1.048e-06,
+      "upstream_inference_prompt_cost": 4.18e-07
+    },
+    "is_byok": false,
+    "prompt_tokens": 22,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 43
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 2.472,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "The claim is likely covered under personal property theft, given the receipt and lack of forced entry. I'll need to verify the policy's coverage for bicycles.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1788907576,
+  "id": "gen-1788907576-cjWNapmjTtN8e4T9s6od",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Novita",
+  "service_tier": null,
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 33,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 6.93e-06,
+    "cost_details": {
+      "upstream_inference_completions_cost": 5.61e-06,
+      "upstream_inference_cost": 6.93e-06,
+      "upstream_inference_prompt_cost": 1.32e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 33,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 66
+  }
+}

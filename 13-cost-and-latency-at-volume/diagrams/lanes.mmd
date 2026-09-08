@@ -1,0 +1,14 @@
+graph LR
+  C["Claim text"]:::input
+  D{"Who is waiting?"}:::decision
+  A["Adjuster on screen<br/>parallel, cached model"]:::model
+  N["Nightly queue<br/>serial is fine"]:::model
+  B["Batch lane<br/>about half price<br/>a different endpoint"]:::store
+  R["Assessment"]:::output
+  X["Wrong lane<br/>slow, or dearer than the list said"]:::risk
+
+  C --> D
+  D -->|"seconds"| A --> R
+  D -->|"hours"| N --> R
+  D -->|"a day"| B --> R
+  D -.->|"chosen from a price list"| X

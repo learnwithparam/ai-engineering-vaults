@@ -1,0 +1,13 @@
+graph TB
+  subgraph SERIAL["Serial: wall clock is the sum"]
+    direction LR
+    S0["orchestrate"]:::decision --> S1["w1"]:::model --> S2["w2"]:::model --> S3["w3"]:::model --> S4["w4"]:::model --> S5["w5"]:::model --> S6["synthesise"]:::output
+  end
+  subgraph PARALLEL["Parallel: wall clock is the slowest one"]
+    direction LR
+    P0["orchestrate"]:::decision --> P1["w1"]:::model --> P6["synthesise"]:::output
+    P0 --> P2["w2"]:::model --> P6
+    P0 --> P3["w3 slowest<br/>sets the floor"]:::risk --> P6
+    P0 --> P4["w4"]:::model --> P6
+    P0 --> P5["w5"]:::model --> P6
+  end

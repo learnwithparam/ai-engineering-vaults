@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.666,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "The tenant's absence during the water damage incident in the kitchen ceiling warrants further investigation to determine the cause and responsibility. We will need to assess the extent of the damage and review the lease agreement to clarify tenant and landlord obligations.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788907556,
+  "id": "gen-1788907556-zyGOf9UbhxIQxHNSE8sC",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 46,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 2e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 1.84e-05,
+      "upstream_inference_cost": 2e-05,
+      "upstream_inference_prompt_cost": 1.6e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 16,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 62
+  }
+}

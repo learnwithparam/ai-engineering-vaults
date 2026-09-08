@@ -1,0 +1,68 @@
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": "**Parsing rules list**\n\nI need to go through the entire list, which ranges from RULE-000 to RULE-299. My goal is to locate RULE-145 specifically. It\u2019s a pretty straightforward task, but I want to make sure I\u2019m thorough so I don\u2019t miss it. I should check each entry carefully and perhaps even take notes as I go along. Let's see if I can find that rule efficiently! need to go through a long list from RULE-000 to RULE-299. My main goal is to locate RULE-145 in this lengthy sequence. That sounds straightforward, but there are a lot of entries to sift through. I should make sure I\u2019m focusing on the right section so I don\u2019t miss it when I scan through the list. Let's see how that goes!",
+        "reasoning_details": [
+          {
+            "format": "openai-responses-v1",
+            "index": 0,
+            "summary": "**Parsing rules list**\n\nI need to go through the entire list, which ranges from RULE-000 to RULE-299. My goal is to locate RULE-145 specifically. It\u2019s a pretty straightforward task, but I want to make sure I\u2019m thorough so I don\u2019t miss it. I should check each entry carefully and perhaps even take notes as I go along. Let's see if I can find that rule efficiently! need to go through a long list from RULE-000 to RULE-299. My main goal is to locate RULE-145 in this lengthy sequence. That sounds straightforward, but there are a lot of entries to sift through. I should make sure I\u2019m focusing on the right section so I don\u2019t miss it when I scan through the list. Let's see how that goes!",
+            "type": "reasoning.summary"
+          },
+          {
+            "data": "gAAAAABqoIyOfQsxZM8KtQH5MSUT--h7XTvEguarwPPdY_Wui2sh-zlepSDG-PilJ4UCwICUmIOPJ0oJ9Npge4LAQRZF0azXg4RN4E4WVyv_8K97faR9TNB2PzW9RjzktAODTL_S70wI5M15H3cKI8hZp-cOPDlfkrH9COYauLccNNevMvrfH1PxaAGZQAUueGmM3Pv4iZheLMvst0v4KqPqucusjLtKyHs-sIcCa63tWSL8N888k0aVlaFGag8xvG5Ef42mho6VYkzLVhTiiYutfeQH21I_bz1LvEDG-DxxTl1V2x6kgJ59j8jZDkGeJUDXaswHQmrGTMJLx_6Anqzqsb9nwRTa0NTuCNJLJZAdHz9m_4IGxKpJXMPcg6kzAAk9A-fY4vroQTOB-pKSj_vuAtgHnFboAEq1LdLalk7Aqm-Tm_LcFzxhu0PRSD3nroJw2CcDCuviAeHJVKztFvz6wzCh6akD5t3-gRJtTBt2JWHwcMQdu28-OZUX5KdwCn9f8WgyH57NOapB1OGbmwrfN-62gwhFPVfGbUXdcpebv17Eu0CETz_7VczygyOpiSYLZ3kmhj3ghzmDDBlNMaudmDyz-mRxxnHhcDv8MY0btRzaP1OI4F7aaW9L_5pEig_8785rqISRRMD73t8cuooTNYN-p7ffdT4pYQ9TwSzgOPkuYUL-lfOo6B-8tqXJlFKVRMzzAZGCKA4lpvx8xDJ9-OMymp4RKSbREonFJXKLJg73IPDOwLSCfz0YlQJB7YgbRfxIuiqx4qofELhKXwv068eYoRSiW5pDyA8cpi6h2PjACzRjq53-3gZHwpbIxRRJBJZReUTVIO_50pqEf3z_ExymMEygpL9lbK4YDzh2qk2VTQhxbZFJomByBEuv0Veyr6aNHxqZYKvK1TWFYeuG4oXJHv15gPU1OTkm6MCXYDwZqqTwq8pnX6piRQozZRRo0abfwgn29yWqvOywAmm45Ct_VXeyoqSjN4UJ3vPm8KEaWSFYzZe_HhYAKoZc75e0oaD_dvrdb70PsYVg651-N_5XdcE73MUYY6WCR0_p5ifcyufT2dNBt4IEChUxdWbc9aHY3IXQ_3EObhN7FBDJVywGWDBWY4nhQc5MPwxDpE-t60FWnlspZrCju-Ru8jpRdk2cy5-NS6TO6jEqczW0Z9pjavEuO8ax1PwjZe8UBg5ER_8D14SRtkpwOfwmt9V0EQtcs_Lvgbf_Eqrn1loMMqVhswRPbikm_ko-AEGRrZzsvIOEO2q4L5V4VVTd8OAVZ_QO4MU3yGabf1Hq1TAfKCTU6eCwWwN6q0qr2c2pt95KK9j-DjElXYdEeeh88GSJxy-qLOApxRK6ppsGltDQO53tJtyNOBAE4A-nWGhHhCK8tiUJVb3YsHGial_xTOUIZ0e-u8LelTTsAgebZ2DKtC5X4EJPHGt5wJWrzao4vSEwhuOLRyb015TfQg7ZcO5OlNzMrhIP7jyYaNhLZikG05uZxQLLxoMyLmc_zPb-9Q718-LEQ-8=.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC01LW5hbm8tMjAyNS0wOC0wN3xvcGVuYWkifQ",
+            "format": "openai-responses-v1",
+            "id": "rs_0ccb00b34b43dfd3016aa08c8cd1fc87d182d302247581805c",
+            "index": 1,
+            "type": "reasoning.encrypted"
+          }
+        ],
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "max_output_tokens"
+    }
+  ],
+  "created": 1788906636,
+  "id": "gen-1788906636-wWYSSWyNeIRK8foJOoGO",
+  "model": "openai/gpt-5-nano",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "OpenAI",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 0,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 176,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 3.764e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0,
+      "upstream_inference_cost": 3.764e-05,
+      "upstream_inference_prompt_cost": 3.764e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 6628,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 6528,
+      "video_tokens": 0
+    },
+    "total_tokens": 6628
+  }
+}

@@ -1,0 +1,13 @@
+graph LR
+  P["Identical policy prefix<br/>byte for byte"]:::input
+  G{"Which model id?"}:::decision
+  A["Model A<br/>cached_tokens high"]:::model
+  B["Model B<br/>cached_tokens near zero"]:::model
+  C["Model C<br/>cached_tokens zero"]:::model
+  S["Real saving<br/>from the response"]:::output
+  N["No saving<br/>however stable your prefix"]:::risk
+
+  P --> G
+  G --> A --> S
+  G --> B --> N
+  G --> C --> N

@@ -34,5 +34,8 @@
   "11-model-context-protocol/diagrams/stdio-framing.mmd": "5f0e5d11b8fe3c9e",
   "12-human-in-the-loop-governance/diagrams/approval-audit.mmd": "5e574fe0fb19ed4d",
   "12-human-in-the-loop-governance/diagrams/pause-and-resume.mmd": "8315f808fa64804d",
-  "12-human-in-the-loop-governance/diagrams/risk-tiers.mmd": "b4627f1665b90f84"
+  "12-human-in-the-loop-governance/diagrams/risk-tiers.mmd": "b4627f1665b90f84",
+  "13-cost-and-latency-at-volume/diagrams/caching-by-model.mmd": "d14e52d3b73ec2fe",
+  "13-cost-and-latency-at-volume/diagrams/lanes.mmd": "64a6dd3dec8f7ca8",
+  "13-cost-and-latency-at-volume/diagrams/sum-versus-max.mmd": "77c0775b66af8cce"
 }
