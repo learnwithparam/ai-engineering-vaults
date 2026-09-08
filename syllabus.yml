@@ -1,0 +1,86 @@
+# What each vault promised to teach, taken from the original course specs.
+#
+# A gap here is what a coverage audit found after twelve vaults were already
+# complete: the parallel latency formula and prompt caching were both promised
+# and both missing. This file exists so that cannot happen quietly again.
+#
+# Each entry is a concept and a pattern that must appear somewhere in that
+# vault's prose, code or committed output. Patterns are deliberately loose;
+# this catches an absent topic, not a badly worded one.
+
+1:
+  stop or finish reason: finish_reason|stop_reason
+  tool calls: tool_calls|tool_use
+  tool result plumbing: tool_call_id|ToolMessage
+  truncation: max_tokens|'length'
+  loop termination: budget|max_turns|terminat
+  idempotency: idempot
+  resume after restart: resume|restart|checkpoint|persist
+2:
+  router pattern: rout(er|ing)
+  orchestrator and workers: orchestrat|worker
+  context isolation: isolat
+  synthesis: synthes
+  parallel fan out: Send|fan.out|parallel
+3:
+  token tax: tax|handoff
+  context pruning: prun|digest|trim
+  cost per unit of work: cost|usd
+4:
+  instruction file: AGENTS\.md|instruction file|rule file
+  path scoped rules: paths:|scoped|glob
+  context budget: budget
+  compaction: compact|summar
+  persistent facts: pinned|persistent|facts
+5:
+  delegation: delegat|subagent
+  isolated worker state: isolat|WorkerState|Send
+  typed result contract: pydantic|typed|schema
+6:
+  non interactive contract: headless|non.interactive|stdin
+  schema locked output: json.?schema|response_format
+  read only by allowlist: read.only|allowlist
+  CI integration: workflow|exit code|exit_code
+  secrets handling: secret|credential|redact
+7:
+  delimiters: delimit|untrusted|<[a-z_]+>
+  direct injection: ignore .{0,25}instruction|direct inject
+  indirect injection: indirect|tool result|retriev
+  instruction hierarchy: hierarch|precede|outrank
+  scored defense: corpus|blocked|suite
+8:
+  forced tool choice: tool_choice
+  syntactic validity: json\.loads|parse|syntact
+  schema lock down: additionalProperties|strict|enum
+  refusals and edge cases: refus|empty|Cannot
+9:
+  semantic validation: semantic
+  pydantic validators: validator|BaseModel
+  bounded retry: retry|retries
+  diagnostic feedback: diagnos|remediat|errors\(\)
+  error taxonomy: tier|taxonom
+  jittered backoff: jitter|backoff
+10:
+  selection entropy: entropy|bits
+  positive activation: activation|positive
+  schema locking: additionalProperties|enum|pattern
+  pre execution middleware: middleware|guardrail|pre.execution
+11:
+  MCP primitives: tools/list|resources|prompts/
+  stdio transport: stdio
+  http transport: http|sse
+  json rpc: jsonrpc|json-rpc
+  stderr isolation: stderr
+  camel case trap: inputSchema|isError
+12:
+  risk classification: risk|tier
+  pre execution interception: middleware|intercept|pre.execution
+  structured tool errors: is_error|isError
+  interrupts and durable state: interrupt|checkpoint|thread_id
+  stall detection: stall|signature|loop detect
+  audit trail: audit
+13:
+  cache is a model property: cached_tokens
+  measure warm not cold: warm|cold
+  latency shape: max\(|slowest|overlap
+  batch lane: batch

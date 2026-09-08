@@ -32,7 +32,8 @@ Thirteen vaults, 39 teaching notebooks plus a setup guide. Total estimated recor
 | `check-prose` | 40 notebooks, 0 problems |
 | `check-fixtures` | 39 notebooks, 0 problems |
 | `check-theme` | 0 problems, structural only |
-| `check-gates` | 5 gates planted against and rejected |
+| `check-coverage` | 63 promises across 13 vaults, all kept |
+| `check-gates` | 6 gates planted against and rejected |
 | `score` | every notebook and vault at or above 95 |
 | `run_notebooks` in replay | 40 of 40 executed with no API key |
 
@@ -47,6 +48,9 @@ notebooks. Two gaps were found after the first twelve vaults were complete:
 Course 3 spec and in the Domain 5 material. Vault 13 was built to close them.
 
 Everything else in the twelve specs was already covered.
+
+That audit is now `check-coverage`, reading `syllabus.yml`, and it runs inside `make check`. A
+promise that stops being kept fails the build rather than surviving to recording day.
 
 ## The rule that shaped the content
 

@@ -18,7 +18,7 @@ make test
 ```
 
 All targets: `help`, `setup`, `install`, `dev`, `run`, `probe`, `status`, `score`, `check`, `test`,
-`test-live`, `record`, `diagrams`, `clean`, and the seven `check-*` gates.
+`test-live`, `record`, `diagrams`, `clean`, and the eight `check-*` gates.
 
 Python project (`pyproject.toml`). Use the repo's own virtualenv; never install into the system
 interpreter.
@@ -45,7 +45,11 @@ interpreter.
   `build/provider-truth.json`, written by `make probe` from the live API. `check-prose` fails on a
   provider constant typed into prose.
 - **Fixtures, not live calls, are the test path.** `make test` replays committed responses, so CI
-  needs no key and spends nothing. `make test-live` is the one that costs money.
+  needs no key and spends nothing. `make test-live` is the one that costs money. Replay also waits
+  as long as the recorded call did, so a lesson that measures wall clock reads the same either way.
+- **The syllabus is a gate.** `syllabus.yml` records what each vault promised to teach and
+  `check-coverage` fails if a promise stops being kept. It exists because an audit found two topics
+  promised in the course specs and missing from the notebooks.
 
 ## The contract
 

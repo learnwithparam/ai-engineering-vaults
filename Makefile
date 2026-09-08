@@ -1,5 +1,5 @@
 .PHONY: help setup install dev run probe status score check test test-live record diagrams clean \
-        check-structure check-notebooks check-diagrams check-prose check-fixtures check-theme check-gates
+        check-structure check-notebooks check-diagrams check-prose check-fixtures check-theme check-coverage check-gates
 .DEFAULT_GOAL := help
 
 BLUE := \033[0;34m
@@ -76,10 +76,13 @@ check-fixtures: ## Every notebook has fixtures and every fixture is used
 check-theme: ## Theme files exist, parse, and agree on fonts
 	@$(PY) scripts/check_theme.py
 
+check-coverage: ## Every vault still teaches what its course spec promised
+	@$(PY) scripts/check_coverage.py
+
 check-gates: ## Prove the gates bite, by planting a broken vault and removing it
 	@$(PY) scripts/check_gates.py
 
-check: check-structure check-notebooks check-diagrams check-prose check-fixtures check-theme check-gates score ## Run every gate
+check: check-structure check-notebooks check-diagrams check-prose check-fixtures check-theme check-coverage check-gates score ## Run every gate
 	@echo "$(GREEN)All gates passed$(NC)"
 
 # ============================================================================

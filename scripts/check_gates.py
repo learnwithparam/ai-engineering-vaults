@@ -62,6 +62,12 @@ def plant_broken() -> None:
         code("from vault.client import get_client\nclient = get_client('99-gate-selftest/01-broken')"),
         md("![missing](images/never-rendered.svg)"),
     ]
+    # syllabus.yml gains a vault that has no notebooks, so coverage has a gap.
+    syllabus = ROOT / "syllabus.yml"
+    original = syllabus.read_text()
+    syllabus.write_text(original + "\n98:\n  a promise nothing keeps: this-phrase-appears-nowhere\n")
+    (PLANT / "syllabus.backup").write_text(original)
+
     doc = notebook(cells, {"vault": 99, "submodule": 1, "title": "Broken",
                            "domain": "not-a-real-domain", "framework": "none",
                            "analogy": ""})
@@ -78,6 +84,7 @@ EXPECTED = [
     ("check_diagrams.py", "diagrams", "a .mmd with no SVG and a dead image reference"),
     ("check_fixtures.py", "fixtures", "a notebook calling the model with no fixtures"),
     ("score.py", "score", "missing beats, bad domain, no analogy, two defs in one cell"),
+    ("check_coverage.py", "coverage", "a vault in the syllabus with no notebooks"),
 ]
 
 
@@ -122,6 +129,9 @@ def main() -> int:
         problem = theme_gate_bites()
         if problem:
             failures.append(problem)
+        backup = PLANT / "syllabus.backup"
+        if backup.is_file():
+            (ROOT / "syllabus.yml").write_text(backup.read_text())
     finally:
         shutil.rmtree(PLANT)
 
