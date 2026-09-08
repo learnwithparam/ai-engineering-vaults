@@ -38,12 +38,17 @@ def main() -> int:
     for path in staged_files():
         if path in ALLOWED:
             continue
-        blob = subprocess.run(["git", "show", f":{path}"],
-                              capture_output=True, text=True)
+        blob = subprocess.run(["git", "show", f":{path}"], capture_output=True)
         if blob.returncode != 0:
             continue
+        try:
+            # Binary files cannot carry a pasted key in readable form, and
+            # decoding one as text throws. Screenshots are the common case.
+            content = blob.stdout.decode("utf-8")
+        except UnicodeDecodeError:
+            continue
         for pattern, label in SHAPES:
-            for match in pattern.findall(blob.stdout):
+            for match in pattern.findall(content):
                 if looks_real(match):
                     hits.append(f"{path}: {label}")
 

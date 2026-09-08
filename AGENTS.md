@@ -18,7 +18,7 @@ make test
 ```
 
 All targets: `help`, `setup`, `install`, `dev`, `run`, `probe`, `status`, `score`, `check`, `test`,
-`test-live`, `record`, `diagrams`, `clean`, and the six `check-*` gates.
+`test-live`, `record`, `diagrams`, `clean`, and the seven `check-*` gates.
 
 Python project (`pyproject.toml`). Use the repo's own virtualenv; never install into the system
 interpreter.
@@ -49,6 +49,6 @@ interpreter.
 
 ## The contract
 
-`CONTRACT.md` is the frozen definition of the eight beats, the cell limits, the score thresholds and
+`CONTRACT.md` is the frozen definition of the seven beats, the cell limits, the score thresholds and
 the domain register. Changing it forces a re-score of everything already accepted. Read it before
 authoring or editing any notebook.

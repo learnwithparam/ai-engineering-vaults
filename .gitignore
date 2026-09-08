@@ -28,3 +28,6 @@ build/
 
 # Written by the durable runtime capstone
 runtime-state.json
+
+# JupyterLab per-user workspace state
+.jupyter/lab/workspaces/
