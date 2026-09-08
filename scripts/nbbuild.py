@@ -18,7 +18,6 @@ BEAT_HEADINGS = {
     "failure": "## The failure",
     "diagnosis": "## The diagnosis",
     "fix": "## The fix",
-    "build": "## The build",
     "gate": "## The gate",
 }
 

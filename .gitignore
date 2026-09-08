@@ -25,3 +25,6 @@ build/
 
 # JupyterLab runtime artefact
 .jupyter/migrated
+
+# Written by the durable runtime capstone
+runtime-state.json

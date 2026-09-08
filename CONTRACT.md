@@ -12,18 +12,19 @@ earlier work.
 ## Shape
 
 A **vault** is one topic and one recorded video of at most thirty minutes. It is a folder holding a
-`README.md`, four notebooks, and its own `diagrams/`, `images/` and `fixtures/`.
+`README.md`, three or four notebooks, and its own `diagrams/`, `images/` and `fixtures/`.
 
-A **sub-module** is one notebook, roughly seven minutes of the recording. Three teach, the fourth is a
-capstone that integrates them. See `docs/decisions/003-four-submodules-per-vault.md`.
+A **sub-module** is one notebook. Normally two teach and a third is a capstone that integrates them.
+The thirty minute vault budget is the real constraint and the scorer enforces it, so four short
+sub-modules are fine and four dense ones are not. See `docs/decisions/005-three-submodules-per-vault.md`.
 
 Working targets per sub-module: about 550 words of prose, about 60 lines of code across six or seven
 cells, four or five outputs.
 
 ## The eight beats
 
-Every sub-module notebook carries these, in this order. Each is a markdown heading the scorer looks
-for.
+Every sub-module notebook carries these seven, in this order. Each is a markdown heading the scorer
+looks for.
 
 | Beat | Heading | What it must contain |
 |---|---|---|
@@ -32,9 +33,8 @@ for.
 | 3 | `## The cost` | A formula or a measurement. Omitted honestly if none applies |
 | 4 | `## The failure` | A code cell that runs and visibly breaks |
 | 5 | `## The diagnosis` | Why, naming a mechanic from beat 1 |
-| 6 | `## The fix` | A code cell that runs and prints a before and after number |
-| 7 | `## The build` | The production implementation, one function per cell |
-| 8 | `## The gate` | A runnable check, then `### Enterprise exploration` |
+| 6 | `## The fix` | The production build. One function per cell, in learning order, prose between, and a printed before and after number. See `docs/decisions/004-merge-fix-and-build.md` |
+| 7 | `## The gate` | A runnable check, then `### Enterprise exploration` |
 
 Beat 3 may be absent when there is no honest cost model. Every other beat is required.
 

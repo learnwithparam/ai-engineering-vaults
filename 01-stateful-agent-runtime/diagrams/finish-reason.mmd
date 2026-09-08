@@ -1,0 +1,14 @@
+graph TD
+  R["Response arrives"]:::input
+  F{"finish_reason?"}:::decision
+  S["stop<br/>use the answer"]:::output
+  T["tool_calls<br/>execute, append, loop"]:::model
+  L["length<br/>REFUSE<br/>the answer is incomplete"]:::risk
+  C["content_filter<br/>REFUSE<br/>a retry will not help"]:::risk
+  P["Parse the content"]:::store
+
+  R --> F
+  F -->|stop| S --> P
+  F -->|tool_calls| T
+  F -->|length| L
+  F -->|content_filter| C

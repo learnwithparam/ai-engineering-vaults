@@ -195,7 +195,7 @@ def _production_tail(n: nb.Notebook, out: list[Finding]) -> tuple[float, list[Fi
                            "the failure cell never raises or asserts",
                            "make the break real, not described in a comment"))
 
-    fix_cells = _cells_between(n, "fix", "build")
+    fix_cells = _cells_between(n, "fix", "gate")
     if not fix_cells:
         out.append(Finding(n.rel, "production", "The fix",
                            "no code cell under the fix beat",
@@ -280,10 +280,15 @@ def score_domains(notebooks: list[nb.Notebook], register: dict) -> tuple[float, 
         used[domain] = used.get(domain, 0) + 1
         by_vault.setdefault(n.vault_dir, set()).add(domain)
 
-    if len(used) < 20:
+    # Spread is only meaningful against how much content exists. One vault
+    # cannot show twenty domains, so the floor rises as vaults land and tops
+    # out at twenty once the course is complete.
+    expected = min(20, 3 * max(len(by_vault), 1))
+    if len(used) < expected:
         out.append(Finding("repo", "domains", "domains.yml",
-                           f"only {len(used)} distinct domains used, minimum is 20",
-                           "vary the scenarios across sub-modules"))
+                           f"only {len(used)} distinct domains across {len(by_vault)} vaults, "
+                           f"expected at least {expected}",
+                           "give each sub-module its own scenario"))
     for domain, count in sorted(used.items()):
         if count > 3:
             out.append(Finding("repo", "domains", domain,

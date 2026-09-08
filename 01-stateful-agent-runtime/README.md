@@ -11,8 +11,7 @@ production incidents in this course come from forgetting that.
 |---|---|---|
 | `01-the-harness-and-the-model.ipynb` | A policy written in the prompt, obeyed to the letter, for 47500 cents | Card chargebacks |
 | `02-finish-reason-as-a-state-machine.ipynb` | A truncated answer read as a finished one | Formula 1 race strategy |
-| `03-tool-results-and-idempotency.ipynb` | A retry that orders the same scan twice | Medical imaging triage |
-| `04-capstone-a-runtime-that-survives.ipynb` | All three, in one runtime that can be restarted | Port logistics |
+| `03-capstone-actions-that-survive.ipynb` | A retry books the same scan twice, then a restart does it again | Medical imaging triage |
 
 ## Before you start
 
@@ -22,5 +21,5 @@ committed recordings, so you can read and execute the whole vault for free.
 ## What you will have built
 
 A small agent runtime that parses what the model asked for, checks it against state you control,
-executes only what passes, survives a restart without repeating an action, and carries a test for
-each of those properties.
+executes only what passes, survives both a retry and a restart without repeating an action, and
+carries a test for each of those properties.

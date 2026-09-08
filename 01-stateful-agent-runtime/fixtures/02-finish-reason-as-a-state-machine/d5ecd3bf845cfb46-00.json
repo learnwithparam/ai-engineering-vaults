@@ -1,0 +1,53 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "```json\n{\n  \"stops\": [\n    {\n      \"lap\": 28,\n      \"tyre\": \"medium\"\n    },\n    {\n      \"lap\": 55,\n      \"tyre\": \"soft\"\n    }\n  ],\n  \"note\": \"This strategy aims to capitalize on a likely Safety Car around lap 30. We will pit for a fresh set of medium tyres just before the predicted Safety Car, giving us track position and fresh rubber for the restart. This also keeps us on a relatively durable tyre for the majority of the race, mitigating the high tyre wear. A short, final stint on soft tyres under green or with a potential late Safety Car will give us a shot at overtaking or defending on fresh tyres towards the end.\"\n}\n```",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1788900133,
+  "id": "gen-1788900133-Lnq00tQNzwXeIDIVt2B2",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 170,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 7.44e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 6.8e-05,
+      "upstream_inference_cost": 7.44e-05,
+      "upstream_inference_prompt_cost": 6.4e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 64,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 234
+  }
+}

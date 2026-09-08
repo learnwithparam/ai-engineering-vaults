@@ -1,0 +1,13 @@
+graph LR
+  M["Model asks<br/>book_scan once"]:::model
+  K["Key = call id<br/>stable across retries"]:::decision
+  L{"Key already<br/>in the ledger?"}:::decision
+  W["Write the row<br/>and the key together"]:::store
+  R["Return the first<br/>result again"]:::output
+  X["Reply lost<br/>runtime retries"]:::risk
+
+  M --> K --> L
+  L -->|no| W
+  L -->|yes| R
+  W -.->|"timeout"| X
+  X -.->|"same key"| L
