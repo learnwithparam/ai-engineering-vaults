@@ -33,27 +33,38 @@ def _mode() -> str:
     return os.getenv("VAULT_MODE", "replay").strip().lower()
 
 
+# The models the committed fixtures were recorded against. A replay has to ask
+# for the same model id or the request fingerprint will not match, so these are
+# defaults rather than suggestions. .env overrides them for live work.
+RECORDED_MODELS = {
+    "default": ("VAULT_MODEL", "google/gemini-2.5-flash-lite"),
+    "reasoning": ("VAULT_MODEL_REASONING", "openai/gpt-5-nano"),
+    "small": ("VAULT_MODEL_SMALL", "mistralai/mistral-nemo"),
+}
+
+
 def model_for(role: str = "default") -> str:
-    """Model ids are variables, never literals in a lesson."""
+    """Model ids are variables, never literals in a lesson.
+
+    Falls back to the recorded model, so a clone with no .env can still replay
+    every notebook. That is the whole promise of the replay path.
+    """
     load_dotenv(ROOT / ".env")
-    names = {
-        "default": "VAULT_MODEL",
-        "reasoning": "VAULT_MODEL_REASONING",
-        "small": "VAULT_MODEL_SMALL",
-    }
-    if role not in names:
-        raise ValueError(f"unknown role {role!r}, expected one of {sorted(names)}")
-    value = os.getenv(names[role])
-    if not value:
-        raise RuntimeError(f"{names[role]} is not set. Run: make setup")
-    return value
+    if role not in RECORDED_MODELS:
+        raise ValueError(f"unknown role {role!r}, expected one of {sorted(RECORDED_MODELS)}")
+    name, recorded = RECORDED_MODELS[role]
+    return os.getenv(name) or recorded
 
 
 def provider_truth() -> dict:
-    """Real prices and limits, probed from the API. Never hardcoded."""
-    path = ROOT / "build" / "provider-truth.json"
+    """Real prices and limits, probed from the API. Never hardcoded.
+
+    Committed, because a lesson that prints a cost has to work in a clone with
+    no key. Refresh it with `make probe`.
+    """
+    path = ROOT / "provider-truth.json"
     if not path.is_file():
-        raise RuntimeError("build/provider-truth.json is missing. Run: make probe")
+        raise RuntimeError("provider-truth.json is missing. Run: make probe")
     return json.loads(path.read_text())
 
 
