@@ -1,6 +1,6 @@
 # Authoring a vault
 
-Read `CONTRACT.md` first. This is the recipe; the contract is the law.
+Read `docs/CONTRACT.md` first. This is the recipe; the contract is the law.
 
 Vault 1 is the worked reference. Read all three of its notebooks before writing anything.
 
@@ -25,7 +25,7 @@ generator would be a second source of truth.
 
 ```python
 import pathlib, sys
-ROOT = pathlib.Path("/Users/param/learn/learnwithparam/lwp-repos/ai-engineering-vaults")
+ROOT = pathlib.Path("path/to/ai-engineering-vaults")   # your clone
 sys.path.insert(0, str(ROOT / "scripts"))
 from nbbuild import SubModule
 
@@ -58,12 +58,14 @@ client = get_client("02-multi-agent-orchestration/01-name")   # vault/notebook, 
 ```
 
 `model_for("default")`, `model_for("reasoning")` or `model_for("small")`. Never a literal model id.
-Never a hardcoded price, context length or token limit; read `build/provider-truth.json` instead.
+Never a hardcoded price, context length or token limit; read `provider-truth.json` instead.
 
 ## Budget, which is the constraint that bites
 
-A vault is **30 minutes total**, and the scorer fails the build over that. Measured from vault 1, a
-sub-module lands near 9 minutes at this depth, so **three sub-modules per vault**.
+A vault targets **30 minutes**, and the scorer fails only outside 20 to 40. The estimate models
+speaking time from prose, code and outputs; it has never been timed against a recording, so it is
+there to catch a vault running long, not to defend a tenth of a minute. At this depth a sub-module
+lands near 9 minutes, so **three sub-modules per vault**.
 
 Per sub-module, aim for about 600 words of prose, 70 lines of code, 7 or 8 code cells. Check with
 `uv run python scripts/score.py` and cut prose first.
@@ -77,7 +79,7 @@ Per sub-module, aim for about 600 words of prose, 70 lines of code, 7 or 8 code 
 - At least three questions under `### Enterprise exploration`, naming scale, cost, compliance,
   failure or a trade off.
 - The declared analogy appears in the prose.
-- Sentence case headings, no em dashes, no banned words from `banned.yml`.
+- Sentence case headings, no em dashes, no banned words from `config/banned.yml`.
 
 ## Diagrams
 

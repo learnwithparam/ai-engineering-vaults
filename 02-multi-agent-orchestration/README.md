@@ -1,7 +1,7 @@
 # Multi-agent orchestration
 
-**One video, about thirty minutes.** When splitting one agent into several helps, when it hurts, and
-how to tell the difference with a number rather than an opinion.
+When splitting one agent into several helps, when it hurts, and how to tell the difference with a
+number rather than an opinion.
 
 Everything here rests on one idea: **a second agent is a second bill and a second blind spot.** Fan
 out buys isolation, and isolation is not free. Each sub-module measures what it bought.

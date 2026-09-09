@@ -1,7 +1,7 @@
 # Token economics
 
-**One video, about thirty minutes.** What a call costs, what a handoff costs, and how to hold a
-budget without dropping work on the floor.
+What a call costs, what a handoff costs, and how to hold a budget without dropping work on the
+floor.
 
 One idea runs through all three: **you cannot control a bill you have never read.** Every number
 here is printed from a real response. Nothing in this vault quotes a price from memory, and the

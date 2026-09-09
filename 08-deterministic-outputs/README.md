@@ -1,7 +1,7 @@
 # Deterministic outputs
 
-**One video, about thirty minutes.** How a model is made to answer in a shape your code can rely on,
-and the two ways that still is not enough.
+How a model is made to answer in a shape your code can rely on, and the two ways that still is not
+enough.
 
 One idea runs through the vault: **a shape is not an answer.** Forcing a reply into a fixed shape
 removes the parse failures and nothing else. A value can pass every type, every enum and every

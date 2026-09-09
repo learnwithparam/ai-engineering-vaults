@@ -1,6 +1,6 @@
 """What a call actually cost, using the provider's own numbers.
 
-Every figure here comes from build/provider-truth.json, which `make probe`
+Every figure here comes from provider-truth.json at the repo root, which `make probe`
 writes from the live API. Nothing in this repo asserts a price, because prices
 differ per model and change without notice.
 """

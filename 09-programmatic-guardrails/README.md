@@ -1,7 +1,7 @@
 # Programmatic guardrails
 
-**One video, about thirty minutes.** A schema tells you the shape is right. It says nothing about
-whether the answer is possible, and production is full of possible-looking answers that are not.
+A schema tells you the shape is right. It says nothing about whether the answer is possible, and
+production is full of possible-looking answers that are not.
 
 Everything here rests on one idea: **checking is a job for your code, and it has three parts.** Is
 the shape right, is the meaning right, and what do you do when it is not. A retry answers only the

@@ -10,8 +10,10 @@ import json
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-LEDGER = ROOT / "build" / "ledger.json"
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from nbcommon import BUILD
+
+LEDGER = BUILD / "ledger.json"
 
 STATES = ("planned", "drafted", "scored", "fixtures", "diagrams", "accepted")
 

@@ -1,4 +1,4 @@
-"""Ask OpenRouter what is actually true, and write it to build/provider-truth.json.
+"""Ask OpenRouter what is actually true, and write it to provider-truth.json at the repo root.
 
 Notebooks read that file. Nothing in this repo hardcodes a price, a context length or a
 cache rule, because those are provider facts that change and differ per upstream model.

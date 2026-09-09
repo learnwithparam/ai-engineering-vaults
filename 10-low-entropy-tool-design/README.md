@@ -1,7 +1,7 @@
 # Low entropy tool design
 
-**One video, about thirty minutes.** How a tool suite grows until the model can no longer tell your
-tools apart, what that costs at the backend, and how to score a suite instead of arguing about it.
+How a tool suite grows until the model can no longer tell your tools apart, what that costs at the
+backend, and how to score a suite instead of arguing about it.
 
 One idea runs through all three: **a tool suite is a design decision you can measure.** Names and
 descriptions are read by the model as words. Only a schema and your own code are checked by anything.

@@ -1,7 +1,7 @@
 # Headless automation for CI
 
-**One video, about thirty minutes.** What changes about an agent when nobody is watching it run,
-and how to make a pipeline able to stop because of what it found.
+What changes about an agent when nobody is watching it run, and how to make a pipeline able to stop
+because of what it found.
 
 Everything here rests on one idea: **the exit code is the interface.** A job runner never reads your
 report. It reads one integer and decides whether the next step happens. Most of the failures in this

@@ -39,6 +39,6 @@ topic better than five thin ones. The cut falls on repetition, not on depth.
 
 ## What changes
 
-`CONTRACT.md` says four, and `check_structure.py` asserts four. The estimator gains a per cell term,
+`docs/CONTRACT.md` says four, and `check_structure.py` asserts four. The estimator gains a per cell term,
 because introducing a cell costs time whatever its length, and a fifteen line schema is not read out
 line by line.

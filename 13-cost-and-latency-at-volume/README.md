@@ -1,7 +1,6 @@
 # Cost and latency at volume
 
-**One video, about thirty minutes.** What a workload really costs and how long it really takes, both
-measured rather than quoted.
+What a workload really costs and how long it really takes, both measured rather than quoted.
 
 This vault finishes the token economics story. Vault 3 counts the tokens. This one covers the three
 levers you actually pull once the counting is done: which model, what shape, and which lane.

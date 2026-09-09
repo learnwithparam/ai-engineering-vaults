@@ -1,7 +1,7 @@
 """Build a notebook from beats, so sixty of them cannot drift apart.
 
 Authoring goes through this rather than through hand written JSON. The beat
-order, the metadata shape and the cell rules come from CONTRACT.md, and this is
+order, the metadata shape and the cell rules come from docs/CONTRACT.md, and this is
 the one place that knows how to satisfy them.
 """
 from __future__ import annotations

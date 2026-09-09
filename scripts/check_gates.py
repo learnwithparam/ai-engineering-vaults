@@ -15,7 +15,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from nbcommon import ROOT
+from nbcommon import ROOT, CONFIG
 
 PLANT = ROOT / "99-gate-selftest"
 SCRIPTS = ROOT / "scripts"
@@ -63,7 +63,7 @@ def plant_broken() -> None:
         md("![missing](images/never-rendered.svg)"),
     ]
     # syllabus.yml gains a vault that has no notebooks, so coverage has a gap.
-    syllabus = ROOT / "syllabus.yml"
+    syllabus = CONFIG / "syllabus.yml"
     original = syllabus.read_text()
     syllabus.write_text(original + "\n98:\n  a promise nothing keeps: this-phrase-appears-nowhere\n")
     (PLANT / "syllabus.backup").write_text(original)
@@ -86,6 +86,42 @@ EXPECTED = [
     ("score.py", "score", "missing beats, bad domain, no analogy, two defs in one cell"),
     ("check_coverage.py", "coverage", "a vault in the syllabus with no notebooks"),
 ]
+
+
+def root_inventory_bites() -> str:
+    """Drop a file at the root, confirm check-structure rejects it, remove it."""
+    stray = ROOT / "stray-note.md"
+    stray.write_text("# planted by check-gates\n")
+    try:
+        rc, output = run_gate("check_structure.py")
+    finally:
+        stray.unlink()
+    if rc == 0:
+        return "root inventory: did NOT bite on a stray file at the repo root"
+    if "stray-note.md" not in output:
+        return "root inventory: failed without naming the file it rejected"
+    print("  root       bit as expected (a file at the root that is not on the allow-list)")
+    if run_gate("check_structure.py")[0] != 0:
+        return "root inventory: still failing after the stray file was removed"
+    return ""
+
+
+def path_truth_bites() -> str:
+    """Write a doc naming a path that does not exist, confirm check-paths says so."""
+    doc = ROOT / "docs" / "gate-selftest.md"
+    doc.write_text("# planted\n\nThis names `config/does-not-exist.json`, which is not there.\n")
+    try:
+        rc, output = run_gate("check_paths.py")
+    finally:
+        doc.unlink()
+    if rc == 0:
+        return "path truth: did NOT bite on a doc naming a path that does not exist"
+    if "does-not-exist.json" not in output:
+        return "path truth: failed without naming the dead path"
+    print("  paths      bit as expected (a doc naming a path that does not exist)")
+    if run_gate("check_paths.py")[0] != 0:
+        return "path truth: still failing after the planted doc was removed"
+    return ""
 
 
 def theme_gate_bites() -> str:
@@ -115,9 +151,12 @@ def main() -> int:
         print(f"  cannot self test: these already fail before planting: {dirty}")
         return 1
 
+    # These two plant at the root and in docs/, so they run before the broken
+    # vault exists. Their restore check cannot pass while it does.
+    failures = [p for p in (root_inventory_bites(), path_truth_bites()) if p]
+
     plant_broken()
     try:
-        failures = []
         for script, label, why in EXPECTED:
             rc, output = run_gate(script)
             if rc == 0:
@@ -131,7 +170,7 @@ def main() -> int:
             failures.append(problem)
         backup = PLANT / "syllabus.backup"
         if backup.is_file():
-            (ROOT / "syllabus.yml").write_text(backup.read_text())
+            (CONFIG / "syllabus.yml").write_text(backup.read_text())
     finally:
         shutil.rmtree(PLANT)
 
@@ -141,7 +180,7 @@ def main() -> int:
 
     for line in failures:
         print(f"  {line}")
-    print(f"check-gates: {len(EXPECTED)} gates tested, {len(failures)} problems")
+    print(f"check-gates: {len(EXPECTED) + 3} gates tested, {len(failures)} problems")
     return 1 if failures else 0
 
 

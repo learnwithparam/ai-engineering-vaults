@@ -23,7 +23,7 @@ moves onto the fix beat, where the scorer already checks that a measurement is p
 
 ## What changes
 
-`CONTRACT.md` lists seven beats. `nbcommon.BEATS` drops `build`. The production checks that looked
+`docs/CONTRACT.md` lists seven beats. `nbcommon.BEATS` drops `build`. The production checks that looked
 for code between `fix` and `build` now look between `fix` and `gate`.
 
 ## What this does not fix

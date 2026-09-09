@@ -1,7 +1,7 @@
 # Human in the loop governance
 
-**One video, about thirty minutes.** Which actions stop for a person, how a run pauses and comes
-back, and how you answer the question an auditor asks first.
+Which actions stop for a person, how a run pauses and comes back, and how you answer the question an
+auditor asks first.
 
 The idea underneath all three: **approval is a budget, not a switch.** Gate too little and something
 final happens with nobody watching. Gate everything and the same fixed attention is spread across

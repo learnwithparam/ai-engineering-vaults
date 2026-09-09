@@ -1,7 +1,7 @@
 """Score every notebook and vault. Threshold 95.
 
 Deterministic. Every deduction names the notebook, the cell and the fix, because
-a finding you cannot act on is noise. Rules live in CONTRACT.md.
+a finding you cannot act on is noise. Rules live in docs/CONTRACT.md.
 """
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import nbcommon as nb
-from nbcommon import ROOT
+from nbcommon import ROOT, CONFIG, BUILD
 
 THRESHOLD = 95.0
 WEIGHTS = {
@@ -58,7 +58,7 @@ def score_structure(n: nb.Notebook) -> tuple[float, list[Finding]]:
     ordered = [found[k] for k, _ in nb.BEATS if k in found]
     if ordered != sorted(ordered):
         out.append(Finding(n.rel, "structure", "notebook", "beats are out of order",
-                           "reorder cells to match the beat order in CONTRACT.md"))
+                           "reorder cells to match the beat order in docs/CONTRACT.md"))
 
     for field in ("vault", "submodule", "title", "domain", "framework", "analogy"):
         if not n.meta.get(field) and n.meta.get(field) != 0:
@@ -277,7 +277,7 @@ def score_domains(notebooks: list[nb.Notebook], register: dict) -> tuple[float, 
         domain = n.meta.get("domain", "")
         if domain not in known:
             out.append(Finding(n.rel, "domains", "metadata.vault.domain",
-                               f"domain {domain!r} is not in domains.yml",
+                               f"domain {domain!r} is not in config/domains.yml",
                                f"use one of the {len(known)} registered domains"))
             continue
         used[domain] = used.get(domain, 0) + 1
@@ -288,7 +288,7 @@ def score_domains(notebooks: list[nb.Notebook], register: dict) -> tuple[float, 
     # out at twenty once the course is complete.
     expected = min(20, 3 * max(len(by_vault), 1))
     if len(used) < expected:
-        out.append(Finding("repo", "domains", "domains.yml",
+        out.append(Finding("repo", "domains", "config/domains.yml",
                            f"only {len(used)} distinct domains across {len(by_vault)} vaults, "
                            f"expected at least {expected}",
                            "give each sub-module its own scenario"))
@@ -315,7 +315,7 @@ def score_domains(notebooks: list[nb.Notebook], register: dict) -> tuple[float, 
 
 
 def load_banned() -> dict:
-    return yaml.safe_load((ROOT / "banned.yml").read_text())
+    return yaml.safe_load((CONFIG / "banned.yml").read_text())
 
 
 def main() -> int:
@@ -324,10 +324,10 @@ def main() -> int:
         print("No notebooks yet. Nothing to score.")
         return 0
 
-    glossary = yaml.safe_load((ROOT / "glossary.yml").read_text())
-    register = yaml.safe_load((ROOT / "domains.yml").read_text())
+    glossary = yaml.safe_load((CONFIG / "glossary.yml").read_text())
+    register = yaml.safe_load((CONFIG / "domains.yml").read_text())
     banned = load_banned()
-    config = json.loads((ROOT / "config" / "recording.json").read_text())
+    config = json.loads((CONFIG / "recording.json").read_text())
 
     domain_score, domain_findings = score_domains(notebooks, register)
 
@@ -353,21 +353,32 @@ def main() -> int:
     return _finish(notebooks, per_notebook, per_vault, minutes, config, all_findings)
 
 
-def _recording_score(vault: str, used: float, budget: float,
+def _recording_score(vault: str, used: float, config: dict,
                      findings: list[Finding]) -> float:
-    """Over budget is a hard fail, because concise was the requirement."""
-    if used <= budget:
+    """A band, not a stopwatch.
+
+    The estimate models speaking time from prose, code and outputs. It is
+    accurate enough to catch a vault that is running long and nowhere near
+    accurate enough to defend a tenth of a minute, so only leaving the band
+    fails. Inside it, the target is printed and nothing is deducted.
+    """
+    low, high = config["hard_min_minutes"], config["hard_max_minutes"]
+    if low <= used <= high:
         return 100.0
+    if used > high:
+        findings.append(Finding(vault, "recording", "vault",
+                                f"estimated {used:.1f} minutes, the ceiling is {high:.0f}",
+                                "cut prose or move a sub-module out, this vault runs long"))
+        return max(0.0, 100.0 - (used - high) / high * 300.0)
     findings.append(Finding(vault, "recording", "vault",
-                            f"estimated {used:.1f} minutes, budget is {budget:.0f}",
-                            "cut prose or move a sub-module out, this vault runs long"))
-    over = (used - budget) / budget
-    return max(0.0, 100.0 - over * 300.0)
+                            f"estimated {used:.1f} minutes, the floor is {low:.0f}",
+                            "this vault is too thin for a session, add depth or merge it"))
+    return max(0.0, 100.0 - (low - used) / low * 300.0)
 
 
 def _finish(notebooks, per_notebook, per_vault, minutes, config, findings) -> int:
     budget = config["vault_budget_minutes"]
-    rec = {v: _recording_score(v, m, budget, findings) for v, m in minutes.items()}
+    rec = {v: _recording_score(v, m, config, findings) for v, m in minutes.items()}
 
     totals = {}
     for n in notebooks:
@@ -397,19 +408,24 @@ def _finish(notebooks, per_notebook, per_vault, minutes, config, findings) -> in
         "findings": [f.as_dict() for f in findings],
         "passing": not failing,
     }
-    out = ROOT / "build" / "scores.json"
+    out = BUILD / "scores.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
 
-    return _print_report(vault_totals, totals, minutes, budget, findings, failing)
+    return _print_report(vault_totals, totals, minutes, config, findings, failing)
 
 
-def _print_report(vault_totals, totals, minutes, budget, findings, failing) -> int:
+def _print_report(vault_totals, totals, minutes, config, findings, failing) -> int:
+    target = config["vault_budget_minutes"]
+    low, high = config["hard_min_minutes"], config["hard_max_minutes"]
     print(f"{'vault':36} {'score':>6} {'minutes':>8}")
     print("-" * 54)
     for vault in sorted(vault_totals):
         used = minutes[vault]
-        flag = "" if used <= budget else "  OVER"
+        # Off the target is worth seeing. Only off the band is worth failing.
+        flag = "" if low <= used <= high else "  OUT OF BAND"
+        if not flag and abs(used - target) > 5:
+            flag = "  long" if used > target else "  short"
         print(f"{vault:36} {vault_totals[vault]:6.1f} {used:7.1f}m{flag}")
 
     print()

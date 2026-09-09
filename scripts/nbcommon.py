@@ -10,6 +10,10 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+# Every gate input lives here, so the root stays the learner surface.
+CONFIG = ROOT / "config"
+DOCS = ROOT / "docs"
+BUILD = ROOT / "build"
 
 BEATS = [
     ("mechanics", "## Mechanics"),

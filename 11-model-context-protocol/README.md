@@ -1,7 +1,7 @@
 # Model Context Protocol
 
-**One video, about thirty minutes.** How a model reaches your systems without a connector per pair,
-and the two ways a server built on that protocol goes wrong in production.
+How a model reaches your systems without a connector per pair, and the two ways a server built on
+that protocol goes wrong in production.
 
 Everything here rests on one idea: **the protocol carries claims, and your code carries controls.**
 A description, an annotation and a schema all travel on the wire. None of them stops anything.

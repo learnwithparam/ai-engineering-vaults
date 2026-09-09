@@ -14,7 +14,7 @@ import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import nbcommon as nb
-from nbcommon import ROOT
+from nbcommon import ROOT, CONFIG
 
 KEY_SHAPES = [
     (re.compile(r"sk-or-v1-[A-Za-z0-9]{20,}"), "OpenRouter key"),
@@ -85,8 +85,8 @@ def main() -> int:
         print("check-prose: no notebooks yet")
         return 0
 
-    banned = yaml.safe_load((ROOT / "banned.yml").read_text())
-    glossary = yaml.safe_load((ROOT / "glossary.yml").read_text())
+    banned = yaml.safe_load((CONFIG / "banned.yml").read_text())
+    glossary = yaml.safe_load((CONFIG / "glossary.yml").read_text())
 
     secrets = scan_secrets(notebooks)
     prose = scan_prose(notebooks, banned)

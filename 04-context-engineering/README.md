@@ -1,7 +1,6 @@
 # Context engineering
 
-**One video, about thirty minutes.** What goes into a request, in what order, and what happens to
-the parts you left out.
+What goes into a request, in what order, and what happens to the parts you left out.
 
 Everything in this vault rests on one idea: **the request is built, not accumulated.** A prompt that
 grows by appending is a prompt nobody owns. The three sub-modules take the three things that get

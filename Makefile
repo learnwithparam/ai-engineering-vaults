@@ -1,5 +1,5 @@
 .PHONY: help setup install dev run probe status score check test test-live record diagrams clean \
-        check-structure check-notebooks check-diagrams check-prose check-fixtures check-theme check-coverage check-gates
+        check-structure check-notebooks check-diagrams check-prose check-paths check-fixtures check-theme check-coverage check-gates
 .DEFAULT_GOAL := help
 
 BLUE := \033[0;34m
@@ -70,6 +70,9 @@ check-diagrams: ## Every diagram has a fresh SVG, every reference resolves
 check-prose: ## Em dashes, banned words, provider constants, key-shaped strings
 	@$(PY) scripts/check_prose.py
 
+check-paths: ## Every repo path named in a doc resolves
+	@$(PY) scripts/check_paths.py
+
 check-fixtures: ## Every notebook has fixtures and every fixture is used
 	@$(PY) scripts/check_fixtures.py
 
@@ -82,7 +85,7 @@ check-coverage: ## Every vault still teaches what its course spec promised
 check-gates: ## Prove the gates bite, by planting a broken vault and removing it
 	@$(PY) scripts/check_gates.py
 
-check: check-structure check-notebooks check-diagrams check-prose check-fixtures check-theme check-coverage check-gates score ## Run every gate
+check: check-structure check-notebooks check-diagrams check-prose check-paths check-fixtures check-theme check-coverage check-gates score ## Run every gate
 	@echo "$(GREEN)All gates passed$(NC)"
 
 # ============================================================================
@@ -105,8 +108,10 @@ diagrams: ## Render every .mmd to SVG and refresh the hash manifest
 # Cleanup
 # ============================================================================
 
+# provider-truth.json is committed, because a clone with no key still has to
+# print a real cost. Nothing here removes it.
 clean: ## Remove venv, caches and build artefacts
-	@rm -rf .venv build/scores.json build/provider-truth.json
+	@rm -rf .venv build/scores.json build/budget.json
 	@find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
 	@find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} + 2>/dev/null || true
 	@echo "$(GREEN)Cleaned$(NC)"

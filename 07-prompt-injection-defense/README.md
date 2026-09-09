@@ -1,7 +1,7 @@
 # Prompt injection defense
 
-**One video, about thirty minutes.** Why untrusted text becomes an instruction, why the obvious fix
-only partly works, and what you put behind it.
+Why untrusted text becomes an instruction, why the obvious fix only partly works, and what you put
+behind it.
 
 Everything in this vault rests on one idea: **a prompt level defence has a pass rate, not a
 guarantee.** Every number below was printed by a live model, not asserted.

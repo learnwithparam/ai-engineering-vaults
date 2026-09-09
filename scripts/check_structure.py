@@ -1,12 +1,47 @@
-"""Vault shape: README coverage, capstones, sub-module count."""
+"""Vault shape: README coverage, capstones, sub-module count, and a clean root."""
 from __future__ import annotations
 
 import pathlib
+import re
+import subprocess
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import nbcommon as nb
 from nbcommon import ROOT
+
+# What a learner is allowed to see at the root. Everything else is authoring
+# machinery and belongs in config/ or docs/. A vault folder matches NN-name.
+ROOT_ALLOWED = {
+    ".github", ".gitignore", ".jupyter", ".python-version",
+    "AGENTS.md", "CLAUDE.md", "Makefile", "README.md",
+    "build", "config", "diagrams", "docs", "scripts", "vault",
+    "env.example", "provider-truth.json", "pyproject.toml", "uv.lock",
+}
+VAULT_DIR = re.compile(r"^\d\d-[a-z0-9-]+$")
+
+
+def ignored(entry: pathlib.Path) -> bool:
+    """Ask git, so .env and a capstone's runtime-state.json never trip this."""
+    result = subprocess.run(["git", "check-ignore", "--quiet", entry.name],
+                            cwd=ROOT, capture_output=True)
+    return result.returncode == 0
+
+
+def root_problems() -> list[str]:
+    if not (ROOT / ".git").exists():
+        print("  root inventory skipped: not a git checkout")
+        return []
+    out = []
+    for entry in sorted(ROOT.iterdir()):
+        name = entry.name
+        if name == ".git" or name in ROOT_ALLOWED or VAULT_DIR.match(name):
+            continue
+        if ignored(entry):
+            continue
+        out.append(f"root: {name} is not on the root allow-list. "
+                   f"Authoring config belongs in config/, authoring docs in docs/")
+    return out
 
 
 def main() -> int:
@@ -15,7 +50,7 @@ def main() -> int:
         print("check-structure: no vaults yet")
         return 0
 
-    problems = []
+    problems = root_problems()
     for vault in vaults:
         rel = vault.relative_to(ROOT)
         notebooks = sorted(p for p in vault.glob("[0-9][0-9]-*.ipynb")

@@ -20,7 +20,7 @@ Generated 9 September 2026. Check it rather than trust it: `make check && make t
 | `12-human-in-the-loop-governance` | 100.0 | 29.5 min |
 | `13-cost-and-latency-at-volume` | 100.0 | 27.3 min |
 
-Thirteen vaults, 39 teaching notebooks plus a setup guide. Total estimated recording time 377 minutes. Lowest score 100.0 against a threshold of 95. Longest vault 29.8 minutes against a budget of 30.
+Thirteen vaults, 39 teaching notebooks plus a setup guide. Total estimated recording time 377 minutes. Lowest score 100.0 against a threshold of 95. Longest vault 29.8 minutes, inside the 20 to 40 band.
 
 ## What was verified, by running it
 
@@ -49,7 +49,7 @@ Course 3 spec and in the Domain 5 material. Vault 13 was built to close them.
 
 Everything else in the twelve specs was already covered.
 
-That audit is now `check-coverage`, reading `syllabus.yml`, and it runs inside `make check`. A
+That audit is now `check-coverage`, reading `config/syllabus.yml`, and it runs inside `make check`. A
 promise that stops being kept fails the build rather than surviving to recording day.
 
 ## The rule that shaped the content
@@ -75,6 +75,6 @@ survive contact with a real model, and every replacement is stronger.
 - **A working batch submission.** The lane exists at roughly half price and the
   endpoint returned 404 on this account. Vault 13 shows the shape and says it did
   not run it.
-- **A pushed remote.** Every commit is local.
-- **A calibrated recording estimate.** The model is documented in
-  `config/recording.json` and has never been checked against a real recording.
+- **A calibrated recording estimate.** The model is documented in `config/recording.json` and has
+  never been timed against a recording. It is a band that catches a vault running long, so it is
+  accurate enough for what it is used for and is not being calibrated.

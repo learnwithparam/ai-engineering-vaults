@@ -1,7 +1,6 @@
 # Stateful agent runtimes
 
-**One video, about thirty minutes.** The loop you write by hand, and the three ways it goes wrong in
-production.
+The loop you write by hand, and the three ways it goes wrong in production.
 
 Everything in this vault rests on one idea: **the model decides, your code executes.** A model never
 does anything. It returns a decision as data, and your harness chooses whether to act on it. Most

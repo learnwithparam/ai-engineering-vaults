@@ -1,7 +1,7 @@
 # Subagent delegation
 
-**One video, about thirty minutes.** Why you hand work to a second agent, how two frameworks draw the
-line, and what has to come back across it.
+Why you hand work to a second agent, how two frameworks draw the line, and what has to come back
+across it.
 
 One idea holds the vault together: **the parent grows by the summary, not by the work.** A subagent is
 a second agent run with its own list of messages. It reads everything, and the only thing that

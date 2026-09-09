@@ -2,36 +2,29 @@
 
 ![AI Bootcamp Open Graph preview](https://www.learnwithparam.com/ai-bootcamp/opengraph-image)
 
-Production AI engineering, taught as vaults. Each vault is one topic and one video. Each notebook
-inside it takes one idea, breaks it on purpose, fixes it, measures the difference, and leaves you
-with the check that stops it breaking again.
+Production AI engineering, taught as vaults. Each vault takes one topic. Each notebook inside it
+takes one idea, breaks it on purpose, fixes it, measures the difference, and leaves you with the
+check that stops it breaking again.
 
-> Regional pricing is available for eligible learners, with discounts of up to 60% in supported regions. Start here: https://www.learnwithparam.com/ai-bootcamp
-
-## Quick start
+## Run it
 
 ```bash
 make setup
 make run
 ```
 
-Open `00-setup/01-start-here.ipynb` and read it. It takes five minutes and saves you an hour.
+That installs everything and opens JupyterLab. Start with `00-setup/01-start-here.ipynb`, then take
+the vaults in order.
 
-**You can run every lesson without an API key.** Responses are recorded from the real API and
-committed, so `make test` executes all of it for free. Add a key when you want to change a prompt
-and watch the answer change, which is the point.
+**You do not need an API key.** Every response was recorded from the real API and committed, so the
+notebooks run from those recordings and cost nothing. Add a key when you want to change a prompt and
+watch the answer change, which is the point.
 
-## What makes this different from a tutorial
+## The one idea underneath all of it
 
-Most agent material shows you the happy path. This shows you the failure first.
-
-Every sub-module runs the same eight beats: the exact mechanics, a diagram, the cost model, a
-**runnable failure**, the diagnosis traced to a specific mechanic, a **measured fix**, the
-production build one function at a time, and the gate that prevents a regression.
-
-The one idea underneath all of it: **the model decides, your code executes.** A model never does
-anything. It returns a decision as data, and your harness chooses whether to act on it. Almost every
-production incident in this course comes from forgetting that.
+**The model decides, your code executes.** A model never does anything. It returns a decision as
+data, and your harness chooses whether to act on it. Almost every incident in this course comes from
+forgetting that.
 
 ## The vaults
 
@@ -49,24 +42,18 @@ production incident in this course comes from forgetting that.
 | Low-entropy tool design | Twenty five tools and the wrong one chosen |
 | Model context protocol | A `print()` that corrupts the protocol stream |
 | Human in the loop governance | An irreversible action taken unattended |
+| Cost and latency at volume | A cache saving that never arrives, five fast calls that take as long as their total |
 
-## How it stays honest
+## How a vault works
 
-- **`make check` runs every gate**, and plants a deliberately broken vault to prove the gates still
-  catch things. A check that has never failed is not known to check anything.
-- **Notebooks are scored, not reviewed.** `scripts/score.py` is deterministic and the bar is 95.
-  `CONTRACT.md` defines exactly what it measures.
-- **No provider number is hardcoded.** Prices, context limits and cache rules are probed from the
-  live API by `make probe`. A number in a lesson was printed by a real response.
-- **Secrets never appear.** Keys are copied without being displayed, and every committed output is
-  scanned for key shaped text.
+Most agent material shows you the happy path. Every notebook here shows the failure first: the
+mechanics, a diagram, what it costs, a failure you can run, the diagnosis, the fix with the
+difference measured, the production build, and the test that keeps it fixed.
 
-## Where the theme applies
+## If it does not run
 
-`make run` launches JupyterLab with a dark theme built for screen recording, scoped to this repo so
-nothing global is touched. That theme does **not** apply on GitHub, in VS Code or in Colab, which
-render notebooks their own way. Committed outputs and transparent SVG diagrams keep those readable.
+`00-setup/01-start-here.ipynb` checks your setup and names what is missing. If it still fails, open
+an issue.
 
-## License
-
-MIT. Use it, teach from it, fork it.
+The course, with regional pricing for eligible learners:
+https://www.learnwithparam.com/ai-bootcamp

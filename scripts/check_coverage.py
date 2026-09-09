@@ -14,7 +14,7 @@ import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import nbcommon as nb
-from nbcommon import ROOT
+from nbcommon import ROOT, CONFIG
 
 
 def searchable(notebooks) -> dict[int, str]:
@@ -28,7 +28,7 @@ def searchable(notebooks) -> dict[int, str]:
 
 
 def main() -> int:
-    syllabus = yaml.safe_load((ROOT / "syllabus.yml").read_text())
+    syllabus = yaml.safe_load((CONFIG / "syllabus.yml").read_text())
     notebooks = nb.all_notebooks()
     if not notebooks:
         print("check-coverage: no notebooks yet")
@@ -40,14 +40,14 @@ def main() -> int:
     for vault, promises in sorted(syllabus.items()):
         text = blob.get(vault)
         if text is None:
-            problems.append(f"vault {vault}: promised in syllabus.yml but no notebooks found")
+            problems.append(f"vault {vault}: promised in config/syllabus.yml but no notebooks found")
             continue
         for concept, pattern in promises.items():
             checked += 1
             if not re.search(pattern, text, re.I):
                 problems.append(
                     f"vault {vault}: promised {concept!r} and never teaches it. "
-                    f"Add it, or remove the promise from syllabus.yml")
+                    f"Add it, or remove the promise from config/syllabus.yml")
 
     for line in problems:
         print(f"  {line}")

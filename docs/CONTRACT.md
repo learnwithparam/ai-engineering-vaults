@@ -11,12 +11,12 @@ earlier work.
 
 ## Shape
 
-A **vault** is one topic and one recorded video of at most thirty minutes. It is a folder holding a
+A **vault** is one topic and one recorded video of about thirty minutes. It is a folder holding a
 `README.md`, three or four notebooks, and its own `diagrams/`, `images/` and `fixtures/`.
 
 A **sub-module** is one notebook. Normally two teach and a third is a capstone that integrates them.
-The thirty minute vault budget is the real constraint and the scorer enforces it, so four short
-sub-modules are fine and four dense ones are not. See `docs/decisions/005-three-submodules-per-vault.md`.
+The thirty minute vault target is the real constraint, so four short sub-modules are fine and four
+dense ones are not. See `docs/decisions/005-three-submodules-per-vault.md`.
 
 Working targets per sub-module: about 550 words of prose, about 60 lines of code across six or seven
 cells, four or five outputs.
@@ -48,7 +48,7 @@ These exist so the notebook reads well on video. A wall of code is skipped, not 
 | Code cells per notebook | at least 6 |
 | Top level `def` or `class` per cell | at most 1 |
 | Consecutive code cells with no prose between | not allowed |
-| Estimated speaking time per vault | at most 30 minutes |
+| Estimated speaking time per vault | 30 minutes is the target, 20 to 40 is the band that fails |
 
 ## Scoring
 
@@ -103,7 +103,7 @@ committed here and are a real leak path.
 
 ## Domains
 
-Every sub-module declares one domain in its notebook metadata, drawn from `domains.yml`.
+Every sub-module declares one domain in its notebook metadata, drawn from `config/domains.yml`.
 
 | Rule | Limit |
 |---|---|
