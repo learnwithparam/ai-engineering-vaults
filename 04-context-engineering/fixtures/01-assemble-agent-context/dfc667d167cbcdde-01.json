@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.507,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here are the steps to add a loading spinner to the order list while the orders load:\n\n1.  **Create a `Spinner` component:**\n    *   This component will be responsible for displaying the visual loading indicator.\n    *   It should be a functional component that returns some basic HTML structure (e.g., a `div` with CSS classes for styling).\n    *   We'll place this component in `src/ui/kit/Spinner.tsx` so it can be reused.\n\n2.  **Implement `Spinner` component styling:**\n    *   Add CSS to `src/ui/kit/Spinner.css` (or inline styles if preferred) to make the spinner visually appealing. This could involve using CSS animations for rotation or a simple pulsing effect.\n\n3.  **Add a `loading` prop to `OrderList`:**\n    *   Modify the `OrderList` component to accept a new boolean prop, `loading`. This prop will indicate whether the order list is currently in a loading state.\n\n4.  **Conditionally render the `Spinner`:**\n    *   Inside `OrderList.tsx`, use the `loading` prop to conditionally render the `Spinner` component.\n    *   If `loading` is `true`, display the `Spinner`.\n    *   If `loading` is `false`, display the actual order list.\n\n5.  **Handle the loading state in the parent component:**\n    *   Identify the component that fetches and passes the `orders` data to `OrderList`.\n    *   This parent component will need to manage a `loading` state variable (e.g., using `useState`).\n    *   Set the `loading` state to `true` before initiating the API call to fetch orders.\n    *   Set the `loading` state to `false` after the orders have been successfully fetched or if an error occurs",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144267,
+  "id": "gen-1789144267-qNOJDt79z4K6w0Hv36HZ",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.000175,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.000175,
+      "upstream_inference_prompt_cost": 1.5e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 150,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 550
+  }
+}

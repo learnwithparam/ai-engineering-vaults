@@ -1,0 +1,17 @@
+graph TD
+  Q["Customer request<br/>with a customer id"]:::input
+  M["Call the model<br/>with the tool list"]:::model
+  G["25 generic tools<br/>with loose schemas"]:::risk
+  F["Four scoped tools<br/>one per job"]:::output
+  S{"Score each pick:<br/>accuracy and bits"}:::decision
+
+  Q --> M
+  M --> G
+  M --> F
+  G --> S
+  F --> S
+
+%% step 1: Q M G
+%% step 2: S
+%% step 3: F
+%% retire 3: G

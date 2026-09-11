@@ -1,0 +1,82 @@
+{
+  "_vault_latency_seconds": 1.077,
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"amount_cents\":20000,\"order_id\":\"ORD-9921\"}",
+              "name": "issue_refund"
+            },
+            "id": "tool_issue_refund_Xmhjtyydhw37AJtd6jW1",
+            "index": 0,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount_cents\":20000,\"order_id\":\"ORD-9921\"}",
+              "name": "issue_refund"
+            },
+            "id": "tool_issue_refund_B3J9s3PDhz3OhsuOxIWk",
+            "index": 1,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"amount_cents\":7500,\"order_id\":\"ORD-9921\"}",
+              "name": "issue_refund"
+            },
+            "id": "tool_issue_refund_DPA5Sb1Fg14G26sI5T80",
+            "index": 2,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789133482,
+  "id": "gen-1789133482-QzOF6NWiaMEZfc2LuAFT",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 48,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 3.33e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 1.92e-05,
+      "upstream_inference_cost": 3.33e-05,
+      "upstream_inference_prompt_cost": 1.41e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 141,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 189
+  }
+}

@@ -77,8 +77,8 @@ def directive_problems(text: str) -> list[str]:
     problems = []
     if sorted(steps) != list(range(1, len(steps) + 1)):
         problems.append(f"steps are numbered {sorted(steps)}, expected 1 to {len(steps)} with no gaps")
-    if not 3 <= len(steps) <= 6:
-        problems.append(f"{len(steps)} steps, a series needs 3 to 6")
+    if len(steps) < 3:
+        problems.append(f"{len(steps)} steps, a series needs at least 3")
     for n, ids in sorted(steps.items()):
         problems += [f"step {n} names {i!r}, which is not in the graph" for i in ids if i not in known]
     for n, ids in sorted(retire.items()):
@@ -227,8 +227,16 @@ def main() -> int:
         return 0
 
     theme = json.loads(THEME.read_text())
+    # One render at a time: parallel authors share the manifest, and each render
+    # starts a headless browser. The lock is released when the process exits.
+    import fcntl
+    (ROOT / "build").mkdir(exist_ok=True)
+    lock = open(ROOT / "build" / "render.lock", "w")
+    fcntl.flock(lock, fcntl.LOCK_EX)
     # A filtered run keeps every other vault's entries, a full run rebuilds.
+    # Either way an entry whose source was deleted goes, or check-diagrams flags it.
     manifest = json.loads(MANIFEST.read_text()) if prefix and MANIFEST.is_file() else {}
+    manifest = {rel: sha for rel, sha in manifest.items() if (ROOT / rel).is_file()}
     for mmd in mmds:
         rel = mmd.relative_to(ROOT).as_posix()
         problems = directive_problems(mmd.read_text())

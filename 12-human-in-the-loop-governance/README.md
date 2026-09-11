@@ -1,27 +1,24 @@
-# Human in the loop governance
+# Human-in-the-Loop Governance for High-Risk AI Actions
 
-Which actions stop for a person, how a run pauses and comes back, and how you answer the question an
-auditor asks first.
+One course in one notebook: `01-build-an-approval-gate.ipynb`.
 
-The idea underneath all three: **approval is a budget, not a switch.** Gate too little and something
-final happens with nobody watching. Gate everything and the same fixed attention is spread across
-five hundred approvals, so nobody reads any of them.
+You build the runtime for an infrastructure automation agent that manages a company's databases.
+Engineers ask it to take backups and remove databases nobody uses. The model decides what to do,
+but your runtime decides what actually runs, so a request to delete a production database stops
+and waits for an administrator before anything happens.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-which-actions-need-a-human.ipynb` | A model waves a video deletion through, then gating everything leaves 14 seconds per approval | Self driving fleet |
-| `02-pausing-and-resuming-a-run.ipynb` | The same tool call six times, nothing decided, nobody told | Ticket drop bot defence |
-| `03-capstone-an-agent-that-cannot-drop-prod.ipynb` | Sanctions screening turned off, and no record of who allowed it | Money laundering case work |
+The notebook starts with an agent that deletes whatever the model asks for, then grows it one step
+at a time: a risk tier for every tool call, a hook that intercepts high-risk calls before they run,
+refusals the model can read, a pause that is saved to disk and resumed by its thread id after a
+restart, a check that stops a model repeating the same call, and an audit trail that names who
+allowed each change.
 
 ## Before you start
 
-Run `00-setup/01-start-here.ipynb` first. Every notebook here runs without an API key, from committed
-recordings, so the whole vault executes for free. The LangGraph nodes call the model through the same
-recorded client, so the graphs replay too.
+Run `00-setup/01-start-here.ipynb` first. The notebook runs without an API key, from committed
+recordings of real responses, so you can follow the whole course for free.
 
 ## What you will have built
 
-A risk register that fails closed on a tool nobody classified, a stall detector that hashes tool call
-signatures and escalates a loop that is going nowhere, a LangGraph runtime that pauses before a
-guarded node and resumes from a checkpoint, and an audit trail where approve, reject and timeout all
-leave a row.
+An approval gate for high-risk agent actions, with a test for each of its safeguards, all of which
+run without calling the model.

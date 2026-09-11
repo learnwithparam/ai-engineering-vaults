@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 2.091,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "{\n  \"CLM-4106\": 2,\n  \"CLM-4107\": 3,\n  \"CLM-4108\": 4,\n  \"CLM-4109\": 1,\n  \"CLM-4110\": 2,\n  \"CLM-4111\": 3\n}",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1789146538,
+  "id": "gen-1789146538-a3B5WUF1MSclt56sBbft",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "DekaLLM",
+  "service_tier": null,
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 81,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.000215982,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.43e-06,
+      "upstream_inference_cost": 0.000215982,
+      "upstream_inference_prompt_cost": 0.000213552
+    },
+    "is_byok": false,
+    "prompt_tokens": 11864,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 11945
+  }
+}

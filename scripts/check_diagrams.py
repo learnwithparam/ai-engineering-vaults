@@ -43,10 +43,11 @@ def main() -> int:
                 f"{svg.relative_to(ROOT)}: the edge label stylesheet is missing. "
                 f"mermaid-cli dropped it. Re-render with make diagrams")
 
-    # A frame shrinks to fit one screen. Shrunk too far, its labels are lost on video.
+    # A diagram shrinks to fit one screen. Shrunk too far, its labels are lost on
+    # video, and wider than the column it is clipped.
     box = theme["frames"]
     for svg in sorted(produced):
-        if not (svg.is_file() and "-step-" in svg.name):
+        if not svg.is_file():
             continue
         match = re.search(r"viewBox=[\"'][-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)", svg.read_text())
         if not match:

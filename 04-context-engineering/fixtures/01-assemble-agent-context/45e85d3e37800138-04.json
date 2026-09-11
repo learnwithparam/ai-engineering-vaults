@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.575,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here are the steps to add a loading spinner to the `OrderList` component:\n\n1.  **Import `useState` and `useEffect` from React:** We'll use these hooks to manage the loading state and fetch data.\n2.  **Import the `Spinner` component:** Assuming you have a `Spinner` component in your `src/ui/kit` directory, import it.\n3.  **Add a `loading` state variable:** Use `useState` to create a boolean state variable, `loading`, initialized to `true`. This will indicate whether the data is currently being fetched.\n4.  **Fetch orders within a `useEffect` hook:**\n    *   Inside the `useEffect`, set `loading` to `true` before initiating the data fetch.\n    *   Simulate fetching orders (or make an actual API call if you have one).\n    *   Once the orders are fetched (or an error occurs), set `loading` to `false`.\n    *   Use an empty dependency array `[]` for the `useEffect` so it only runs once when the component mounts.\n5.  **Conditionally render the `Spinner` or `OrderList`:**\n    *   In the `return` statement of your `OrderList` component, check the `loading` state.\n    *   If `loading` is `true`, render the `Spinner` component.\n    *   If `loading` is `false`, render the actual list of orders.\n6.  **Ensure the `Spinner` has an `aria-label`:** As per the guidelines, all interactive elements and elements that convey meaning should have an accessible label. Add an `aria-label=\"Loading orders\"` to the `Spinner` component.\n\n**Example Implementation (assuming you have a `fetchOrders` function and a `Spinner` component):**\n\n```typescript\n// src/ui/components/",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144264,
+  "id": "gen-1789144264-nwlYAKF79swM3xL9xSUE",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001864,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.0001864,
+      "upstream_inference_prompt_cost": 2.64e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 264,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 664
+  }
+}

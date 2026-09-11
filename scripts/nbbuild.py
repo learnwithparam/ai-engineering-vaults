@@ -1,87 +1,63 @@
-"""Build a notebook from beats, so sixty of them cannot drift apart.
+"""Build a course notebook, so the shape in docs/CONTRACT.md is written once.
 
-Authoring goes through this rather than through hand written JSON. The beat
-order, the metadata shape and the cell rules come from docs/CONTRACT.md, and this is
-the one place that knows how to satisfy them.
+A scratch authoring script uses this rather than hand written JSON. The script
+itself is never committed: the notebook is the deliverable.
 """
 from __future__ import annotations
 
-import json
 import pathlib
 
 import nbformat
 
-BEATS = ["mechanics", "cost", "failure", "diagnosis", "fix", "gate"]
 
+class Course:
+    """One vault, one notebook: an overview, numbered steps, a concepts table."""
 
-class SubModule:
-    """One notebook, assembled beat by beat."""
+    def __init__(self, vault: int, title: str, domain: str, framework: str = "none") -> None:
+        self.meta = {"vault": vault, "title": title, "domain": domain, "framework": framework}
+        self.cells: list = [nbformat.v4.new_markdown_cell(f"# {title}")]
+        self.next_step = 0
 
-    def __init__(self, vault: int, submodule: int, title: str, domain: str,
-                 framework: str, analogy: str) -> None:
-        self.meta = {"vault": vault, "submodule": submodule, "title": title,
-                     "domain": domain, "framework": framework, "analogy": analogy}
-        self.cells: list = []
-
-    def md(self, text: str) -> "SubModule":
+    def md(self, text: str) -> "Course":
         self.cells.append(nbformat.v4.new_markdown_cell(text.strip()))
         return self
 
-    def code(self, source: str, raises: bool = False) -> "SubModule":
-        """Add a code cell.
-
-        `raises=True` tags the cell so the notebook keeps running after it
-        throws. The failure beat needs a real traceback in the output, not a
-        described one, and it still has to leave the rest of the lesson
-        runnable.
-        """
+    def code(self, source: str, raises: bool = False) -> "Course":
+        """Add a code cell. `raises=True` lets the notebook run on past a cell that throws."""
         cell = nbformat.v4.new_code_cell(source.strip())
         if raises:
             cell.metadata["tags"] = ["raises-exception"]
         self.cells.append(cell)
         return self
 
-    def opening(self, title: str, body: str, learn: list[str]) -> "SubModule":
-        """The hook cell: the title, the scenario, and what the reader will learn."""
-        bullets = "\n".join(f"- {item}" for item in learn)
-        return self.md(f"# {title}\n\n{body.strip()}\n\n### What you will learn\n\n{bullets}")
+    def overview(self, body: str, image: str) -> "Course":
+        """What the course builds and the problem it solves, over one problem diagram."""
+        return self.md(f"## What you will build\n\n{body.strip()}\n\n![What you will build]({image})")
 
-    def beat(self, name: str, heading: str, body: str) -> "SubModule":
-        """Open a beat. The tag is for the gates, the heading is a claim for the reader."""
-        if name not in BEATS:
-            raise ValueError(f"unknown beat {name!r}, expected one of {BEATS}")
-        self.md(f"## {heading}\n\n{body.strip()}")
-        self.cells[-1].metadata["tags"] = [f"beat:{name}"]
-        return self
+    def step(self, title: str, body: str, image: str = "") -> "Course":
+        """Open the next step. Numbering is automatic, so it can never skip."""
+        text = f"## Step {self.next_step}: {title}\n\n{body.strip()}"
+        if image:
+            text += f"\n\n![{title}]({image})"
+        self.next_step += 1
+        return self.md(text)
 
-    def recap(self, items: dict[str, str]) -> "SubModule":
-        """Key terms and traps, each opening with its bold term."""
-        bullets = "\n".join(f"- **{term}**: {say}" for term, say in items.items())
-        return self.md(f"### Key terms and traps\n\n{bullets}")
-
-    def step(self, number: int, title: str, image: str, caption: str) -> "SubModule":
-        """One frame of the derivation, in its own cell: heading, picture, caption."""
-        return self.md(f"### Step {number}: {title}\n\n![{title}]({image})\n\n{caption.strip()}")
+    def concepts(self, rows: list[tuple[str, str, str]]) -> "Course":
+        """The closing table: the concept, where it lives in the code, what it does."""
+        lines = ["| Concept | Where it lives | What it does |", "|---|---|---|"]
+        lines += [f"| **{a}** | {b} | {c} |" for a, b, c in rows]
+        return self.md("## Concepts\n\n" + "\n".join(lines))
 
     def validate(self) -> list[str]:
         """Catch contract breaches here, before the scorer has to."""
         problems = []
-        steps = [c for c in self.cells
-                 if c["cell_type"] == "markdown" and c["source"].startswith("### Step ")]
-        if not 3 <= len(steps) <= 6:
-            problems.append(f"{len(steps)} step frames, the contract needs 3 to 6")
-        tags = [t for c in self.cells for t in c.get("metadata", {}).get("tags", [])]
-        for name in BEATS:
-            if name != "cost" and f"beat:{name}" not in tags:
-                problems.append(f"beat {name!r} is missing, open it with .beat()")
+        if self.next_step < 4:
+            problems.append(f"{self.next_step} steps, the contract needs at least 4")
         kinds = [c["cell_type"] for c in self.cells]
         for i in range(len(kinds) - 1):
-            if kinds[i] == "code" and kinds[i + 1] == "code":
-                problems.append(f"cells {i} and {i+1} are both code with no prose between")
-        code_cells = [c for c in self.cells if c["cell_type"] == "code"]
-        if len(code_cells) < 6:
-            problems.append(f"{len(code_cells)} code cells, the contract needs at least 6")
-        for i, cell in enumerate(code_cells):
+            if kinds[i] == kinds[i + 1] == "code":
+                problems.append(f"cells {i} and {i + 1} are both code with no prose between")
+        for i, cell in enumerate(c for c in self.cells if c["cell_type"] == "code"):
             lines = [l for l in cell["source"].splitlines() if l.strip()]
             if len(lines) > 25:
                 problems.append(f"code cell {i} has {len(lines)} lines, limit is 25")

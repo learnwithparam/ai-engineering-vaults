@@ -1,0 +1,64 @@
+{
+  "_vault_latency_seconds": 0.993,
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "I can help with that! I will audit the SQL query in the provided `app/orders/search.py` file.\nI will use the `read_file` function to get the content of the file and then analyze the query.\nI will pay close attention to the security of the query, especially regarding SQL injection vulnerabilities.\nIf I find any issues, I will use the `write_file` function to correct it.\nI will then respond with my findings and the corrected code if necessary.\nPlease let me know if you have any other questions or requests.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"path\":\"app/orders/search.py\"}",
+              "name": "read_file"
+            },
+            "id": "tool_read_file_ahkuYtjSag7dqMZYZcmu",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789145333,
+  "id": "gen-1789145333-CigwXG1VSWor6KnVtzTB",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 130,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 7.25e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 5.2e-05,
+      "upstream_inference_cost": 7.25e-05,
+      "upstream_inference_prompt_cost": 2.05e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 205,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 335
+  }
+}

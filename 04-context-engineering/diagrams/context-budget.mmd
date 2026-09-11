@@ -1,0 +1,24 @@
+graph TD
+  A["Instruction file and<br/>the matched rules"]:::input
+  D["Write each instruction<br/>in one file only"]:::decision
+  K["Count the prompt tokens"]:::decision
+  B{"Within the<br/>context budget?"}:::decision
+  E["Refuse to send, and name<br/>the rules that are too big"]:::risk
+  S["Summary of earlier turns,<br/>never of the rules"]:::store
+  C["Call the model"]:::model
+  X["Tests that run<br/>without the model"]:::decision
+
+  A --> D
+  D --> K
+  K --> B
+  B -->|"yes"| C
+  B -->|"no"| E
+  S --> C
+  X -.->|"tests"| D
+  X -.->|"tests"| B
+  X -.->|"tests"| S
+
+%% step 1: A D
+%% step 2: K B E C
+%% step 3: S
+%% step 4: X

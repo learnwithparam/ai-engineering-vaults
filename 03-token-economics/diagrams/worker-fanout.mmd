@@ -1,0 +1,23 @@
+graph TD
+  S["Key-value state"]:::store
+  C["Category worker"]:::model
+  P["Priority worker"]:::model
+  E["Escalation worker"]:::model
+  J{"Wait for the<br/>slowest worker"}:::decision
+  Y["Synthesis writes<br/>the routing line"]:::output
+  L["Latency math: orchestrator<br/>+ slowest worker + synthesis"]:::store
+  T["Tests that run<br/>without the model"]:::decision
+
+  S --> C
+  S --> P
+  S --> E
+  C --> J
+  P --> J
+  E --> J
+  J --> Y
+  L -.->|"predicts"| Y
+  T -.->|"tests"| Y
+
+%% step 1: S C P E J Y
+%% step 2: L
+%% step 3: T

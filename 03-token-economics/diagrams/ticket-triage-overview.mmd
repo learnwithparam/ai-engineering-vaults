@@ -1,0 +1,13 @@
+graph TD
+  T["Support ticket<br/>with a long history"]:::input
+  O["Orchestrator hands the work<br/>to three workers"]:::model
+  Q["Routing decision<br/>for the support queue"]:::output
+  E1["The whole history paid for<br/>again at every handoff"]:::risk
+  E2["A summary that loses<br/>a fact a worker needed"]:::risk
+  E3["Workers that wait<br/>on each other in a line"]:::risk
+
+  T --> O
+  O --> Q
+  O -.->|"must stop"| E1
+  O -.->|"must stop"| E2
+  O -.->|"must stop"| E3

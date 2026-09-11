@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 2.057,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here are the steps to add a loading spinner to the `OrderList` component:\n\n1.  **Import necessary components:**\n    *   Import the `Spinner` component from `src/ui/kit/Spinner`.\n    *   Import `useState` from `react` if you need to manage the loading state within the component itself. If the loading state is managed by a parent component (e.g., via props), you might not need `useState` here. For this example, let's assume the loading state is managed externally and passed as a prop.\n\n2.  **Add a `isLoading` prop:**\n    *   Modify the `OrderList` component's props to accept a new boolean prop, `isLoading`. This prop will determine whether the spinner should be displayed.\n\n3.  **Conditionally render the spinner:**\n    *   Inside the `OrderList` component's return statement, use a conditional (e.g., a ternary operator or an `if` statement) to check the value of the `isLoading` prop.\n    *   If `isLoading` is `true`, render the `Spinner` component.\n    *   If `isLoading` is `false`, render the actual order list.\n\n4.  **Update the parent component:**\n    *   Go to the parent component that renders `OrderList`.\n    *   Manage the loading state (e.g., using `useState` in the parent).\n    *   Pass the loading state as the `isLoading` prop to `OrderList`.\n    *   When fetching orders, set the loading state to `true` before the fetch and to `false` after the fetch is complete (whether it succeeds or fails).\n\nLet's illustrate with code changes:\n\n**`src/ui/kit/Spinner.tsx` (Assuming it exists and is ready to be used)**\n\n```typescript\n// src/ui",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144260,
+  "id": "gen-1789144260-FdGdq1ysB46wQhMMsvLC",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001864,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.0001864,
+      "upstream_inference_prompt_cost": 2.64e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 264,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 664
+  }
+}

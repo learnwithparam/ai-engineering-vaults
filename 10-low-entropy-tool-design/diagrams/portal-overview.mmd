@@ -1,0 +1,13 @@
+graph TD
+  C["Customer asks the<br/>account portal agent"]:::input
+  M["Model picks a tool<br/>from 25 look-alikes"]:::model
+  P["Account portal<br/>profiles, invoices, cases"]:::output
+  E1["The wrong tool<br/>answers the question"]:::risk
+  E2["A guessed customer id<br/>reaches the portal"]:::risk
+  E3["A tool runs on<br/>arguments nobody checked"]:::risk
+
+  C --> M
+  M -->|"calls a tool"| P
+  M -.->|"must stop"| E1
+  M -.->|"must stop"| E2
+  M -.->|"must stop"| E3

@@ -1,0 +1,13 @@
+graph TD
+  A["Adjusters ask live questions<br/>and wait on screen"]:::input
+  N["Overnight backlog<br/>of claims to score"]:::input
+  D["The claims desk<br/>calls the model"]:::model
+  E1["An adjuster waits<br/>on calls made in a row"]:::risk
+  E2["A cache saving is budgeted<br/>that never arrives"]:::risk
+  E3["The backlog is scored<br/>at the live price"]:::risk
+
+  A --> D
+  N --> D
+  D -.->|"goes wrong"| E1
+  D -.->|"goes wrong"| E2
+  D -.->|"goes wrong"| E3

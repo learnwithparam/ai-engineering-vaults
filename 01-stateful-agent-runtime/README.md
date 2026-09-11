@@ -1,24 +1,21 @@
-# Stateful agent runtimes
+# Building Stateful Agent Runtimes for AI Developers
 
-The loop you write by hand, and the three ways it goes wrong in production.
+One course in one notebook: `01-build-an-agent-runtime.ipynb`.
 
-Everything in this vault rests on one idea: **the model decides, your code executes.** A model never
-does anything. It returns a decision as data, and your harness chooses whether to act on it. Most
-production incidents in this course come from forgetting that.
+You build the runtime for a support agent at an online electronics store. The agent looks up orders
+and issues refunds, so every mistake in the runtime costs real money. The model never runs anything
+itself: it asks for a tool, and your runtime decides what actually happens.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-the-harness-and-the-model.ipynb` | A policy written in the prompt, obeyed to the letter, for 47500 cents | Card chargebacks |
-| `02-finish-reason-as-a-state-machine.ipynb` | A truncated answer read as a finished one | Formula 1 race strategy |
-| `03-capstone-actions-that-survive.ipynb` | A retry books the same scan twice, then a restart does it again | Medical imaging triage |
+The notebook starts with a single request, then grows it one step at a time into a loop that runs
+tools, stops cleanly, enforces the refund limit in code, refuses a cut-off answer, and pays each
+refund only once across retries and restarts.
 
 ## Before you start
 
-Run `00-setup/01-start-here.ipynb` first. Every notebook here runs without an API key, from
-committed recordings, so you can read and execute the whole vault for free.
+Run `00-setup/01-start-here.ipynb` first. The notebook runs without an API key, from committed
+recordings of real responses, so you can follow the whole course for free.
 
 ## What you will have built
 
-A small agent runtime that parses what the model asked for, checks it against state you control,
-executes only what passes, survives both a retry and a restart without repeating an action, and
-carries a test for each of those properties.
+A small agent runtime with a test for each of its safeguards, all of which run without calling the
+model.

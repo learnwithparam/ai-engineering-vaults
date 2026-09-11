@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 2.848,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Okay, let's plan how to move orders older than two years from the `orders` table to `orders_archive`. This is a common data management task, often done for performance or to reduce the size of active tables.\n\nHere's a breakdown of the process and considerations:\n\n**1. Understanding the Tables:**\n\n*   **`orders` table:** This is your current, active table containing recent orders.\n*   **`orders_archive` table:** This table will store older orders.\n\n**Assumptions:**\n\n*   Both tables have a similar schema, or at least the columns you're transferring have compatible types.\n*   There's a timestamp or date column in the `orders` table that indicates when the order was placed (e.g., `created_at`, `order_date`). We'll use this to determine \"older than two years.\"\n\n**2. Strategy:**\n\nThe general approach involves:\n\n*   **Identifying** the orders to be moved.\n*   **Copying** these orders to the archive table.\n*   **Deleting** the copied orders from the active table.\n\nIt's crucial to perform these operations atomically or with safeguards to prevent data loss.\n\n**3. Implementation Steps & Considerations:**\n\n**a) Backup:**\n    *   **CRITICAL FIRST STEP:** Before performing any mass data modification, **always back up your database**. This is your safety net if anything goes wrong.\n\n**b) Schema for `orders_archive`:**\n    *   Ensure the `orders_archive` table exists and has the appropriate schema. If it doesn't, you'll need to create it.\n    *   Consider if `orders_archive` needs different indexing or constraints than the `orders` table. For example, you might not need primary keys that auto-increment in the archive if you're just storing historical data.\n\n**c",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144310,
+  "id": "gen-1789144310-daWvOxr47mxthe6KjqnX",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.000171,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.000171,
+      "upstream_inference_prompt_cost": 1.1e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 110,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 510
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.829,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Okay, this is a common data management task. Here's how we can approach moving old orders to an archive table:\n\n**1. Create the Archive Table:**\n\nFirst, we need to create the `orders_archive` table. It should have a similar structure to the `orders` table, but it's good practice to include a timestamp indicating when the record was archived.\n\n```sql\nCREATE TABLE orders_archive (\n    -- Define columns mirroring your orders table\n    order_id INT PRIMARY KEY,\n    user_id INT,\n    order_date TIMESTAMP,\n    -- ... other order columns ...\n\n    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- When this record was moved\n);\n```\n\n*   **`order_id`**: Assuming this is a primary key in `orders`, you'll need a strategy here.\n    *   If `order_id` is guaranteed to be unique across both tables, you can just copy it.\n    *   If you might have duplicate `order_id`s in the archive (e.g., if orders are re-created for some reason), you might need to add an auto-incrementing `archive_order_id` or use a composite primary key. For simplicity, let's assume `order_id` is unique for now.\n*   **`archived_at`**: This is crucial for tracking when the archiving happened.\n\n**2. Implement the Archiving Logic:**\n\nThis will likely be a script or a stored procedure that you'll run periodically (e.g., as a cron job).\n\n**Option A: Using SQL `INSERT ... SELECT` and `DELETE`**\n\nThis is the most straightforward approach if you have direct SQL access.\n\n```sql\n-- Use a transaction to ensure atomicity\nBEGIN TRANSACTION;\n\n-- 1. Insert old orders into the archive table\nINSERT INTO orders_archive",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144298,
+  "id": "gen-1789144298-x8bId7ffeYX6LhrkPaVW",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001723,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.0001723,
+      "upstream_inference_prompt_cost": 1.23e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 123,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 523
+  }
+}

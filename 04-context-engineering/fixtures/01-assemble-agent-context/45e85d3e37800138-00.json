@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.737,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here are the steps to add a loading spinner to the `OrderList` component:\n\n1.  **Introduce a loading state:** Add a state variable to `OrderList` to track whether orders are currently being fetched. This will likely be a boolean, initialized to `true` (since we assume data starts loading immediately).\n2.  **Update the loading state:** After the orders have been successfully fetched and the state is updated, set the loading state to `false`.\n3.  **Conditionally render the spinner:** In the `OrderList` component's return statement, use the loading state to conditionally render either the loading spinner or the list of orders.\n4.  **Create or import a Spinner component:** If a `Spinner` component doesn't already exist in `src/ui/kit`, create one. Ensure it has an `aria-label` for accessibility.\n5.  **Modify the data fetching logic:** Locate where the `orders` are fetched within `OrderList` (likely in a `useEffect` hook). Ensure the loading state is managed correctly around the fetch operation (set to `true` before fetching, and `false` upon completion or error).\n\n**Example Implementation (assuming `useState` and `useEffect` are used for data fetching):**\n\n```typescript\n// src/ui/components/OrderList.tsx\nimport React, { useState, useEffect } from 'react';\nimport { Order } from '../types'; // Assuming you have an Order type defined\nimport { Spinner } from '../kit/Spinner'; // Assuming you have a Spinner component in kit\nimport { fetchOrders } from '../api/orders'; // Assuming you have an API function to fetch orders\n\ninterface OrderListProps {\n  // Any props your OrderList needs\n}\n\nexport const OrderList: React.FC<OrderListProps> = () => {\n  const [orders, setOrders] = useState<Order",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144257,
+  "id": "gen-1789144257-pcfenbGJkARz7dCD9U45",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001864,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.0001864,
+      "upstream_inference_prompt_cost": 2.64e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 264,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 664
+  }
+}

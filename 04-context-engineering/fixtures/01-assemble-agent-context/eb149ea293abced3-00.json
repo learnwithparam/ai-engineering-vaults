@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 4.063,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "**Coding Session Summary:** Established build settings for a monorepo using pnpm, TypeScript strict mode, and pre-commit tests. Implemented database safety measures: pre-change db check, parameterized queries, and multi-table writes in transactions. Optimized slow 'orders' endpoint by filtering in DB, paginating results, and adding cursor-based query. Fixed failing tests for accounts with no orders.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1789144294,
+  "id": "gen-1789144294-8trhrbpvhJE1yizxYceY",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Io Net",
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.25.1-30d24b8b",
+  "usage": {
+    "completion_tokens": 85,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 2.35e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 1.36e-05,
+      "upstream_inference_cost": 2.35e-05,
+      "upstream_inference_prompt_cost": 9.9e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 225,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 310
+  }
+}

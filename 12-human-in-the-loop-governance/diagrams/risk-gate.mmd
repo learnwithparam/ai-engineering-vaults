@@ -1,0 +1,22 @@
+graph TD
+  T["Model asks for a tool"]:::input
+  S{"Same call three<br/>times in a row?"}:::decision
+  K{"Look up the risk tier<br/>of the tool and target"}:::decision
+  RUN["Run the tool"]:::output
+  E["Return an is_error<br/>tool result"]:::risk
+  P["Pause the run and<br/>ask an administrator"]:::risk
+
+  T --> K
+  T --> S
+  S -->|"no"| K
+  S -->|"yes"| P
+  K -->|"low or medium"| RUN
+  K -->|"high"| E
+  K -->|"high"| P
+
+%% step 1: T K RUN
+%% step 2: E
+%% step 3: P
+%% retire 3: E
+%% step 4: S
+%% retire 4: T-K

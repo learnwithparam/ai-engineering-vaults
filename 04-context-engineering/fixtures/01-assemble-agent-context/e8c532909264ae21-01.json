@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 0.968,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "```typescript\nimport pg from 'pg';\n\nconst db = new pg.Pool({\n  connectionString: process.env.DATABASE_URL,\n});\n\nexport async function query(sql: string, params: any[] = []): Promise<any> {\n  try {\n    const res = await db.query(sql, params);\n    return res.rows;\n  } catch (error) {\n    console.error('Database query error:', error);\n    throw error;\n  }\n}\n\nexport async function deleteCustomer(customerId: number): Promise<void> {\n  await db.query('BEGIN'); // Start transaction\n  try {\n    await db.query('DELETE FROM orders WHERE customer_id = $1', [customerId]);\n    await db.query('DELETE FROM customers WHERE id = $1', [customerId]);\n    await db.query('COMMIT'); // Commit transaction\n  } catch (error) {\n    await db.query('ROLLBACK'); // Rollback transaction on error\n    console.error('Error deleting customer and their orders:', error);\n    throw error;\n  }\n}\n```",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789144287,
+  "id": "gen-1789144287-Voj6X0cu5a38qeYWny0o",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 245,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001174,
+    "cost_details": {
+      "upstream_inference_completions_cost": 9.8e-05,
+      "upstream_inference_cost": 0.0001174,
+      "upstream_inference_prompt_cost": 1.94e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 194,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 439
+  }
+}

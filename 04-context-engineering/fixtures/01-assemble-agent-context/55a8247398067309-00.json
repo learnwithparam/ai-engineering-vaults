@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.777,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Let's get this done. I'll need to add a migration for this, as well as a new endpoint. I'll also add an index to the `orders` table to speed up the query.\n\n```typescript\nimport { type Request, type Response, Router } from 'express';\nimport { db } from '../db';\n\nexport const ordersRouter = Router();\n\nordersRouter.get('/', async (req: Request, res: Response) => {\n  // Cursor pagination for orders endpoint\n  const { cursor } = req.query;\n  const limit = 50; // Number of orders to return at a time\n  const params: any[] = [limit];\n  let sql = `\n    SELECT *\n    FROM orders\n    ORDER BY created_at DESC\n    LIMIT $1\n  `;\n\n  if (cursor) {\n    sql = `\n      SELECT *\n      FROM orders\n      WHERE created_at < (SELECT created_at FROM orders WHERE order_id = $2)\n      ORDER BY created_at DESC\n      LIMIT $1\n    `;\n    params.push(cursor);\n  }\n\n  try {\n    const { rows } = await db.query(sql, params);\n    if (rows.length === 0) {\n      return res.json({ orders: [], next_cursor: null });\n    }\n    const next_cursor = rows[rows.length - 1].order_id;\n    res.json({ orders: rows, next_cursor });\n  } catch (error) {\n    console.error('Error fetching orders:', error);\n    res.status(500).json({ error: 'Internal server error' });\n  }\n});\n\n// Migration to move orders older than two years to orders_archive\nordersRouter.post('/archive-old-orders',",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144318,
+  "id": "gen-1789144318-aCAinMut9hqn0LVgIRxX",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001848,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.0001848,
+      "upstream_inference_prompt_cost": 2.48e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 248,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 648
+  }
+}

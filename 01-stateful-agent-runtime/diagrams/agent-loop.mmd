@@ -1,0 +1,24 @@
+graph TD
+  H["Message history<br/>starts with the user message"]:::store
+  C["Call the model"]:::model
+  F{"Inspect finish_reason"}:::decision
+  T["tool_calls: run each tool<br/>in the store backend"]:::output
+  R["Append the tool result<br/>with its tool_call_id"]:::store
+  M{"Turn limit reached?"}:::decision
+  E["Stop with an error<br/>after MAX_TURNS"]:::risk
+  S["stop: return the answer"]:::output
+  L["length: raise<br/>TruncatedResponseError"]:::risk
+
+  H --> C
+  C --> F
+  F -->|"tool_calls"| T
+  T --> R
+  R --> M
+  M -->|"no"| H
+  M -->|"yes"| E
+  F -->|"stop"| S
+  F -->|"length"| L
+
+%% step 1: H C F
+%% step 2: T R
+%% step 3: M E S L

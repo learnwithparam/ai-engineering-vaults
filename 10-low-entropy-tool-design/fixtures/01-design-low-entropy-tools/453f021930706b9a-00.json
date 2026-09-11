@@ -1,0 +1,64 @@
+{
+  "_vault_latency_seconds": 0.499,
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"customer_id\":\"CUST-20931\",\"summary\":\"Customer was charged twice this month.\",\"topic\":\"billing\"}",
+              "name": "open_support_case"
+            },
+            "id": "tool_open_support_case_mtQkQDHo1fAkgZ2Pc22b",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789146389,
+  "id": "gen-1789146389-6vMESQyS6jLg0qA0lVUX",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 26,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 2.63e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 1.04e-05,
+      "upstream_inference_cost": 2.63e-05,
+      "upstream_inference_prompt_cost": 1.59e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 159,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 185
+  }
+}

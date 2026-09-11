@@ -15,15 +15,11 @@ CONFIG = ROOT / "config"
 DOCS = ROOT / "docs"
 BUILD = ROOT / "build"
 
-# A beat is a role, found by the cell tag beat:<name>. The heading is the
-# reader's, so it can say what the section teaches. See decision 008.
-BEATS = ["mechanics", "cost", "failure", "diagnosis", "fix", "gate"]
-OPTIONAL_BEATS = {"cost"}
 HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*$", re.MULTILINE)
-
-# A derivation frame: its own markdown cell, a heading, one picture, a short caption.
-STEP = re.compile(r"^### Step (\d+): (.+)$", re.MULTILINE)
+# A course is one notebook: an overview, then "## Step 0: ..." to "## Step N: ...".
+STEP = re.compile(r"^## Step (\d+): (.+?)\s*$", re.MULTILINE)
 IMAGE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
+FRAME = re.compile(r"([^/]+)-step-(\d+)\.svg$")
 
 
 class Notebook:
@@ -72,17 +68,8 @@ class Notebook:
         """The cell types in order, for the prose-between-code rule."""
         return [c.get("cell_type", "") for c in self.cells]
 
-    def beats_present(self) -> dict[str, int]:
-        """Beat name to the index of the markdown cell tagged as opening it."""
-        found = {}
-        for index, cell in enumerate(self.cells):
-            if cell.get("cell_type") != "markdown":
-                continue
-            for tag in cell.get("metadata", {}).get("tags", []):
-                name = tag.removeprefix("beat:")
-                if tag.startswith("beat:") and name in BEATS and name not in found:
-                    found[name] = index
-        return found
+    def title(self) -> str:
+        return next((t for _, level, t in self.headings() if level == 1), "")
 
     def source_of(self, index: int) -> str:
         return self._source(self.cells[index])
@@ -97,27 +84,28 @@ class Notebook:
         return out
 
     def steps(self) -> list[dict]:
-        """Every step cell, in order, with what the scorer needs to judge it."""
+        """Every '## Step N: title' heading, in reading order."""
+        return [{"cell": index, "number": int(m.group(1)), "title": m.group(2)}
+                for index, level, text in self.headings() if level == 2
+                for m in [STEP.match(f"## {text}")] if m]
+
+    def frames(self) -> list[tuple[int, str, int]]:
+        """Every diagram frame shown, as (cell index, series, frame number), in reading order."""
         out = []
         for index, cell in enumerate(self.cells):
-            if cell.get("cell_type") != "markdown":
-                continue
-            text = self._source(cell)
-            match = STEP.search(text)
-            if not match:
-                continue
-            caption = strip_code_and_media(text[match.end():])
-            out.append({"cell": index, "number": int(match.group(1)),
-                        "title": match.group(2).strip(), "images": IMAGE.findall(text),
-                        "caption_words": len(words(caption))})
+            if cell.get("cell_type") == "markdown":
+                for ref in IMAGE.findall(self._source(cell)):
+                    match = FRAME.search(ref)
+                    if match:
+                        out.append((index, match.group(1), int(match.group(2))))
         return out
 
 
 def all_notebooks() -> list[Notebook]:
-    """Teaching notebooks, in vault then sub-module order.
+    """Course notebooks, one per vault, in vault order.
 
     00-setup is excluded. It explains how to run the repo and is not a lesson,
-    so forcing it through the eight beats would be theatre. It is still parsed,
+    so forcing it through the course shape would be theatre. It is still parsed,
     and still scanned for prose and for secrets.
     """
     paths = sorted(

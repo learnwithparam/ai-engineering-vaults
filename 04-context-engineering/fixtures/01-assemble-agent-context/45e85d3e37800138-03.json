@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.663,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here are the steps to add a loading spinner to the order list in `src/ui/components/OrderList.tsx`:\n\n1.  **Identify the loading state:** Determine how the component currently signals that data is being fetched. This might be a boolean state variable (e.g., `isLoading`, `loading`) or checking if the `orders` array is empty and a fetch has been initiated.\n2.  **Import the `Spinner` component:** If a `Spinner` component isn't already available in `src/ui/kit`, create one or import it from a UI library. For this example, I'll assume a `Spinner` component exists in `src/ui/kit/Spinner.tsx`.\n3.  **Add a loading state variable:** If not already present, introduce a state variable to track the loading status.\n4.  **Conditionally render the spinner:** Update the component's render logic to display the `Spinner` component when the loading state is true. Otherwise, render the order list.\n5.  **Manage the loading state:** Ensure the loading state is set to `true` before initiating the data fetch and set to `false` once the data has been loaded (or an error has occurred).\n\nHere's how the code might look after implementing these steps:\n\n```typescript\n// src/ui/components/OrderList.tsx\n\nimport React, { useState, useEffect } from 'react';\nimport { getOrders, Order } from '../api/orders'; // Assuming you have an API function to fetch orders\nimport { Spinner } from '../kit/Spinner'; // Assuming a Spinner component is in src/ui/kit/Spinner.tsx\n\ninterface OrderListProps {\n  // Add any necessary props here\n}\n\nexport const OrderList: React.FC<OrderListProps> = () => {\n  const [orders, setOrders] = useState<Order[]",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144262,
+  "id": "gen-1789144262-gaaM5C6o6tzvSkIp38uT",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001864,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.0001864,
+      "upstream_inference_prompt_cost": 2.64e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 264,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 664
+  }
+}

@@ -1,0 +1,20 @@
+graph TD
+  P["Pull request diff<br/>and description"]:::input
+  C["Call the model"]:::model
+  A{"Tool on the<br/>plan mode allowlist?"}:::decision
+  T["Run the tool and<br/>send the result back"]:::store
+  W["Refuse it in<br/>the tool result"]:::risk
+  J["Parse the report<br/>against the JSON schema"]:::output
+
+  P --> C
+  C -->|"stop"| J
+  C -->|"tool_calls"| T
+  C -->|"tool_calls"| A
+  A -->|"yes"| T
+  A -->|"no"| W
+  T -->|"tool result"| C
+
+%% step 1: P C J
+%% step 2: T
+%% step 3: A W
+%% retire 3: C-T

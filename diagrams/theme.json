@@ -38,10 +38,10 @@
     "ghostDash": "4 3",
     "nowStroke": "3px",
     "nowEdgeColour": "#E7E5E4",
-    "maxFrameWidth": 1200,
+    "maxFrameWidth": 800,
     "maxFrameHeight": 860,
     "minLabelScale": 0.7,
-    "labelScaleReason": "The recording theme shows a frame in at most 1200 by 860 px, so one frame fits one screen. A frame that must shrink below 0.7 to fit takes its 16px labels under what survives video compression."
+    "labelScaleReason": "At 1920 by 1080 the notebook's text column is about 800 px wide, measured on a screenshot, and a wider image is clipped by the cell, not scaled. So a diagram fits in 800 by 860 px, one screen. One that must shrink below 0.7 to fit takes its 16px labels under what survives video compression."
   },
   "roleMeaning": {
     "input": "something arriving from outside, usually untrusted",

@@ -1,0 +1,26 @@
+graph TD
+  L["List the server's tools<br/>with tools/list"]:::input
+  T["Translate inputSchema<br/>into the model's tools"]:::decision
+  M["Call the model"]:::model
+  C["Send tools/call<br/>to the MCP server"]:::output
+  E{"Read isError<br/>on the result"}:::decision
+  F["Tell the model<br/>the call failed"]:::risk
+  A["Send the rows back<br/>as a tool message"]:::store
+  X["Tests that run<br/>without the model"]:::decision
+
+  L --> T
+  T --> M
+  M -->|"tool_calls"| C
+  C --> M
+  C --> E
+  E -->|"true"| F
+  E -->|"false"| A
+  F --> M
+  A --> M
+  X -.->|"tests"| T
+  X -.->|"tests"| E
+
+%% step 1: L T M C
+%% step 2: E F A
+%% retire 2: C-M
+%% step 3: X

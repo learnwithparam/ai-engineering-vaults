@@ -2,9 +2,9 @@
 
 ![AI Bootcamp Open Graph preview](https://www.learnwithparam.com/ai-bootcamp/opengraph-image)
 
-Production AI engineering, taught as vaults. Each vault takes one topic. Each notebook inside it
-takes one idea, breaks it on purpose, fixes it, measures the difference, and leaves you with the
-check that stops it breaking again.
+Production AI engineering, taught as short practical courses. Each vault is one course in one
+notebook. It opens with the problem you are about to solve, then builds the solution step by step on
+one real scenario, runs every failure for real, fixes it, and ends with tests that keep it fixed.
 
 ## Run it
 
@@ -14,7 +14,7 @@ make run
 ```
 
 That installs everything and opens JupyterLab. Start with `00-setup/01-start-here.ipynb`, then take
-the vaults in order.
+the courses in order.
 
 **You do not need an API key.** Every response was recorded from the real API and committed, so the
 notebooks run from those recordings and cost nothing. Add a key when you want to change a prompt and
@@ -23,32 +23,33 @@ watch the answer change, which is the point.
 ## The one idea underneath all of it
 
 **The model decides, your code executes.** A model never does anything. It returns a decision as
-data, and your harness chooses whether to act on it. Almost every incident in this course comes from
+data, and your code chooses whether to act on it. Almost every incident in these courses comes from
 forgetting that.
 
-## The vaults
+## The courses
 
-| Vault | What breaks in production |
+| Course | What goes wrong without it |
 |---|---|
-| Stateful agent runtimes | Loops that never end, retries that charge twice, restarts that lose the thread |
-| Multi-agent orchestration | Workers flooding the parent context, synthesis that averages away disagreement |
-| Token economics | Caches that never hit, handoffs paying for the same context repeatedly |
-| Context engineering | The one identifier a summariser threw away |
-| Subagent delegation | Logs that drown the session they were meant to keep clean |
-| Headless automation | A green build hiding a red finding |
-| Prompt injection defense | A document that rewrites its own evaluation |
-| Deterministic outputs | Prose where the pipeline expected JSON |
-| Programmatic guardrails | Valid JSON carrying an impossible number |
-| Low-entropy tool design | Twenty five tools and the wrong one chosen |
-| Model context protocol | A `print()` that corrupts the protocol stream |
-| Human in the loop governance | An irreversible action taken unattended |
-| Cost and latency at volume | A cache saving that never arrives, five fast calls that take as long as their total |
+| Building Stateful Agent Runtimes for AI Developers | A refund over the limit, a cut-off answer trusted, a retry that pays twice |
+| Multi-Agent Systems for Production AI Engineering | A worker that never ran reported as a clean lane |
+| Token Economics Optimization for AI System Architects | Handoffs resending the same history, and a pruned log that took a fact with it |
+| Context Engineering for AI Coding Agent Infrastructure | A rule every task pays for, and a glob that never matches |
+| Autonomous Subagent Workflows for Senior Developers | Logs that drown the session they were meant to keep clean |
+| Headless AI Automation for CI/CD Pipelines | A green build hiding an unsafe query |
+| Defensive Prompt Engineering for Enterprise AI Security | A resume that rewrites its own evaluation |
+| Deterministic Response Engineering for Production APIs | Valid JSON posting the wrong invoice |
+| Programmatic Guardrails for High-Reliability AI | Valid JSON carrying an impossible payment |
+| Low-Entropy Tool Design for Reliable AI Agents | Too many tools, and the wrong one chosen |
+| Model Context Protocol for Enterprise System Integration | A stray log line that corrupts the protocol stream |
+| Human-in-the-Loop Governance for High-Risk AI Actions | An irreversible action taken unattended |
+| Cost and Latency Engineering for AI Systems at Volume | A cache saving that never arrives, and fast calls that add up slowly |
 
-## How a vault works
+## How a course works
 
-Most agent material shows you the happy path. Every notebook here shows the failure first: the
-mechanics, a diagram, what it costs, a failure you can run, the diagnosis, the fix with the
-difference measured, the production build, and the test that keeps it fixed.
+Every course follows the same path. It shows what you will build and what goes wrong without it.
+Then it builds that system one step at a time on a single scenario. Each production concern is seen
+failing in a recorded run before it is fixed, with the numbers printed before and after. The last
+step tests every safeguard without calling the model, and a concepts table closes the course.
 
 ## If it does not run
 

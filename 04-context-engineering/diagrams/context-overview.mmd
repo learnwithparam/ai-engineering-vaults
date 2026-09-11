@@ -1,0 +1,17 @@
+graph TD
+  D["Developer asks the coding<br/>agent to change the monorepo"]:::input
+  A["Your code builds the<br/>agent's context from the<br/>instruction file and rules"]:::decision
+  M["Model plans and<br/>writes the change"]:::model
+  R["Monorepo<br/>frontend and backend"]:::output
+  E1["Backend rules<br/>paid for on every<br/>frontend task"]:::risk
+  E2["The database rule<br/>missing on a<br/>backend change"]:::risk
+  E3["One instruction<br/>written into<br/>several files"]:::risk
+  E4["Rules lost when<br/>the session<br/>is summarised"]:::risk
+
+  D --> A
+  A --> M
+  M --> R
+  A -.-> E1
+  A -.-> E2
+  A -.-> E3
+  A -.-> E4

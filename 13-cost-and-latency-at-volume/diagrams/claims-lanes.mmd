@@ -1,0 +1,28 @@
+graph TD
+  J["A claims job arrives"]:::input
+  R{"Is an adjuster waiting?"}:::decision
+  M["Put the claims manual first<br/>and read cached_tokens"]:::store
+  W["Time the warm calls,<br/>not the first one"]:::decision
+  P["Run the three lookups<br/>in parallel"]:::model
+  A["Answer the adjuster<br/>within the budget"]:::output
+  Q["Queue the claim<br/>for the overnight run"]:::store
+  G["Score many claims in one<br/>request on the cheapest model"]:::model
+  K{"Did every claim<br/>come back?"}:::decision
+  S["Scores ready<br/>by the morning"]:::output
+
+  J --> R
+  R -->|"yes"| M
+  M --> W
+  W --> P
+  P --> A
+  R -->|"no"| Q
+  Q --> G
+  G --> K
+  K -->|"yes"| S
+  K -.->|"missing"| Q
+
+%% step 1: M
+%% step 2: W
+%% step 3: P A
+%% step 4: Q G K S
+%% step 5: J R

@@ -1,0 +1,24 @@
+graph TD
+  R["Read the loan record"]:::input
+  C["Call the model for a quote"]:::model
+  S{"Matches the schema?"}:::decision
+  V{"Passes the validators?"}:::decision
+  Q["Show the quote"]:::output
+  B{"Attempts left?"}:::decision
+  F["Send the errors back<br/>as feedback"]:::store
+  E["Stop after MAX_ATTEMPTS"]:::risk
+
+  R --> C
+  C --> S
+  S -->|"yes"| Q
+  S -->|"yes"| V
+  V -->|"yes"| Q
+  V -->|"no"| B
+  B -->|"yes"| F
+  F --> C
+  B -->|"no"| E
+
+%% step 1: R C S Q
+%% step 2: V
+%% retire 2: S-Q
+%% step 3: B F E

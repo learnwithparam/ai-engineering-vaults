@@ -1,0 +1,64 @@
+{
+  "_vault_latency_seconds": 0.448,
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"new_email\":\"billing@harbor.example\",\"customer_id\":\"CUST-20931\"}",
+              "name": "update_contact_email"
+            },
+            "id": "tool_update_contact_email_KNsI1WABV7ZwHBryhW6e",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789146386,
+  "id": "gen-1789146386-Nv8pd4IOwlm7HmzVo0CE",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 25,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 2.59e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 1e-05,
+      "upstream_inference_cost": 2.59e-05,
+      "upstream_inference_prompt_cost": 1.59e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 159,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 184
+  }
+}

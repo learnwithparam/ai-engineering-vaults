@@ -1,0 +1,22 @@
+graph TD
+  D["Developer types a command<br/>such as /migrate"]:::input
+  M["Main model reads a plain<br/>request and picks a skill"]:::model
+  R{"Look up the name<br/>in the command registry"}:::decision
+  C["Run the command's code<br/>for /status or /history"]:::output
+  K["Load the migration skill:<br/>instructions, tools, fork flag"]:::decision
+  F["Start a fresh history<br/>for the subagent"]:::store
+  S["Subagent calls the model<br/>and runs run_migration"]:::model
+  L["Migration log stays<br/>in the subagent history"]:::store
+
+  D --> R
+  R -->|"/status, /history"| C
+  R -->|"/migrate"| K
+  M -->|"tool call"| K
+  K -->|"fork: true"| F
+  F --> S
+  S --> L
+
+%% step 1: D R C
+%% step 2: K
+%% step 3: F S L
+%% step 4: M

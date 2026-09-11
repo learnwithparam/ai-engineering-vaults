@@ -1,15 +1,21 @@
-graph LR
-  I["investigate<br/>one turn, one tool call"]:::model
-  S["Signature<br/>name plus sorted args"]:::decision
-  C{"Same signature<br/>3 times, nothing learned?"}:::decision
-  K["Checkpointer<br/>the paused run on disk"]:::store
-  P["interrupt_before<br/>hold_for_human"]:::risk
-  A["update_state<br/>the human answer"]:::input
-  R["invoke(None, config)<br/>resume from the checkpoint"]:::output
+graph TD
+  P["Paused run<br/>waiting for approval"]:::risk
+  C["Checkpoint on disk<br/>named by thread_id"]:::store
+  A{"Administrator<br/>approves?"}:::decision
+  RUN["Run the tool and<br/>carry on the loop"]:::output
+  E["Send an is_error<br/>tool result"]:::risk
+  B["Audit trail on disk<br/>one row per decision"]:::store
+  X["Tests that run<br/>without the model"]:::decision
 
-  I --> S --> C
-  C -->|"no"| I
-  C -->|"yes"| P
-  P --> K
-  A --> K
-  K --> R
+  P --> C
+  C -->|"resume by thread_id"| A
+  A -->|"approve"| RUN
+  A -->|"reject"| E
+  RUN -.-> B
+  E -.-> B
+  X -.->|"tests"| C
+  X -.->|"tests"| B
+
+%% step 1: P C A RUN E
+%% step 2: B
+%% step 3: X

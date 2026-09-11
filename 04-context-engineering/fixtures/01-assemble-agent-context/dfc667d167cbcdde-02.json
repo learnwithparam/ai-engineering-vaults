@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.982,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here are the steps to add a loading spinner to the `OrderList` component while the orders load:\n\n1.  **Introduce a `loading` state:** Add a boolean state variable (e.g., `isLoading`) to the `OrderList` component. This state will track whether the orders are currently being fetched.\n2.  **Update `isLoading` during data fetching:**\n    *   Set `isLoading` to `true` just before you initiate the API call to fetch orders.\n    *   Set `isLoading` to `false` once the orders have been successfully fetched (either in the `.then()` block of a Promise or after the `await` keyword if using `async/await`).\n    *   Also, set `isLoading` to `false` in any error handling blocks to ensure the spinner is removed even if an error occurs.\n3.  **Conditionally render the spinner:** In the `OrderList` component's JSX, use the `isLoading` state to conditionally render either the loading spinner or the actual list of orders.\n4.  **Create or import a loading spinner component:**\n    *   If you don't already have a reusable loading spinner component in `src/ui/kit`, create one. This component should be simple and visually represent a loading state.\n    *   Ensure the spinner component has appropriate accessibility attributes, though typically a visually distinct spinner doesn't need an `aria-label` unless it's interactive or conveying specific information.\n5.  **Integrate the spinner into `OrderList`:**\n    *   Inside the `OrderList` component's return statement, check `isLoading`.\n    *   If `isLoading` is `true`, render the loading spinner component.\n    *   If `isLoading` is `false`, render the `orders` (or a message if no orders are found).\n\n**Example Implementation (Conceptual):**\n\nAssuming",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144269,
+  "id": "gen-1789144269-x0GSlcXgNjV0BJiCuzR7",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.000175,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.000175,
+      "upstream_inference_prompt_cost": 1.5e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 150,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 550
+  }
+}

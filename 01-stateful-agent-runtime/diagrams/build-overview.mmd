@@ -1,0 +1,15 @@
+graph TD
+  C["Customer asks about<br/>an order or a refund"]:::input
+  M["Model decides what to do"]:::model
+  R["Your runtime carries it out"]:::decision
+  S["Store<br/>orders and refunds"]:::output
+  E1["A refund over<br/>the 20000 cent limit"]:::risk
+  E2["An answer<br/>cut off halfway"]:::risk
+  E3["The same refund<br/>paid twice"]:::risk
+
+  C --> M
+  M -->|"asks for a tool"| R
+  R --> S
+  R -.->|"must stop"| E1
+  R -.->|"must stop"| E2
+  R -.->|"must stop"| E3

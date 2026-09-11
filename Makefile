@@ -1,4 +1,4 @@
-.PHONY: help setup install dev run probe status score check test test-live record diagrams clean \
+.PHONY: help setup install dev run probe score check test test-live record diagrams clean \
         check-structure check-notebooks check-diagrams check-prose check-paths check-fixtures check-theme check-coverage check-gates
 .DEFAULT_GOAL := help
 
@@ -48,8 +48,6 @@ run: ## Launch JupyterLab with the recording theme
 probe: ## Ask the provider what is actually true, write build/provider-truth.json
 	@$(PY) scripts/probe_provider.py
 
-status: ## Show build progress from the ledger
-	@$(PY) scripts/ledger.py show
 
 # ============================================================================
 # Quality
@@ -58,7 +56,7 @@ status: ## Show build progress from the ledger
 score: ## Score every notebook and vault. Threshold 95
 	@$(PY) scripts/score.py
 
-check-structure: ## Beats, metadata, capstones, README coverage
+check-structure: ## One course notebook per vault, README coverage, a clean root
 	@$(PY) scripts/check_structure.py
 
 check-notebooks: ## Every notebook parses
@@ -92,14 +90,14 @@ check: check-structure check-notebooks check-diagrams check-prose check-paths ch
 # Tests
 # ============================================================================
 
-test: ## Execute every notebook in replay. No key, no spend
-	@VAULT_MODE=replay $(PY) scripts/run_notebooks.py
+test: ## Execute every notebook in replay. No key, no spend. VAULT=01 runs one vault
+	@VAULT=$(VAULT) VAULT_MODE=replay $(PY) scripts/run_notebooks.py
 
 test-live: ## Execute every notebook against the real API. Costs money
 	@VAULT_MODE=live $(PY) scripts/run_notebooks.py
 
-record: ## Refresh fixtures from the real API, budget guarded
-	@$(PY) scripts/record.py
+record: ## Refresh fixtures from the real API, budget guarded. VAULT=01 records one vault
+	@VAULT=$(VAULT) $(PY) scripts/record.py
 
 diagrams: ## Render every .mmd to SVG and refresh the manifest. VAULT=01 renders one vault
 	@$(PY) scripts/render_diagrams.py $(VAULT)

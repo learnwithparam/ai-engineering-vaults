@@ -1,0 +1,13 @@
+graph TD
+  D["Developer opens<br/>a pull request"]:::input
+  P["CI pipeline runs<br/>the audit with nobody watching"]:::decision
+  M["Model reviews<br/>the SQL queries"]:::model
+  E1["An unsafe query merged<br/>on a green build"]:::risk
+  E2["The audit edits the code<br/>it was asked to review"]:::risk
+  E3["A password printed<br/>in the job log"]:::risk
+
+  D --> P
+  P -->|"sends the diff"| M
+  P -.->|"must stop"| E1
+  P -.->|"must stop"| E2
+  P -.->|"must stop"| E3

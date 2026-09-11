@@ -1,0 +1,22 @@
+graph TD
+  D["Description says when<br/>to call the tool"]:::store
+  L["Locked schema: id pattern<br/>and no extra fields"]:::store
+  T["Model asks for a tool<br/>with arguments"]:::input
+  V{"Middleware checks<br/>the arguments"}:::decision
+  E["Return the error<br/>to the model"]:::risk
+  X["Run the tool on<br/>the account portal"]:::output
+  K["Tests that run<br/>without the model"]:::decision
+
+  D -.->|"when to call"| T
+  L -.->|"shape of the call"| T
+  T --> X
+  T --> V
+  V -->|"valid"| X
+  V -->|"invalid"| E
+  K -.->|"tests"| V
+
+%% step 1: D T X
+%% step 2: L
+%% step 3: V E
+%% retire 3: T-X
+%% step 4: K

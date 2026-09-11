@@ -1,0 +1,25 @@
+graph TD
+  S["CI job starts the step<br/>with stdin closed"]:::input
+  U["Run the plan mode audit"]:::model
+  R["Redact credentials from<br/>the log and the report"]:::store
+  X{"Choose the exit code"}:::decision
+  E0["0: every query is safe,<br/>the merge goes ahead"]:::output
+  E2["2: an unsafe query<br/>blocks the merge"]:::risk
+  E1["1: the audit broke,<br/>the job fails loudly"]:::risk
+  K["Tests that run<br/>without the model"]:::decision
+
+  S --> U
+  U --> X
+  U --> R
+  R --> X
+  X -->|"safe"| E0
+  X -->|"unsafe"| E2
+  X -->|"failed"| E1
+  K -.->|"tests"| X
+  K -.->|"tests"| R
+
+%% step 1: S U
+%% step 2: X E0 E2 E1
+%% step 3: R
+%% retire 3: U-X
+%% step 4: K

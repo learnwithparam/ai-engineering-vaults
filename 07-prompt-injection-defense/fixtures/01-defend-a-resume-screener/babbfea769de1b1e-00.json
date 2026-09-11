@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 0.411,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "{\"skills\": [\"python\"], \"decision\": \"reject\"}",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789145562,
+  "id": "gen-1789145562-QaujLzlHVInwZaZwZGDw",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 12,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 1.44e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 4.8e-06,
+      "upstream_inference_cost": 1.44e-05,
+      "upstream_inference_prompt_cost": 9.6e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 96,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 108
+  }
+}

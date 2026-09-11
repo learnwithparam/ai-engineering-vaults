@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.671,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Here are the steps to add a loading spinner to the `OrderList` component in `src/ui/components/OrderList.tsx`:\n\n**Steps:**\n\n1.  **Create a `Spinner` component:**\n    *   Since all components are built from `src/ui/kit`, we'll create a simple `Spinner` component within `src/ui/kit`.\n    *   This component will be a basic visual indicator, likely a CSS-animated element.\n\n2.  **Import the `Spinner` component:**\n    *   In `src/ui/components/OrderList.tsx`, import the newly created `Spinner` component from `src/ui/kit`.\n\n3.  **Introduce a `loading` state:**\n    *   In `OrderList.tsx`, add a new state variable using `useState` to track the loading status. Let's call it `isLoading` and initialize it to `true` (assuming the component initially loads orders).\n\n4.  **Simulate data fetching and update `isLoading`:**\n    *   In the `useEffect` hook where you fetch orders, simulate a network request (e.g., using `setTimeout`) to mimic loading.\n    *   Set `isLoading` to `false` once the (simulated) data has been fetched and processed.\n\n5.  **Conditionally render the `Spinner` or the `OrderList`:**\n    *   In the `return` statement of the `OrderList` component, use a conditional (ternary operator or `if` statement) to check the `isLoading` state.\n    *   If `isLoading` is `true`, render the `Spinner` component.\n    *   If `isLoading` is `false`, render the actual list of orders.\n\n**Example Implementation (Conceptual):**\n\n**`src/ui/kit/Spinner.tsx`** (This is a",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144282,
+  "id": "gen-1789144282-vMq6aWQOHlG9y6Bwwu4u",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 400,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.000175,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.00016,
+      "upstream_inference_cost": 0.000175,
+      "upstream_inference_prompt_cost": 1.5e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 150,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 550
+  }
+}

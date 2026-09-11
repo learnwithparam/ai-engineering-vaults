@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 0.799,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "```json\n{\n  \"findings\": [\n    {\n      \"line\": 6,\n      \"lane\": \"security\",\n      \"issue\": \"Hardcoded API key found. API keys should not be stored directly in the code. Consider using environment variables or a secrets management system.\"\n    },\n    {\n      \"line\": 12,\n      \"lane\": \"security\",\n      \"issue\": \"SQL injection vulnerability detected. The 'customer' parameter is directly embedded into the SQL query without proper sanitization or parameterization. This could allow an attacker to manipulate the query by providing malicious input in the 'customer' parameter.\"\n    }\n  ]\n}\n```",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789144308,
+  "id": "gen-1789144308-887dhsaJxPseg31pV5t7",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 146,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 8.88e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 5.84e-05,
+      "upstream_inference_cost": 8.88e-05,
+      "upstream_inference_prompt_cost": 3.04e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 304,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 450
+  }
+}

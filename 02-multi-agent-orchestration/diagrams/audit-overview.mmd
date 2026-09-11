@@ -1,0 +1,13 @@
+graph TD
+  D["Developer opens<br/>a pull request"]:::input
+  A["Code audit<br/>security, performance, style"]:::model
+  T["Team merges<br/>on the report"]:::output
+  E1["Each review reading<br/>the other reviews' notes"]:::risk
+  E2["A review that never ran<br/>reported as clean"]:::risk
+  E3["A one-line fix paying<br/>for the whole audit"]:::risk
+
+  D --> A
+  A --> T
+  A -.->|"must stop"| E1
+  A -.->|"must stop"| E2
+  A -.->|"must stop"| E3

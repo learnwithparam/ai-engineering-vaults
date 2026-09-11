@@ -1,80 +1,69 @@
 # Build report
 
-Generated 9 September 2026. Check it rather than trust it: `make check && make test`.
+Generated 11 September 2026. Check it rather than trust it: `make check && make test`.
 
 ## Where it landed
 
-| Vault | Score | Estimated video |
-|---|---|---|
-| `01-stateful-agent-runtime` | 100.0 | 29.5 min |
-| `02-multi-agent-orchestration` | 100.0 | 28.2 min |
-| `03-token-economics` | 100.0 | 28.0 min |
-| `04-context-engineering` | 100.0 | 29.5 min |
-| `05-subagent-delegation` | 100.0 | 29.7 min |
-| `06-headless-automation` | 100.0 | 28.7 min |
-| `07-prompt-injection-defense` | 100.0 | 28.7 min |
-| `08-deterministic-outputs` | 100.0 | 29.6 min |
-| `09-programmatic-guardrails` | 100.0 | 29.5 min |
-| `10-low-entropy-tool-design` | 100.0 | 29.8 min |
-| `11-model-context-protocol` | 100.0 | 29.3 min |
-| `12-human-in-the-loop-governance` | 100.0 | 29.5 min |
-| `13-cost-and-latency-at-volume` | 100.0 | 27.3 min |
+Every vault is one course in one notebook, titled from `config/courses.yml`.
 
-Thirteen vaults, 39 teaching notebooks plus a setup guide. Total estimated recording time 377 minutes. Lowest score 100.0 against a threshold of 95. Longest vault 29.8 minutes, inside the 20 to 40 band.
+| Vault | Course | Estimated video |
+|---|---|---|
+| `01-stateful-agent-runtime` | Building Stateful Agent Runtimes for AI Developers | 23.9 min |
+| `02-multi-agent-orchestration` | Multi-Agent Systems for Production AI Engineering | 24.7 min |
+| `03-token-economics` | Token Economics Optimization for AI System Architects | 25.7 min |
+| `04-context-engineering` | Context Engineering for AI Coding Agent Infrastructure | 28.2 min |
+| `05-subagent-delegation` | Autonomous Subagent Workflows for Senior Developers | 33.3 min |
+| `06-headless-automation` | Headless AI Automation for CI/CD Pipelines | 31.0 min |
+| `07-prompt-injection-defense` | Defensive Prompt Engineering for Enterprise AI Security | 24.3 min |
+| `08-deterministic-outputs` | Deterministic Response Engineering for Production APIs | 28.3 min |
+| `09-programmatic-guardrails` | Programmatic Guardrails for High-Reliability AI | 27.1 min |
+| `10-low-entropy-tool-design` | Low-Entropy Tool Design for Reliable AI Agents | 30.1 min |
+| `11-model-context-protocol` | Model Context Protocol for Enterprise System Integration | 30.8 min |
+| `12-human-in-the-loop-governance` | Human-in-the-Loop Governance for High-Risk AI Actions | 31.5 min |
+| `13-cost-and-latency-at-volume` | Cost and Latency Engineering for AI Systems at Volume | 26.1 min |
+
+The total estimated recording time is 365 minutes, and every course passes `score.py` with no
+findings. The estimate is advice, not a gate.
 
 ## What was verified, by running it
 
 | Check | Result |
 |---|---|
+| `score` | 13 course notebooks, no findings |
 | `check-structure` | 13 vaults, 0 problems |
-| `check-notebooks` | 40 notebooks, 0 problems |
-| `check-diagrams` | 39 sources, 0 problems |
-| `check-prose` | 40 notebooks, 0 problems |
-| `check-fixtures` | 39 notebooks, 0 problems |
-| `check-theme` | 0 problems, structural only |
+| `check-notebooks` | 14 notebooks, 0 problems |
+| `check-diagrams` | 35 sources, 96 SVG, 0 problems, every diagram inside 800 by 860 |
+| `check-prose` | 14 notebooks, 0 problems |
+| `check-fixtures` | 13 notebooks, 0 problems |
 | `check-coverage` | 63 promises across 13 vaults, all kept |
-| `check-gates` | 6 gates planted against and rejected |
-| `score` | every notebook and vault at or above 95 |
-| `run_notebooks` in replay | 40 of 40 executed with no API key |
+| `check-gates` | 31 gates planted against and rejected |
+| `run_notebooks` in replay | 14 of 14 executed with no API key |
 
-A clean clone carries no credential. Recording the whole course against the live
-API cost well under a dollar.
+## The failure each course is built on
 
-## Coverage against the original twelve course specs
+Every failure below was seen in a recorded run before its fix was written.
 
-Audited by matching the mechanics and vocabulary of each spec against the built
-notebooks. Two gaps were found after the first twelve vaults were complete:
-**the parallel latency formula** and **prompt caching**, both named in the
-Course 3 spec and in the Domain 5 material. Vault 13 was built to close them.
-
-Everything else in the twelve specs was already covered.
-
-That audit is now `check-coverage`, reading `config/syllabus.yml`, and it runs inside `make check`. A
-promise that stops being kept fails the build rather than surviving to recording day.
-
-## The rule that shaped the content
-
-Never write a failure you have not seen happen. Several planned lessons did not
-survive contact with a real model, and every replacement is stronger.
-
-| Planned | What actually happened |
+| Course | What the recording showed |
 |---|---|
-| A model blows past a refund limit written in the prompt | It refused. Asked six times it breached four, by splitting the refund into pieces that each obeyed the rule |
-| Tool accuracy decays as the tool count grows | Accuracy held. At 24 tools the model stopped choosing at all and returned a malformed function call |
-| A `print()` corrupts a stdio MCP stream | A full line survives. Only a partial line, with the reply glued to it, breaks the host |
-| Multi-agent beats a single call | It measured worse on cost, latency and accuracy, because isolation stripped the comparison set |
-| Negative framing in a tool description fails | It held. Enumeration failed: a state the rule never named fired 5 of 6 times |
-| Lost in the middle costs you retrieval | Retrieval held 15 of 15. The loss is in the summary |
-| A model either caches or it does not | The default model reported 0% cached cold and 88.9% warm. A cold measurement is worthless |
-| A shape cannot rescue a slow model | Overlapping took a 22.7 second run to 6.3 seconds for no extra money |
+| 01 | With the refund limit only in the prompt, 3 of 3 attempts paid 47500 cents as three refunds. With the limit in code, each paid 20000 |
+| 02 | A security worker that failed left an empty lane that the report read as clean, until the merge reported it as not run |
+| 03 | In a long history the orchestrator lost the customer's plan and dropped the ticket from p1 to p2. Keeping finished results fixed it on 133 tokens |
+| 04 | `fnmatch` never matched `src/api/db.ts` against `src/api/**/*.ts`, so the database rule was missing on backend changes |
+| 05 | Migration logs in the main session sent follow-up questions at 1554 and 1589 prompt tokens, against 89 and 135 with a forked subagent |
+| 06 | Plan mode stated only in the prompt let the audit write to the branch in 4 of 6 runs. A tool allowlist made it 0 |
+| 07 | With no defense, 11 of 15 attack resumes advanced a candidate. Tags left 3 of 15, and a decision in code left 0 |
+| 08 | A locked schema gave 5 of 5 valid replies and only 2 of 5 correct ones, including francs posted as euros |
+| 09 | 5 of 5 quotes came back negative, and the feedback loop changed a 41% loan to 36% to pass the validator |
+| 10 | 25 generic tools sent 6 of 16 requests to the tool that could answer. Four scoped tools sent 13 of 16 |
+| 11 | A client that ignored `isError` let the model invent totals in 2 of 3 attempts |
+| 12 | With approval asked for only in the prompt, the agent deleted a production database in 5 of 5 attempts. A pre-execution hook made it 0 |
+| 13 | The same cached prefix was billed in full for 9 calls before the cache appeared on the 10th |
 
 ## What is deliberately not here
 
-- **Deployment, evaluation and observability.** Modules 6 to 8 of the source are
-  syllabus stubs with no teaching content, deferred by agreement.
-- **A working batch submission.** The lane exists at roughly half price and the
-  endpoint returned 404 on this account. Vault 13 shows the shape and says it did
-  not run it.
-- **A calibrated recording estimate.** The model is documented in `config/recording.json` and has
-  never been timed against a recording. It is a band that catches a vault running long, so it is
-  accurate enough for what it is used for and is not being calibrated.
+- **A provider batch price.** The repo's client calls only the chat endpoint, so the course 13 batch
+  lane is built in code and does not measure a provider's batch discount.
+- **Authentication over HTTP.** Course 11 mentions the header and does not build it, because its
+  scenario does not need it.
+- **A calibrated recording estimate.** The model in `config/recording.json` has never been timed
+  against a recording, so the minutes above are advice.

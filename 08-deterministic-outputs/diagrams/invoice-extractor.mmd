@@ -1,0 +1,30 @@
+graph TD
+  S["Locked schema<br/>required, enums, no extra keys"]:::store
+  C["Call the model on the invoice text<br/>tool_choice forces extract_invoice"]:::model
+  P["Arguments parse<br/>and types match?"]:::decision
+  K["Is it a readable invoice?"]:::decision
+  V["Values appear in the document<br/>and not yet in the ledger?"]:::decision
+  H["Send to a person<br/>with the reasons"]:::risk
+  L["Post to the<br/>payables ledger"]:::output
+  T["Tests that run<br/>without the model"]:::decision
+
+  S -.->|"holds the shape"| C
+  C --> P
+  P -->|"no"| H
+  P -->|"yes"| L
+  P -->|"yes"| K
+  K -->|"no"| H
+  K -->|"yes"| L
+  K -->|"yes"| V
+  V -->|"no"| H
+  V -->|"yes"| L
+  T -.->|"tests"| P
+  T -.->|"tests"| V
+
+%% step 1: C P H L
+%% step 2: S
+%% step 3: K
+%% retire 3: P-L
+%% step 4: V
+%% retire 4: K-L
+%% step 5: T

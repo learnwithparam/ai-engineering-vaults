@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 5.109,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "User reported slowness in the orders endpoint. Assistant identified the issue as loading all orders into memory and decided to add a WHERE clause and pagination (50 orders at a time). They also added a created_at cursor to the query and an index migration for it. However, endpoint tests failed on an account with no orders.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "stop"
+    }
+  ],
+  "created": 1789144313,
+  "id": "gen-1789144313-AYo7BWD8wyYxZUFetpKo",
+  "model": "mistralai/mistral-nemo",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "DeepInfra",
+  "service_tier": null,
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 67,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 3.929e-06,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.01e-06,
+      "upstream_inference_cost": 3.929e-06,
+      "upstream_inference_prompt_cost": 1.919e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 101,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 168
+  }
+}

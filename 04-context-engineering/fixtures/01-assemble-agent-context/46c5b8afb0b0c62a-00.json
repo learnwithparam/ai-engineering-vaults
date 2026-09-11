@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 0.819,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "```sql\n-- Move orders older than two years from orders into orders_archive\n-- This transaction will move orders older than two years to the orders_archive table.\n-- It first checks if the database is reachable.\n-- Then, it attempts to move the data.\n-- If any error occurs, the transaction will be rolled back.\n\nBEGIN TRANSACTION;\n\n-- Move orders older than two years to orders_archive\nINSERT INTO orders_archive (order_id, user_id, total, created_at)\nSELECT order_id, user_id, total, created_at\nFROM orders\nWHERE created_at < NOW() - INTERVAL '2 year';\n\n-- Delete the moved orders from the orders table\nDELETE FROM orders\nWHERE created_at < NOW() - INTERVAL '2 year';\n\nCOMMIT;\n```",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789144322,
+  "id": "gen-1789144322-25INHbffukOHjlbbZa8r",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 172,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 9.25e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 6.88e-05,
+      "upstream_inference_cost": 9.25e-05,
+      "upstream_inference_prompt_cost": 2.37e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 237,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 409
+  }
+}

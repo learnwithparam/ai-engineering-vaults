@@ -1,0 +1,31 @@
+graph TD
+  X["Attack corpus<br/>of injected resumes"]:::risk
+  R["Candidate resume<br/>written by the candidate"]:::input
+  P["Portfolio page<br/>returned by a tool"]:::input
+  W["Wrap untrusted text in tags<br/>and remove typed tags"]:::store
+  S["System prompt states<br/>the instruction hierarchy"]:::store
+  M["Call the model"]:::model
+  K["Score the skills in code<br/>against the job rubric"]:::decision
+  D["Advance or reject<br/>the candidate"]:::output
+  T["Tests that run<br/>without the model"]:::decision
+
+  X -.->|"sends attack resumes"| R
+  R --> M
+  R --> W
+  P --> W
+  W --> M
+  S --> M
+  M --> D
+  M -->|"lists skills"| K
+  K --> D
+  T -.->|"tests"| W
+  T -.->|"tests"| K
+
+%% step 1: R M D
+%% step 2: W S
+%% retire 2: R-M
+%% step 3: P
+%% step 4: K
+%% retire 4: M-D
+%% step 5: X
+%% step 6: T

@@ -1,0 +1,25 @@
+graph TD
+  J["Subagent's last turn:<br/>ask for a MigrationSummary"]:::model
+  V{"Validates as a<br/>MigrationSummary?"}:::decision
+  X["Flag it for review"]:::risk
+  B["Check it against<br/>schema_migrations"]:::decision
+  A["Attach the schema<br/>read from the database"]:::store
+  O["Main session gets<br/>the handover only"]:::output
+  T["Tests that run<br/>without the model"]:::decision
+
+  J --> V
+  V -->|"no"| X
+  V -->|"yes"| O
+  X --> O
+  V -->|"yes"| B
+  X --> B
+  B --> A
+  A --> O
+  T -.->|"tests"| V
+  T -.->|"tests"| B
+
+%% step 1: J V X
+%% step 2: O
+%% step 3: B A
+%% retire 3: V-O X-O
+%% step 4: T

@@ -1,0 +1,34 @@
+graph TD
+  P["Pull request<br/>under audit"]:::input
+  R{"Route the request:<br/>small or full?"}:::decision
+  One["One specialist worker<br/>for a small request"]:::model
+  O["Split the audit<br/>into three tasks"]:::decision
+  S["Security worker<br/>own context"]:::model
+  F["Performance worker<br/>own context"]:::model
+  Y["Style worker<br/>own context"]:::model
+  M["Merge the findings<br/>by lane"]:::store
+  X["Mark any lane<br/>that never ran"]:::risk
+  W["Write the audit report"]:::output
+
+  P --> O
+  P --> R
+  R -->|"full"| O
+  R -->|"small"| One
+  O -->|"at the same time"| S
+  O --> F
+  O --> Y
+  S --> M
+  F --> M
+  Y --> M
+  M --> W
+  M --> X
+  X --> W
+  One --> W
+
+%% step 1: P O
+%% step 2: S F Y
+%% step 3: M W
+%% step 4: X
+%% retire 4: M-W
+%% step 5: R One
+%% retire 5: P-O

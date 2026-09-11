@@ -1,33 +1,24 @@
-# Token economics
+# Token Economics Optimization for AI System Architects
 
-What a call costs, what a handoff costs, and how to hold a budget without dropping work on the
-floor.
+One course in one notebook: `01-classify-tickets-on-a-token-budget.ipynb`.
 
-One idea runs through all three: **you cannot control a bill you have never read.** Every number
-here is printed from a real response. Nothing in this vault quotes a price from memory, and the
-rates come from `build/provider-truth.json`, which `make probe` writes from the live API.
+You build a classifier for a support desk that handles a high volume of tickets. Each ticket
+arrives with a long history, and most of that history is the logs of sub-tasks that already
+finished. An orchestrator reads the ticket once, three workers each decide one thing about it, and
+a synthesis step writes the routing line.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-measuring-the-bill.ipynb` | The model that is cheaper per token costs more per fault | Telecom faults |
-| `02-the-token-tax-of-handoffs.ipynb` | A six step chain pays for the same log six times | Climate modelling |
-| `03-capstone-a-classifier-under-budget.ipynb` | A batch goes over its ceiling and returns fewer labels | Retail demand |
+The notebook starts with a chain that hands the whole history to every worker, measures what each
+handoff costs, then grows it one step at a time into a pipeline that prunes finished logs, keeps
+their results as a small key-value state, refuses to run a worker on missing state, and runs the
+workers in parallel.
 
 ## Before you start
 
-Run `00-setup/01-start-here.ipynb` first. Every notebook here runs without an API key, from
-committed recordings, so you can read and execute the whole vault for free.
-
-Vault 1 is worth doing first. The capstone leans on `finish_reason`, which is taught there.
+Run `00-setup/01-start-here.ipynb` first. The notebook runs without an API key, from committed
+recordings of real responses, so you can follow the whole course for free. Every price it prints
+comes from `provider-truth.json`, never from memory.
 
 ## What you will have built
 
-A meter that reports cost per unit of work rather than cost per call, a chain that pays for its
-evidence once and proves the digest kept what later steps need, and a batch that holds a hard
-budget by degrading to cheaper answers rather than by stopping.
-
-## Where this continues
-
-`13-cost-and-latency-at-volume/` picks up where the counting stops: whether your model
-caches, whether your work is shaped to overlap, and which lane a workload belongs in.
-
+A ticket triage pipeline whose cost per ticket and wall clock you can predict, with tests for its
+pruning, its state check and its latency math, all of which run without calling the model.

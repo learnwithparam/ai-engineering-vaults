@@ -1,0 +1,91 @@
+{
+  "_vault_latency_seconds": 0.996,
+  "choices": [
+    {
+      "finish_reason": "error",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"total_cents\":11000,\"subtotal_cents\":10000,\"invoice_number\":\"67890\",\"currency\":\"USD\",\"tax_cents\":1000,\"vendor\":\"Test Corp\"}",
+              "name": "extract_invoice"
+            },
+            "id": "tool_extract_invoice_I30Li5vdMSxcSqcSZ3Lo",
+            "index": 0,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"vendor\":\"Another Test Corp\",\"subtotal_cents\":5000,\"invoice_number\":\"12345\",\"tax_cents\":1000,\"currency\":\"EUR\",\"total_cents\":6000}",
+              "name": "extract_invoice"
+            },
+            "id": "tool_extract_invoice_aIUkLAk9VjpyDLzJZ74Q",
+            "index": 1,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"subtotal_cents\":20000,\"invoice_number\":\"10001\",\"currency\":\"GBP\",\"total_cents\":20000,\"vendor\":\"Example Ltd\",\"tax_cents\":0}",
+              "name": "extract_invoice"
+            },
+            "id": "tool_extract_invoice_mrxvhtFVcilok48BuOLy",
+            "index": 2,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"vendor\":\"Sample Inc.\",\"subtotal_cents\":15000,\"invoice_number\":\"INV-001\",\"total_cents\":16500,\"tax_cents\":1500,\"currency\":\"USD\"}",
+              "name": "extract_invoice"
+            },
+            "id": "tool_extract_invoice_p7rYGucDnpAuiHDHLUmf",
+            "index": 3,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "MALFORMED_FUNCTION_CALL"
+    }
+  ],
+  "created": 1789145414,
+  "id": "gen-1789145414-1QzYqeyMfpL9BAzdpCqM",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 0,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0,
+      "upstream_inference_cost": 0,
+      "upstream_inference_prompt_cost": 0
+    },
+    "is_byok": false,
+    "prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 0
+  }
+}

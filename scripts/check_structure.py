@@ -1,4 +1,4 @@
-"""Vault shape: README coverage, capstones, sub-module count, and a clean root."""
+"""Vault shape: one course notebook per vault, a README that lists it, a clean root."""
 from __future__ import annotations
 
 import pathlib
@@ -22,7 +22,7 @@ VAULT_DIR = re.compile(r"^\d\d-[a-z0-9-]+$")
 
 
 def ignored(entry: pathlib.Path) -> bool:
-    """Ask git, so .env and a capstone's runtime-state.json never trip this."""
+    """Ask git, so .env and a lesson's own runtime files never trip this."""
     result = subprocess.run(["git", "check-ignore", "--quiet", entry.name],
                             cwd=ROOT, capture_output=True)
     return result.returncode == 0
@@ -67,13 +67,9 @@ def main() -> int:
 
         if not notebooks:
             problems.append(f"{rel}: no notebooks")
-            continue
-        if "capstone" not in notebooks[-1].stem:
-            problems.append(
-                f"{rel}: the last notebook is not a capstone, it is {notebooks[-1].name}")
-        if not 3 <= len(notebooks) <= 4:
-            problems.append(
-                f"{rel}: {len(notebooks)} notebooks, the contract says three or four")
+        elif len(notebooks) != 1:
+            problems.append(f"{rel}: {len(notebooks)} notebooks, the contract says one course "
+                            f"notebook per vault")
 
     for line in problems:
         print(f"  {line}")

@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 11.864,
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "Okay, here are the steps to add a loading spinner to the `OrderList` component while the orders load, adhering to the monorepo's build settings:\n\n## Steps to Add a Loading Spinner to `OrderList`\n\n1.  **Create or Locate a Spinner Component:**\n    *   **Check `src/ui/kit`:** First, look within `src/ui/kit` for an existing `Spinner` component. If one exists, you'll use that.\n    *   **Create a New Spinner (if necessary):** If no spinner component is found in `src/ui/kit`, create a new one. This component should be kept simple and accessible.\n        *   **File:** `src/ui/kit/Spinner.tsx`\n        *   **Content:**\n            ```typescript\n            import React from 'react';\n\n            interface SpinnerProps {\n              'aria-label'?: string; // Add aria-label prop for accessibility\n            }\n\n            const Spinner: React.FC<SpinnerProps> = ({ 'aria-label': ariaLabel = 'Loading spinner' }) => {\n              return (\n                <div\n                  className=\"spinner-container\" // Add a class for styling\n                  role=\"status\"\n                  aria-label={ariaLabel}\n                >\n                  {/* Basic spinner representation, could be more elaborate */}\n                  <svg\n                    className=\"spinner-icon\"\n                    viewBox=\"0 0 50 50\"\n                    xmlns=\"http://www.w3.org/2000/svg\"\n                    aria-hidden=\"true\" // Hide from screen readers if it's purely decorative\n                  >\n                    <circle\n                      className=\"spinner-path\"\n                      cx=\"25\"\n                      cy=\"25\"\n                      r=\"20\"\n                      fill=\"none\"\n                      ",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "MAX_TOKENS"
+    }
+  ],
+  "created": 1789144271,
+  "id": "gen-1789144271-QzQrOqUrdt98CcVFdeDh",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google AI Studio",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 398,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001744,
+    "cost_details": {
+      "upstream_inference_completions_cost": 0.0001592,
+      "upstream_inference_cost": 0.0001744,
+      "upstream_inference_prompt_cost": 1.52e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 152,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 550
+  }
+}

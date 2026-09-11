@@ -17,7 +17,7 @@ make check
 make test
 ```
 
-All targets: `help`, `setup`, `install`, `dev`, `run`, `probe`, `status`, `score`, `check`, `test`,
+All targets: `help`, `setup`, `install`, `dev`, `run`, `probe`, `score`, `check`, `test`,
 `test-live`, `record`, `diagrams`, `clean`, and the eight `check-*` gates.
 
 Python project (`pyproject.toml`). Use the repo's own virtualenv; never install into the system
@@ -38,8 +38,8 @@ interpreter.
 
 - **This repo has `make check` and CI.** No other repo in `lwp-repos` has either. Every gate here is
   wired into a command and into `.github/workflows/check.yml` in the same change that created it.
-- **Notebooks are scored, not reviewed.** `scripts/score.py` is deterministic and the threshold is
-  95 for every notebook and every vault. `docs/CONTRACT.md` defines what it measures.
+- **Notebooks are checked, not reviewed.** `scripts/score.py` is deterministic and every rule is
+  pass or fail, so a notebook passes only with no findings. `docs/CONTRACT.md` defines the rules.
 - **Nothing hardcodes a provider number.** Prices, context lengths and limits are read from
   `provider-truth.json` at the root, written by `make probe` from the live API and committed,
   because a clone with no key still has to print a real cost. `check-prose` fails on a
@@ -59,6 +59,6 @@ files. Everything the gates read lives in `config/`, everything about authoring 
 
 ## The contract
 
-`docs/CONTRACT.md` is the frozen definition of the seven beats, the cell limits, the score thresholds and
-the domain register. Changing it forces a re-score of everything already accepted. Read it before
-authoring or editing any notebook.
+`docs/CONTRACT.md` defines a vault as one course notebook built step by step, with the writing, code
+and naming rules the gates enforce. Read it and `docs/AUTHORING.md` before authoring or editing any
+notebook.

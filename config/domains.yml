@@ -1,8 +1,8 @@
-# The domain register. Every sub-module declares one of these.
+# The domain register. Every course notebook declares one of these, and
+# score.py fails a notebook whose domain is not listed.
 #
 # Two lists on purpose. Fascination earns the click, credibility earns the
 # subscription, and a course made only of one loses the audience that pays.
-# check-structure asserts every vault carries at least one from each list.
 
 high_pull:
   f1-race-strategy: Formula 1 pit strategy and live car telemetry
@@ -39,3 +39,13 @@ enterprise_credible:
   retail-demand: Assortment, pricing and demand planning
   education-progress: Learner progress and intervention
   public-services: Citizen service requests and benefits
+  ecommerce-support: Online store orders, returns and refunds
+  code-review: Pull request review and code audit
+  support-tickets: High volume support ticket triage
+  developer-tooling: Monorepo tooling and developer workflows
+  database-migrations: Schema migrations and database change control
+  ci-security: CI pipelines and pull request security checks
+  invoice-processing: Invoice capture and accounts payable
+  consumer-lending: Loan quotes and repayment plans
+  enterprise-data: Internal databases and reporting access
+  platform-operations: Infrastructure automation and production change control

@@ -1,42 +1,23 @@
-# Headless automation for CI
+# Headless AI Automation for CI/CD Pipelines
 
-What changes about an agent when nobody is watching it run, and how to make a pipeline able to stop
-because of what it found.
+One course in one notebook: `01-audit-sql-in-a-ci-pipeline.ipynb`.
 
-Everything here rests on one idea: **the exit code is the interface.** A job runner never reads your
-report. It reads one integer and decides whether the next step happens. Most of the failures in this
-vault are cases where that integer was never wired to anything real.
+You build the SQL audit a CI pipeline runs on every pull request. A script sends the changed code to
+a model with nobody watching, the model reviews every SQL query in it, and the pipeline blocks the
+merge when the model finds a query an attacker could abuse.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-the-non-interactive-contract.ipynb` | A confirmation prompt hangs the job, and a paging finding still exits 0 | Incident response |
-| `02-a-schema-is-the-interface.ipynb` | Every reply arrives in a code fence, and one queue arrives under three spellings | Public services |
-| `03-capstone-a-pr-audit-that-blocks.ipynb` | An audit that found three real problems and blocked nothing | Card chargebacks |
-
-## Files in this folder
-
-| File | What it is |
-|---|---|
-| `audit.py` | The entrypoint the capstone builds. Runnable on its own |
-| `audit-schema.json` | The shape the audit answers in |
-| `sample-diff.txt` | A chargeback refund change with three problems in it |
-| `clean-diff.txt` | The same file, changed harmlessly, so the audit can pass |
-| `example-workflow.yml` | A GitHub Actions workflow to copy. Deliberately not in `.github/workflows/` here |
+The notebook starts with a reply the pipeline cannot parse, then grows it one step at a time into an
+audit whose report is locked to a JSON schema, whose tools are limited to reading by an allowlist,
+whose step can never wait for a person, whose exit code decides the merge, and whose log and report
+never carry a password or an API key.
 
 ## Before you start
 
-Run `00-setup/01-start-here.ipynb` first. Every notebook here runs without an API key, from
-committed recordings, so you can execute the whole vault for free.
-
-Run the entrypoint on its own:
-
-```bash
-uv run python audit.py --diff sample-diff.txt --schema audit-schema.json --max-seconds 60
-echo $?      # 2, because the diff has a blocking finding
-```
+Run `00-setup/01-start-here.ipynb` first, and read `01-stateful-agent-runtime/` before this vault.
+The notebook runs without an API key, from committed recordings of real responses, so you can
+follow the whole course for free.
 
 ## What you will have built
 
-A step that cannot be asked a question and cannot run forever, an answer shaped so a pipeline can
-branch on it, a tool allowlist that holds when an instruction does not, and an entrypoint plus a
-workflow that turns a finding into a blocked merge without ever writing a key to a log.
+A headless SQL audit step with a test for each of its safeguards, all of which run without calling
+the model.

@@ -21,8 +21,32 @@ words:
   - straightforward
   - notably
 
-# Read by score.py's reading rules only. Each was in writing the user rejected
-# on 2026-09-11. See docs/decisions/008-headings-teach.md.
+# Read by score.py only. Each was in writing the user rejected on 2026-09-11.
+# See docs/decisions/008-headings-teach.md and 009-one-notebook-per-course.md.
+
+# A function name is read aloud on a screencast. One word, or one of these as
+# its first word, says nothing about what the function does.
+vague_function_words:
+  - handle
+  - process
+  - do
+  - manage
+  - perform
+  - helper
+  - util
+  - utils
+  - misc
+  - thing
+  - stuff
+
+# Every course is taught on a generic API, so no title or heading names a vendor.
+vendor_words:
+  - claude
+  - anthropic
+  - gemini
+  - openai
+  - chatgpt
+
 vague_titles:
   - capstone
   - survive

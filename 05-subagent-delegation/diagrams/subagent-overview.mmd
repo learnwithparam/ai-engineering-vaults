@@ -1,0 +1,13 @@
+graph TD
+  D["Developer runs<br/>a migrate command"]:::input
+  A["Coding assistant<br/>in the main session"]:::model
+  B["Customer database"]:::output
+  E1["Migration logs sent again<br/>on every later turn"]:::risk
+  E2["A report the code<br/>cannot read"]:::risk
+  E3["A report that leaves out<br/>what the developer asks next"]:::risk
+
+  D --> A
+  A -->|"applies the migration"| B
+  A -.->|"must stop"| E1
+  A -.->|"must stop"| E2
+  A -.->|"must stop"| E3

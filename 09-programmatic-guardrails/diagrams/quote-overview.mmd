@@ -1,0 +1,15 @@
+graph TD
+  C["Customer asks for<br/>a monthly payment"]:::input
+  M["Loan advisor model<br/>calculates the payment"]:::model
+  Y["Your code checks<br/>the quote"]:::decision
+  Q["Quote shown<br/>to the customer"]:::output
+  E1["A negative<br/>monthly payment"]:::risk
+  E2["A retry loop<br/>that never ends"]:::risk
+  E3["An APR changed<br/>to pass a check"]:::risk
+
+  C --> M
+  M -->|"returns a quote"| Y
+  Y --> Q
+  Y -.->|"must stop"| E1
+  Y -.->|"must stop"| E2
+  Y -.->|"must stop"| E3

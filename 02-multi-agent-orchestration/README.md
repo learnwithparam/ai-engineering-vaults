@@ -1,25 +1,24 @@
-# Multi-agent orchestration
+# Multi-Agent Systems for Production AI Engineering
 
-When splitting one agent into several helps, when it hurts, and how to tell the difference with a
-number rather than an opinion.
+One course in one notebook: `01-build-a-code-audit-pipeline.ipynb`.
 
-Everything here rests on one idea: **a second agent is a second bill and a second blind spot.** Fan
-out buys isolation, and isolation is not free. Each sub-module measures what it bought.
+You build the audit pipeline an enterprise team runs on every pull request before it merges. An
+orchestrator splits the audit into security, performance and style tasks, three workers review the
+change at the same time in isolated contexts, and a synthesizer merges their findings into one
+report. A router sends a small request to the one specialist it needs instead.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-router-or-one-agent.ipynb` | One agent with five playbooks names the right one and runs nothing | Security operations |
-| `02-workers-and-context-isolation.ipynb` | Worker analyses flood the parent, measured in tokens | Content moderation |
-| `03-capstone-a-review-pipeline.ipynb` | The pipeline costs more, runs slower and is less correct than one call | Legal ediscovery |
+The notebook starts with one reviewer call as the number to beat, then grows it one step at a time
+into a pipeline that keeps each worker's context separate, fans the workers out in parallel, merges
+their findings, blocks the merge when a worker never ran, and routes small requests to a single
+worker.
 
 ## Before you start
 
 Run `00-setup/01-start-here.ipynb` first, and read `01-stateful-agent-runtime/` before this vault.
-Every notebook here runs without an API key, from committed recordings, so you can read and execute
-the whole vault for free.
+The notebook runs without an API key, from committed recordings of real responses, so you can
+follow the whole course for free.
 
 ## What you will have built
 
-A LangGraph router that classifies with no tools and acts with one, an orchestrator that fans out
-with `Send` and bounds what each worker returns, and a review pipeline that was measured against a
-single call and rebuilt around what the measurement said.
+A small code audit pipeline with a test for each of its safeguards, all of which run without
+calling the model.

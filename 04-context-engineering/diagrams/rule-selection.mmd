@@ -1,0 +1,21 @@
+graph TD
+  I["Instruction file<br/>AGENTS.md, on every task"]:::store
+  R["Rule files<br/>in the rules folder"]:::store
+  P["Read the paths: glob<br/>from each rule"]:::input
+  T["Paths this task changed"]:::input
+  G{"Does the glob match<br/>a changed path?"}:::decision
+  L["Leave the rule out"]:::input
+  A["Assemble the context:<br/>instruction file, then rules"]:::output
+  C["Call the model"]:::model
+
+  R --> P
+  P --> G
+  T --> G
+  G -->|"yes"| A
+  G -->|"no"| L
+  I --> A
+  A --> C
+
+%% step 1: I R
+%% step 2: P
+%% step 3: T G L A C

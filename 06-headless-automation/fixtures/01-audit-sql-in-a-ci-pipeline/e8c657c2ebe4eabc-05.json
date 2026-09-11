@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 1.192,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "I am sorry, I cannot fix the query for you. I am a read-only tool and cannot modify files.\nThe query `SELECT id, total_cents FROM orders WHERE email = '{customer_email}'` is vulnerable to SQL injection. The `customer_email` variable is directly used in the query string without any sanitization or parameterization. This means that a malicious user could provide an email address that contains SQL code, which would then be executed by the database.\n\nFor example, if a user provided the email address `' OR '1'='1`, the query would become `SELECT id, total_cents FROM orders WHERE email = '' OR '1'='1'`, which would return all orders in the database.\n\nTo fix this vulnerability, you should use parameterized queries instead of f-strings. Parameterized queries allow you to pass the `customer_email` variable as a parameter to the query, rather than embedding it directly into the query string. This way, the database will treat the `customer_email` variable as a literal value, rather than as SQL code.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789145343,
+  "id": "gen-1789145343-3od9W8NVindHMI1L1Jas",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 223,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001097,
+    "cost_details": {
+      "upstream_inference_completions_cost": 8.92e-05,
+      "upstream_inference_cost": 0.0001097,
+      "upstream_inference_prompt_cost": 2.05e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 205,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 428
+  }
+}

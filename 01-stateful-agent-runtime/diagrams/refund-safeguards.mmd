@@ -1,0 +1,25 @@
+graph TD
+  T["Model asks for issue_refund"]:::input
+  K{"Refund total<br/>within the limit?"}:::decision
+  R["Refuse, and say why<br/>in the tool result"]:::risk
+  I{"Refund key<br/>already used?"}:::decision
+  P["Payment system<br/>pays the refund"]:::output
+  F["Return the first<br/>result again"]:::store
+  D["Refund ledger on disk"]:::store
+  X["Tests that run<br/>without the model"]:::decision
+
+  T --> K
+  K -->|"no"| R
+  K -->|"yes"| P
+  K -->|"yes"| I
+  I -->|"new key"| P
+  I -->|"key used"| F
+  D -.->|"stores the keys"| I
+  X -.->|"tests"| K
+  X -.->|"tests"| I
+
+%% step 1: T K R P
+%% step 2: I F
+%% retire 2: K-P
+%% step 3: D
+%% step 4: X

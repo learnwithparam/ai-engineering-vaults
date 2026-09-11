@@ -1,0 +1,19 @@
+graph TD
+  H["Your MCP client"]:::input
+  P["stdio: the client starts the server<br/>JSON-RPC 2.0 lines on stdout"]:::decision
+  W["HTTP: POST each message<br/>to a server already running"]:::decision
+  S["MCP server<br/>tools, resources, prompts"]:::output
+  D["Reporting database<br/>opened read only"]:::store
+  L["stderr: every log line"]:::store
+
+  H --> P
+  H --> W
+  P --> S
+  W --> S
+  S --> D
+  S -.->|"logs"| L
+
+%% step 1: S D
+%% step 2: H P
+%% step 3: L
+%% step 4: W

@@ -1,26 +1,23 @@
-# Programmatic guardrails
+# Programmatic Guardrails for High-Reliability AI
 
-A schema tells you the shape is right. It says nothing about whether the answer is possible, and
-production is full of possible-looking answers that are not.
+One course in one notebook: `01-validate-a-loan-payment-quote.ipynb`.
 
-Everything here rests on one idea: **checking is a job for your code, and it has three parts.** Is
-the shape right, is the meaning right, and what do you do when it is not. A retry answers only the
-last one, and only if it terminates.
+You build the checks around a loan advisor model at a consumer lender. The model reads a loan record
+and calculates the monthly payment, and it returns a quote in a fixed shape. Your code decides
+whether that quote is fit to show a customer.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-valid-json-wrong-answer.ipynb` | Six schema-valid records, a risk score of 118, a negative amount and a period that runs backwards | Anti money laundering case work |
-| `02-the-error-taxonomy.ipynb` | One retry wrapper sends the same illegal grid command three times and pays three times for an empty answer | Grid load and EV charging |
-| `03-capstone-a-retry-loop-that-terminates.ipynb` | A repair loop invents the value that was blocking it, and the record passes | Clinical trial safety reporting |
+The notebook starts with a quote whose shape is perfect and whose monthly payment is negative. It
+then adds the checks one step at a time: Pydantic validators for ranges and cross-field rules, a
+bounded retry that sends the validator's own errors back to the model, an error taxonomy that tells
+retryable failures from non-retryable ones, and jittered backoff for timeouts.
 
 ## Before you start
 
-Run `00-setup/01-start-here.ipynb` first. Every notebook here runs without an API key, from
-committed recordings, so you can read and execute the whole vault for free.
+Run `00-setup/01-start-here.ipynb` first. The notebook runs without an API key, from committed
+recordings of real responses, so you can follow the whole course for free.
 
 ## What you will have built
 
-A validation layer that separates shape from meaning, a classifier that sends each of the four
-failure tiers to its own handler, a bounded repair loop that feeds the validator's own words back to
-the model, a dead letter shelf for records no reply can fix, and a test for each of those
-properties.
+A quote function that checks lending policy before any model call, repairs a bad quote in a loop
+that always ends, and waits out transient failures. Each of those guardrails has a test, and every
+test runs without calling the model.

@@ -1,0 +1,15 @@
+graph TD
+  A["Finance analyst asks<br/>about overdue invoices"]:::input
+  M["Model decides<br/>which query to run"]:::model
+  C["Your MCP client"]:::decision
+  S["MCP server in front<br/>of the reporting database"]:::output
+  E1["A failed query<br/>counted as a success"]:::risk
+  E2["A log line that breaks<br/>the reply stream"]:::risk
+  E3["A write that reaches<br/>the database"]:::risk
+
+  A --> M
+  M -->|"asks for a tool"| C
+  C --> S
+  C -.->|"must stop"| E1
+  S -.->|"must stop"| E2
+  S -.->|"must stop"| E3

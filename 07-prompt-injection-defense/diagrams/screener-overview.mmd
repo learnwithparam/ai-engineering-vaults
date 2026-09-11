@@ -1,0 +1,13 @@
+graph TD
+  C["Candidate writes<br/>resume and portfolio"]:::input
+  S["Resume screener<br/>asks the model"]:::model
+  H["Recruiter reads<br/>advance or reject"]:::output
+  E1["A resume that orders<br/>its own advance"]:::risk
+  E2["A web page that orders<br/>the screener"]:::risk
+  E3["A defense nobody<br/>has measured"]:::risk
+
+  C --> S
+  S --> H
+  S -.->|"must stop"| E1
+  S -.->|"must stop"| E2
+  S -.->|"must stop"| E3

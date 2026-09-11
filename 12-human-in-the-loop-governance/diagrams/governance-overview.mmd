@@ -1,0 +1,17 @@
+graph TD
+  E["Engineer asks the agent<br/>to clean up a database"]:::input
+  M["Model decides<br/>which tool to call"]:::model
+  R["Your runtime<br/>runs the call"]:::decision
+  I["Production<br/>databases"]:::output
+  X1["A database deleted<br/>with nobody asked"]:::risk
+  X2["An approval lost<br/>in a restart"]:::risk
+  X3["One call repeated<br/>until turns run out"]:::risk
+  X4["No record of<br/>who allowed it"]:::risk
+
+  E --> M
+  M -->|"asks for a tool"| R
+  R --> I
+  R -.->|"must stop"| X1
+  R -.->|"must stop"| X2
+  R -.->|"must stop"| X3
+  R -.->|"must stop"| X4

@@ -1,0 +1,73 @@
+{
+  "_vault_latency_seconds": 0.737,
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": null,
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"subtotal_cents\":3550,\"invoice_number\":\"INV0lCE ####\",\"total_cents\":3905,\"vendor\":\"Various\",\"currency\":\"USD\",\"tax_cents\":355}",
+              "name": "extract_invoice"
+            },
+            "id": "tool_extract_invoice_KTErdTOuj3nKrxzPgfhs",
+            "index": 0,
+            "type": "function"
+          },
+          {
+            "function": {
+              "arguments": "{\"total_cents\":1100,\"subtotal_cents\":1000,\"invoice_number\":\"0x3F 0x3F\",\"vendor\":\"Various\",\"tax_cents\":100,\"currency\":\"USD\"}",
+              "name": "extract_invoice"
+            },
+            "id": "tool_extract_invoice_DLx4qgfcvgbprHWHtISw",
+            "index": 1,
+            "type": "function"
+          }
+        ]
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789145414,
+  "id": "gen-1789145413-WQbr9J596f4E8wSERg77",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 60,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 3.3e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.4e-05,
+      "upstream_inference_cost": 3.3e-05,
+      "upstream_inference_prompt_cost": 9e-06
+    },
+    "is_byok": false,
+    "prompt_tokens": 90,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 150
+  }
+}

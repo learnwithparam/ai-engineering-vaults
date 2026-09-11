@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 0.828,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "```typescript\nimport { pool } from \"./db\"; // Assuming pool is exported from your db file\n\nexport async function deleteCustomer(customerId: string): Promise<void> {\n  try {\n    await pool.query(\"BEGIN\"); // Start a transaction\n\n    // Delete customer's orders first\n    await pool.query(\"DELETE FROM orders WHERE customer_id = $1\", [customerId]);\n\n    // Then delete the customer\n    await pool.query(\"DELETE FROM customers WHERE id = $1\", [customerId]);\n\n    await pool.query(\"COMMIT\"); // Commit the transaction\n  } catch (error) {\n    await pool.query(\"ROLLBACK\"); // Rollback on error\n    console.error(\"Error deleting customer and their orders:\", error);\n    throw error; // Re-throw the error for the caller to handle\n  }\n}\n```",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789144285,
+  "id": "gen-1789144285-jZZ1w0ENHFGj3eabiXeK",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 183,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 8.37e-05,
+    "cost_details": {
+      "upstream_inference_completions_cost": 7.32e-05,
+      "upstream_inference_cost": 8.37e-05,
+      "upstream_inference_prompt_cost": 1.05e-05
+    },
+    "is_byok": false,
+    "prompt_tokens": 105,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 288
+  }
+}

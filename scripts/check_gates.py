@@ -42,29 +42,24 @@ def md(text: str) -> dict:
     return {"cell_type": "markdown", "metadata": {}, "source": text}
 
 
-def beat(name: str, text: str) -> dict:
-    cell = md(text)
-    cell["metadata"] = {"tags": [f"beat:{name}"]}
-    return cell
-
-
 def code(text: str) -> dict:
     return {"cell_type": "code", "metadata": {}, "source": text,
             "execution_count": None, "outputs": []}
 
 
 def plant_broken() -> None:
-    """One notebook that breaks something in every dimension at once."""
+    """A vault of two notebooks that breaks every rule at least once."""
     PLANT.mkdir(parents=True, exist_ok=True)
     (PLANT / "README.md").write_text("# Gate self test\n")
 
     cells = [
-        md("# Broken on purpose\n\nThis notebook exists so the gates can be proven to bite."),
+        md("# Broken on purpose for Claude developers\n\nThis notebook exists so the gates can be "
+           "proven to bite."),
         md("## Mechanics\n\nWe leverage a robust paradigm here."),
         md("A cache needs 1,024 tokens, which is a provider constant written as prose."),
         code("import os\nkey = 'sk-or-v1-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"),
-        code("def one():\n    pass\n\ndef two():\n    pass"),
-        md("It also references a picture that was never rendered."),
+        md("The function below does something, but its name never says what."),
+        code("def approve():\n    pass"),
         code("from vault.client import get_client\nclient = get_client('99-gate-selftest/01-broken')"),
         md("![missing](images/never-rendered.svg)"),
     ]
@@ -74,50 +69,24 @@ def plant_broken() -> None:
     syllabus.write_text(original + "\n98:\n  a promise nothing keeps: this-phrase-appears-nowhere\n")
     (PLANT / "syllabus.backup").write_text(original)
 
-    doc = notebook(cells, {"vault": 99, "submodule": 1, "title": "Broken",
-                           "domain": "not-a-real-domain", "framework": "none",
-                           "analogy": ""})
-    (PLANT / "01-broken.ipynb").write_text(json.dumps(doc, indent=1))
+    meta = {"vault": 99, "title": "Broken", "domain": "not-a-real-domain", "framework": "none"}
+    (PLANT / "01-broken.ipynb").write_text(json.dumps(notebook(cells, meta), indent=1))
 
     # A diagram source with no rendered SVG, so check-diagrams has something to catch.
     (PLANT / "diagrams").mkdir(exist_ok=True)
     (PLANT / "diagrams" / "unrendered.mmd").write_text("graph LR\n  A[in] --> B[out]\n")
 
-    # Every beat present, but the answer handed over in one frame with a long caption.
-    one_frame = [
-        md("# One frame\n\nA lesson that shows the answer instead of deriving it."),
-        md("## Mechanics\n\n| Field | Meaning |\n|---|---|\n| a | b |"),
-        md("### Step 1: the whole answer at once\n\n![all of it](images/series-step-1.svg)\n\n"
-           + "This caption keeps going. " * 12),
-        md("## The failure\n\nIt breaks."),
-        code("assert False, 'broken'"),
-        md("## The diagnosis\n\nBecause."),
-        md("## The fix\n\nFixed."),
-        code("print('before 1, after 0')"),
-        md("## The gate\n\nHeld.\n\n### Enterprise exploration\n\n- Scale?\n- Cost?\n- Audit?"),
-    ]
-    doc = notebook(one_frame, {"vault": 99, "submodule": 2, "title": "One frame",
-                               "domain": "not-a-real-domain", "framework": "none",
-                               "analogy": ""})
-    (PLANT / "02-one-frame.ipynb").write_text(json.dumps(doc, indent=1))
-
     # The writing the user rejected on 2026-09-11, verbatim where it can be.
     bad_reading = [
-        md("# Capstone, actions that survive\n\n**Scenario:** a booking agent books twice."),
-        beat("mechanics", "## Mechanics\n\nIn the prompt. The harness runs first in this example here today."),
-        md("### Step 1: the naive build\n\n![x](images/series-step-1.svg)\n\nAsk six times and count. "
-           "Not a better prompt. Now pin it."),
-        beat("failure", "## The failure\n\nIt breaks."),
-        code("assert False, 'broken'"),
-        beat("diagnosis", "## The diagnosis\n\nBecause."),
-        beat("fix", "## The fix\n\nFixed."),
+        md("# Capstone, actions that survive"),
+        md("## Mechanics\n\nIn the prompt. The harness runs first in this example here today, "
+           "reading `finish_reason`."),
+        md("## Step 1: the naive build\n\n![x](images/series-step-1.svg)\n\n"
+           "Ask six times and count. Not a better prompt. Now pin it."),
         code("print('before 1, after 0')"),
-        beat("gate", "## The gate\n\nHeld.\n\n### Enterprise exploration\n\n- Scale?\n- Cost?\n- Audit?"),
     ]
-    doc = notebook(bad_reading, {"vault": 99, "submodule": 3, "title": "Capstone, actions that survive",
-                                 "domain": "not-a-real-domain", "framework": "none",
-                                 "analogy": ""})
-    (PLANT / "03-bad-reading.ipynb").write_text(json.dumps(doc, indent=1))
+    meta = dict(meta, title="Capstone, actions that survive")
+    (PLANT / "02-bad-reading.ipynb").write_text(json.dumps(notebook(bad_reading, meta), indent=1))
 
     # A series naming a node that does not exist, and an SVG nothing renders.
     (PLANT / "diagrams" / "series.mmd").write_text(
@@ -129,37 +98,39 @@ def plant_broken() -> None:
 
 
 EXPECTED = [
-    ("check_structure.py", "structure", "no capstone, wrong notebook count, README gaps"),
+    ("check_structure.py", "structure", "two notebooks in one vault, README gaps"),
     ("check_prose.py", "prose", "banned words, a provider constant, and a planted key"),
     ("check_diagrams.py", "diagrams", "a .mmd with no SVG and a dead image reference"),
     ("check_fixtures.py", "fixtures", "a notebook calling the model with no fixtures"),
-    ("score.py", "score", "missing beats, bad domain, no analogy, two defs in one cell"),
+    ("score.py", "score", "no overview, bad domain, label headings, a vague function name"),
     ("check_coverage.py", "coverage", "a vault in the syllabus with no notebooks"),
 ]
 
-# Exit codes alone cannot prove these: the planted vault fails score.py and
-# check_diagrams.py for older reasons too. So each rule must name itself.
-VISUAL = [
-    ("score.py", "step frames, the contract needs", "a lesson handed over in one frame"),
-    ("score.py", "caption is", "a caption longer than two sentences"),
-    ("check_diagrams.py", "'Z', which is not in the graph", "a step naming a missing node"),
-    ("check_diagrams.py", "no source renders it", "an SVG no source renders"),
-    ("check_diagrams.py", "unreadable on video", "a frame too wide to read"),
-]
-
-# The reading rules, each planted with the writing that produced it.
-READING = [
+# Exit codes alone cannot prove these: the planted vault fails most gates for
+# several reasons at once. So each rule must name itself.
+RULES = [
+    ("check_structure.py", "the contract says one course notebook", "two notebooks in one vault"),
+    ("score.py", "function name 'approve' does not say", "a function named approve"),
     ("score.py", "vague word 'capstone'", "a title that names no concept"),
-    ("score.py", "What you will learn", "an opening with no learning outcomes"),
     ("score.py", "heading 'Mechanics' does not say", "a label heading"),
     ("score.py", "step title 'the naive build' does not say", "a step title with no subject"),
-    ("score.py", "opens with a fragment", "a section opening on a fragment"),
+    ("score.py", "steps are numbered [1]", "steps that do not start at 0"),
+    ("score.py", "the overview heading is 'Mechanics'", "an opening that is not the overview"),
+    ("score.py", "the overview has 0 diagrams", "an overview with no problem diagram"),
+    ("score.py", "the overview names code", "an overview that explains the design"),
+    ("score.py", "has no title in config/courses.yml", "a course missing from the catalogue"),
+    ("score.py", "names the vendor 'claude'", "a vendor name in a title"),
+    ("score.py", "no closing '## Concepts' table", "no concepts table"),
+    ("score.py", "step frames after Step 0", "a course shown in one frame"),
+    ("score.py", "opens with a fragment", "a step opening on a fragment"),
     ("score.py", "the floor is 12", "clipped sentences"),
     ("score.py", "sentences are under 6 words", "too many fragments"),
     ("score.py", "two fragments in a row", "staccato writing"),
     ("score.py", "unclear word 'pin it'", "an invented metaphor"),
     ("score.py", "is used before it is explained", "a term used before its definition"),
-    ("score.py", "Key terms and traps", "no closing recap"),
+    ("check_diagrams.py", "'Z', which is not in the graph", "a step naming a missing node"),
+    ("check_diagrams.py", "no source renders it", "an SVG no source renders"),
+    ("check_diagrams.py", "unreadable on video", "a frame too wide to read"),
 ]
 
 
@@ -235,7 +206,6 @@ def main() -> int:
     try:
         for script, label, why in EXPECTED:
             rc, output = run_gate(script)
-            # The report prints twelve findings per notebook; the file holds them all.
             if script == "score.py" and (BUILD / "scores.json").is_file():
                 output += (BUILD / "scores.json").read_text()
             outputs[script] = output
@@ -245,12 +215,11 @@ def main() -> int:
                 print(f"  {label:10} bit as expected ({why})")
             if "sk-or-v1-aaaa" in output:
                 failures.append(f"{label}: printed the planted key in its own output")
-        for label, rules in (("visual", VISUAL), ("reading", READING)):
-            for script, needle, why in rules:
-                if needle in outputs.get(script, ""):
-                    print(f"  {label:10} bit as expected ({why})")
-                else:
-                    failures.append(f"{label}: {script} did NOT name {why}")
+        for script, needle, why in RULES:
+            if needle in outputs.get(script, ""):
+                print(f"  {'rule':10} bit as expected ({why})")
+            else:
+                failures.append(f"rule: {script} did NOT name {why}")
         problem = theme_gate_bites()
         if problem:
             failures.append(problem)
@@ -266,7 +235,7 @@ def main() -> int:
 
     for line in failures:
         print(f"  {line}")
-    tested = len(EXPECTED) + len(VISUAL) + len(READING) + 3
+    tested = len(EXPECTED) + len(RULES) + 3
     print(f"check-gates: {tested} gates tested, {len(failures)} problems")
     return 1 if failures else 0
 

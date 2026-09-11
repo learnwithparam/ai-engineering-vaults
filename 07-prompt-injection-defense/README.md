@@ -1,24 +1,23 @@
-# Prompt injection defense
+# Defensive Prompt Engineering for Enterprise AI Security
 
-Why untrusted text becomes an instruction, why the obvious fix only partly works, and what you put
-behind it.
+One course in one notebook: `01-defend-a-resume-screener.ipynb`.
 
-Everything in this vault rests on one idea: **a prompt level defence has a pass rate, not a
-guarantee.** Every number below was printed by a live model, not asserted.
+You build a resume screener for a hiring team. Each resume arrives inside `resume_content` tags, and
+the screener's instructions tell the model to judge skills only from the text inside those tags and
+to ignore any instructions written there. The resume and the candidate's portfolio page are both
+written by the candidate, so either one can try to give the model orders.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-untrusted-text-becomes-instruction.ipynb` | A CV that sounds like the platform moves its own score from 3 to 10 | Recruiting screening |
-| `02-injection-through-tools-and-retrieval.ipynb` | A public label clears a sanctioned address, through a tool result nobody typed | Onchain analytics |
-| `03-capstone-a-screener-with-a-suite.ipynb` | A defended screener, scored against a corpus, blocking 11 attack runs of 18 | Legal ediscovery |
+The notebook starts with a single screening call, shows real resumes ordering their own advance,
+then adds one defense at a time: tags and an instruction hierarchy, tags a candidate cannot close,
+wrapped tool results, and finally a rubric in code that no text can reach. Every layer is scored
+against the same small corpus of attack resumes.
 
 ## Before you start
 
-Run `00-setup/01-start-here.ipynb` first. Every notebook here runs without an API key, from
-committed recordings, so you can read and execute the whole vault for free.
+Run `00-setup/01-start-here.ipynb` first. The notebook runs without an API key, from committed
+recordings of real responses, so you can follow the whole course for free.
 
 ## What you will have built
 
-A screener that keeps the decision in code rather than in the prompt, a guard that refuses any
-verdict the verified fields do not support, and an attack corpus that puts a number on your defence
-instead of a claim.
+A screener whose advance decision lives in code, an attack corpus that puts a number on each
+defense, and tests for the tag handling and the rubric that run without calling the model.

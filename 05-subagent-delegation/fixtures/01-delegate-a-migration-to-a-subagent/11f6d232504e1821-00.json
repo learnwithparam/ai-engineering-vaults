@@ -1,0 +1,54 @@
+{
+  "_vault_latency_seconds": 0.586,
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "annotations": null,
+        "audio": null,
+        "content": "The migration `0007_add_email_lower` was applied successfully. This migration added a new column `email_lower` to the `customers` table and backfilled it with the lowercase version of the existing `email` column. An index `idx_customers_email_lower` was also created on the new column.",
+        "function_call": null,
+        "reasoning": null,
+        "refusal": null,
+        "role": "assistant",
+        "tool_calls": null
+      },
+      "native_finish_reason": "STOP"
+    }
+  ],
+  "created": 1789144669,
+  "id": "gen-1789144669-7sNGVEmtav5PIQKU9gj5",
+  "model": "google/gemini-2.5-flash-lite",
+  "moderation": null,
+  "object": "chat.completion",
+  "provider": "Google",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 70,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null
+    },
+    "cost": 0.0001762,
+    "cost_details": {
+      "upstream_inference_completions_cost": 2.8e-05,
+      "upstream_inference_cost": 0.0001762,
+      "upstream_inference_prompt_cost": 0.0001482
+    },
+    "is_byok": false,
+    "prompt_tokens": 1482,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "total_tokens": 1552
+  }
+}

@@ -1,0 +1,15 @@
+graph TD
+  S["Suppliers send<br/>invoices as text"]:::input
+  M["Model reads each invoice"]:::model
+  X["Your service checks the reply"]:::decision
+  L["Payables ledger<br/>the bank pays this list"]:::output
+  E1["A reply the parser<br/>cannot read"]:::risk
+  E2["Swiss francs<br/>posted as euros"]:::risk
+  E3["A receipt paid<br/>as a new invoice"]:::risk
+
+  S --> M
+  M -->|"replies"| X
+  X --> L
+  X -.->|"must stop"| E1
+  X -.->|"must stop"| E2
+  X -.->|"must stop"| E3

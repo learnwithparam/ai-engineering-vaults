@@ -1,0 +1,26 @@
+graph TD
+  H["Ticket history<br/>messages and sub-task logs"]:::input
+  P["Prune the logs of<br/>finished sub-tasks"]:::decision
+  O["Orchestrator writes<br/>the key-value state"]:::model
+  R["Keep each finished result<br/>as a key and a value"]:::store
+  S["Key-value state"]:::store
+  G{"State holds every key<br/>the workers need?"}:::decision
+  W["Workers read<br/>only the state"]:::model
+  X["Refuse, and name<br/>the missing key"]:::risk
+
+  H --> O
+  H --> P
+  P --> O
+  P --> R
+  O --> S
+  R --> S
+  S --> W
+  S --> G
+  G -->|"yes"| W
+  G -->|"no"| X
+
+%% step 1: H O S W
+%% step 2: P
+%% retire 2: H-O
+%% step 3: R G X
+%% retire 3: S-W

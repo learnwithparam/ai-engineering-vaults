@@ -1,30 +1,24 @@
-# Subagent delegation
+# Autonomous Subagent Workflows for Senior Developers
 
-Why you hand work to a second agent, how two frameworks draw the line, and what has to come back
-across it.
+One course in one notebook: `01-delegate-a-migration-to-a-subagent.ipynb`.
 
-One idea holds the vault together: **the parent grows by the summary, not by the work.** A subagent is
-a second agent run with its own list of messages. It reads everything, and the only thing that
-survives it is the line you copy back.
+You build the migrate command of a coding assistant that works on a web shop's customer database.
+A developer types the command, and the assistant hands the whole migration to a subagent: a second
+agent run with its own message history. The subagent reads every line of the migration log, and
+only a short typed summary comes back to the developer's main session.
 
-| Sub-module | What breaks | Domain |
-|---|---|---|
-| `01-why-delegate-at-all.ipynb` | Three applicant packets read inline, and the parent turn costs 2583 tokens instead of 104 | Candidate screening |
-| `02-two-ways-to-delegate.ipynb` | A shared LangGraph state means the worker writes its log into the parent, and an undeclared CrewAI task output hands a truncated log across | Genomics pipeline |
-| `03-capstone-a-delegated-migration.ipynb` | A worker replies with a summary a person could read and a commander cannot parse | Warehouse robotics |
+The notebook starts with a real database and its migrations. Then it adds custom commands for
+manual actions, packages the migration as a skill with a fork flag, and measures what the log costs
+when the skill runs in the main session. From there it forks the skill into a subagent, returns a
+typed summary instead of prose, lets the model choose the skill from a plain request, and checks
+every summary against the database before anyone trusts it.
 
 ## Before you start
 
-Run `00-setup/01-start-here.ipynb` first. Every notebook here runs without an API key, from committed
-recordings, so the whole vault executes for free.
-
-LangGraph and CrewAI both make their own calls, which the recordings do not capture. Both notebooks
-route every call through the vault client instead, so a crew and a graph replay offline exactly like
-any other lesson. The CrewAI cell also switches off first run consent, telemetry and tracing, which
-otherwise phone home and can stop to ask a question.
+Run `00-setup/01-start-here.ipynb` first. The notebook runs without an API key, from committed
+recordings of real responses, so you can follow the whole course for free.
 
 ## What you will have built
 
-A delegation boundary you can point at. A worker state that holds the noise, a parent state with no
-channel for it, a typed result contract the parent can branch on without reading anything, and a test
-for each of those properties that needs no model and runs in milliseconds.
+A command registry, a skill that runs in a forked subagent, and a typed summary checked against the
+migration table, with a test for each safeguard that runs without calling the model.

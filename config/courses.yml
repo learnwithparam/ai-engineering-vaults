@@ -1,0 +1,82 @@
+# The course catalogue. One vault is one course notebook. score.py fails a
+# notebook whose title is not the title here, and authors build each course on
+# its scenario. Vendor names are dropped from the original catalogue: every
+# course is taught on this repo's own OpenAI-shaped client.
+
+1:
+  title: Building Stateful Agent Runtimes for AI Developers
+  scenario: An e-commerce support assistant looks up order status and issues refunds. The runtime sends messages to the model, reads finish_reason, runs the requested tool, appends the tool message and calls the model again until it answers.
+  mechanics: [finish_reason stop, tool_calls and length, tool messages matched by tool_call_id, loop termination]
+  vocabulary: [finish_reason, tool_calls, tool message, turn limit]
+
+2:
+  title: Multi-Agent Systems for Production AI Engineering
+  scenario: An enterprise code audit pipeline. An orchestrator splits a pull request audit into security, performance and style tasks, three workers run in parallel in isolated contexts, and a synthesizer merges their findings into one report. A router sends small requests to a single specialist instead.
+  mechanics: [router pattern, orchestrator and workers, context isolation, parallel fan out, synthesis]
+  vocabulary: [router pattern, orchestrator-worker, context isolation, state serialization]
+
+3:
+  title: Token Economics Optimization for AI System Architects
+  scenario: A high-volume support ticket classifier. Instead of sending full ticket histories to every worker, the system prunes finished sub-task logs and passes a small key-value summary of state.
+  mechanics: [token tax across handoffs, parallel latency is orchestrator plus the slowest worker plus synthesis, pruning finished steps]
+  vocabulary: [token tax, latency math, context payload, context pruning]
+
+4:
+  title: Context Engineering for AI Coding Agent Infrastructure
+  scenario: A full-stack monorepo with a React frontend in src/ui and an Express backend in src/api. General build settings live in the repository instruction file, AGENTS.md, and a path-scoped rule matching src/api/**/*.ts adds database safety checks only when backend code is in play.
+  mechanics: [a repository instruction file, path-scoped rules by glob matching, a context budget without duplicate instructions]
+  vocabulary: [instruction file, path-scoped rules, glob matching, context budget]
+
+5:
+  title: Autonomous Subagent Workflows for Senior Developers
+  scenario: A database schema migration workflow. A developer runs a migrate command, which hands the work to a subagent with its own forked context, so the heavy migration logs stay in the subagent's session and never clog the main conversation.
+  mechanics: [custom commands for manual actions, skills for automated subagent workflows, context forking into isolated sub-sessions]
+  vocabulary: [custom commands, skills, context forking, subagent delegation]
+
+6:
+  title: Headless AI Automation for CI/CD Pipelines
+  scenario: A CI security workflow. On every pull request a headless script asks the model to audit SQL queries, requires output matching a JSON schema, runs in read-only plan mode, and fails the build when it finds an unsafe query.
+  mechanics: [non-interactive runs, schema-locked JSON output, read-only plan mode, CI exit codes]
+  vocabulary: [headless mode, JSON schema, plan mode, CI integration]
+
+7:
+  title: Defensive Prompt Engineering for Enterprise AI Security
+  scenario: A resume screener. Candidate resumes arrive inside resume_content tags, and the system instructions tell the model to judge skills only from the text inside those tags and to ignore any instructions embedded in them.
+  mechanics: [delimiting instructions, context and untrusted input with tags, instruction hierarchy over user data, isolating untrusted data against direct and indirect injection]
+  vocabulary: [delimiters, direct and indirect prompt injection, instruction isolation, instruction hierarchy]
+
+8:
+  title: Deterministic Response Engineering for Production APIs
+  scenario: An invoice parsing service. To stop the model returning prose or commentary, the call forces tool_choice to the extract_invoice tool, so every reply is JSON matching the tool schema.
+  mechanics: [forcing tool_choice, syntactic validity of JSON and types, syntactic correctness is not semantic accuracy]
+  vocabulary: [tool_choice forcing, syntactic validity, structural lock-down]
+
+9:
+  title: Programmatic Guardrails for High-Reliability AI
+  scenario: A loan advisor agent calculates monthly payments. The model returns a negative monthly_payment, a Pydantic validator catches it, and the error message goes back to the model in a bounded retry loop so it can correct itself.
+  mechanics: [structural validation then Pydantic business checks, range and cross-field errors, diagnostic feedback in a bounded retry loop]
+  vocabulary: [semantic validation, Pydantic validators, retry loops, diagnostic feedback]
+
+10:
+  title: Low-Entropy Tool Design for Reliable AI Agents
+  scenario: A customer account portal agent. Instead of registering 25 generic tools it registers four tightly scoped ones, whose descriptions use positive criteria such as requiring a customer id matching CUST-XXXXX, and whose parameters are locked with additionalProperties false.
+  mechanics: [selection entropy and a small tool set, positive activation criteria over prohibitions, schema locking with additionalProperties false and patterns]
+  vocabulary: [selection entropy, positive activation framing, strict schema locking]
+
+11:
+  title: Model Context Protocol for Enterprise System Integration
+  scenario: Connecting an MCP client to an enterprise PostgreSQL database. An MCP server exposes read-only resources and query tools over JSON-RPC 2.0. In stdio mode every log line goes to stderr, so the JSON-RPC stream on stdout stays clean.
+  mechanics: [MCP primitives tools, resources and prompts, stdio transport with logs on stderr, HTTP transport for remote servers]
+  vocabulary: [MCP primitives, stdio transport, HTTP transport, JSON-RPC 2.0, stderr isolation]
+
+12:
+  title: Human-in-the-Loop Governance for High-Risk AI Actions
+  scenario: An infrastructure automation agent. When the model asks to delete a production database, a pre-execution hook intercepts the call, pauses the run and asks an administrator to approve it before anything happens.
+  mechanics: [structured tool errors with is_error, pre-execution hooks that inspect arguments, interrupts that pause and resume a run for approval]
+  vocabulary: [human in the loop, pre-execution hooks, is_error, interrupts]
+
+13:
+  title: Cost and Latency Engineering for AI Systems at Volume
+  scenario: An insurance claims desk. Adjusters ask live questions that must answer in seconds, while the overnight backlog of claims is scored in bulk, so each job runs in the lane that suits its cost and latency.
+  mechanics: [prompt caching as a property of the model, measuring warm rather than cold latency, parallel latency is set by the slowest call, a batch lane for work that can wait]
+  vocabulary: [prompt caching, warm and cold latency, latency shape, batch lane]

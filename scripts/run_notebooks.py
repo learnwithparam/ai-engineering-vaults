@@ -36,8 +36,10 @@ def run_one(path: pathlib.Path) -> tuple[bool, str]:
 
 def main() -> int:
     mode = os.environ.get("VAULT_MODE", "replay")
+    # VAULT=01 runs one vault, so recording a lesson spends nothing on the others.
+    only = os.environ.get("VAULT", "")
     paths = sorted(p for p in ROOT.glob("[0-9][0-9]-*/*.ipynb")
-                   if ".ipynb_checkpoints" not in p.parts)
+                   if ".ipynb_checkpoints" not in p.parts and p.parent.name.startswith(only))
     if not paths:
         print("run-notebooks: no notebooks yet")
         return 0

@@ -26,8 +26,8 @@ build/
 # JupyterLab runtime artefact
 .jupyter/migrated
 
-# Written by the durable runtime capstone
-runtime-state.json
+# Written by vault 1's durable refund ledger step
+refund-ledger.json
 
 # JupyterLab per-user workspace state
 .jupyter/lab/workspaces/
