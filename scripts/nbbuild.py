@@ -11,15 +11,7 @@ import pathlib
 
 import nbformat
 
-BEAT_HEADINGS = {
-    "mechanics": "## Mechanics",
-    "picture": "## The picture",
-    "cost": "## The cost",
-    "failure": "## The failure",
-    "diagnosis": "## The diagnosis",
-    "fix": "## The fix",
-    "gate": "## The gate",
-}
+BEATS = ["mechanics", "cost", "failure", "diagnosis", "fix", "gate"]
 
 
 class SubModule:
@@ -49,18 +41,39 @@ class SubModule:
         self.cells.append(cell)
         return self
 
-    def beat(self, name: str, body: str = "") -> "SubModule":
-        """Open a beat. The heading must match the contract exactly."""
-        if name not in BEAT_HEADINGS:
-            raise ValueError(f"unknown beat {name!r}, expected one of {sorted(BEAT_HEADINGS)}")
-        text = BEAT_HEADINGS[name]
-        if body:
-            text += "\n\n" + body.strip()
-        return self.md(text)
+    def opening(self, title: str, body: str, learn: list[str]) -> "SubModule":
+        """The hook cell: the title, the scenario, and what the reader will learn."""
+        bullets = "\n".join(f"- {item}" for item in learn)
+        return self.md(f"# {title}\n\n{body.strip()}\n\n### What you will learn\n\n{bullets}")
+
+    def beat(self, name: str, heading: str, body: str) -> "SubModule":
+        """Open a beat. The tag is for the gates, the heading is a claim for the reader."""
+        if name not in BEATS:
+            raise ValueError(f"unknown beat {name!r}, expected one of {BEATS}")
+        self.md(f"## {heading}\n\n{body.strip()}")
+        self.cells[-1].metadata["tags"] = [f"beat:{name}"]
+        return self
+
+    def recap(self, items: dict[str, str]) -> "SubModule":
+        """Key terms and traps, each opening with its bold term."""
+        bullets = "\n".join(f"- **{term}**: {say}" for term, say in items.items())
+        return self.md(f"### Key terms and traps\n\n{bullets}")
+
+    def step(self, number: int, title: str, image: str, caption: str) -> "SubModule":
+        """One frame of the derivation, in its own cell: heading, picture, caption."""
+        return self.md(f"### Step {number}: {title}\n\n![{title}]({image})\n\n{caption.strip()}")
 
     def validate(self) -> list[str]:
         """Catch contract breaches here, before the scorer has to."""
         problems = []
+        steps = [c for c in self.cells
+                 if c["cell_type"] == "markdown" and c["source"].startswith("### Step ")]
+        if not 3 <= len(steps) <= 6:
+            problems.append(f"{len(steps)} step frames, the contract needs 3 to 6")
+        tags = [t for c in self.cells for t in c.get("metadata", {}).get("tags", [])]
+        for name in BEATS:
+            if name != "cost" and f"beat:{name}" not in tags:
+                problems.append(f"beat {name!r} is missing, open it with .beat()")
         kinds = [c["cell_type"] for c in self.cells]
         for i in range(len(kinds) - 1):
             if kinds[i] == "code" and kinds[i + 1] == "code":

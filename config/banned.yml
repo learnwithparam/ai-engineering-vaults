@@ -21,6 +21,43 @@ words:
   - straightforward
   - notably
 
+# Read by score.py's reading rules only. Each was in writing the user rejected
+# on 2026-09-11. See docs/decisions/008-headings-teach.md.
+vague_titles:
+  - capstone
+  - survive
+  - survives
+
+vague_headings:
+  - mechanics
+  - the cost
+  - the failure
+  - the diagnosis
+  - the fix
+  - the gate
+  - the picture
+  - why
+  - pin it
+  - the naive build
+  - where it breaks
+  - overview
+  - introduction
+  - summary
+
+teaching_words:
+  - survive
+  - survives
+  - pin it
+  - earn
+  - earns
+  - road
+  - honest
+  - honestly
+  - faint
+  - ghost
+  - lit
+  - the lesson
+
 phrases:
   - "let's dive in"
   - "in today's world"

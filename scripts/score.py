@@ -27,6 +27,31 @@ WEIGHTS = {
 }
 MAX_CODE_LINES = 25
 MIN_CODE_CELLS = 6
+MIN_STEPS, MAX_STEPS = 3, 6
+MAX_CAPTION_WORDS = 35
+MAX_PROSE_WORDS = 600
+
+# Reading rules, calibrated in decision 008: the user's four examples average
+# 14.8 words a sentence with 13.7% under six words; the rejected vault 1, 9.0 and 23%.
+MIN_MEAN_SENTENCE = 12
+SHORT_SENTENCE, MAX_SHORT_SHARE = 6, 0.15
+MIN_OPENING_WORDS = 8
+MIN_HEADING_WORDS = 4
+TITLE_WORDS, TITLE_CHARS = (6, 12), 70
+FIXED_HEADINGS = {"What you will learn", "Enterprise exploration", "Key terms and traps"}
+STOPWORDS = {"that", "this", "with", "from", "into", "what", "when", "your", "they", "them",
+             "then", "than", "does", "have", "each", "every", "before", "after", "only"}
+
+# Vaults still in the shape of the contract before decisions 007 and 008: one
+# picture and label headings. The set only shrinks: a vault leaves it when its
+# notebooks are rewritten, and the constant goes when it is empty.
+LEGACY_VAULTS = {
+    "02-multi-agent-orchestration", "03-token-economics", "04-context-engineering",
+    "05-subagent-delegation", "06-headless-automation", "07-prompt-injection-defense",
+    "08-deterministic-outputs", "09-programmatic-guardrails", "10-low-entropy-tool-design",
+    "11-model-context-protocol", "12-human-in-the-loop-governance",
+    "13-cost-and-latency-at-volume",
+}
 
 
 class Finding:
@@ -46,16 +71,15 @@ def score_structure(n: nb.Notebook) -> tuple[float, list[Finding]]:
     """Beats present and ordered, metadata complete."""
     out: list[Finding] = []
     found = n.beats_present()
-    required = [name for name, _ in nb.BEATS if name not in nb.OPTIONAL_BEATS]
+    required = [name for name in nb.BEATS if name not in nb.OPTIONAL_BEATS]
 
     for name in required:
         if name not in found:
-            heading = dict(nb.BEATS)[name]
             out.append(Finding(n.rel, "structure", "notebook",
                                f"beat {name!r} is missing",
-                               f"add a markdown cell with the heading {heading!r}"))
+                               f"tag the markdown cell that opens it 'beat:{name}'"))
 
-    ordered = [found[k] for k, _ in nb.BEATS if k in found]
+    ordered = [found[k] for k in nb.BEATS if k in found]
     if ordered != sorted(ordered):
         out.append(Finding(n.rel, "structure", "notebook", "beats are out of order",
                            "reorder cells to match the beat order in docs/CONTRACT.md"))
@@ -68,6 +92,177 @@ def score_structure(n: nb.Notebook) -> tuple[float, list[Finding]]:
 
     penalty = min(len(out) * 4.0, 100.0)
     return max(0.0, 100.0 - penalty), out
+
+
+def score_visual(n: nb.Notebook) -> list[Finding]:
+    """The fix is derived in frames, not handed over. Pass or fail, never averaged."""
+    if n.vault_dir in LEGACY_VAULTS:
+        return []
+    out: list[Finding] = []
+    steps = n.steps()
+    numbers = [s["number"] for s in steps]
+    if not MIN_STEPS <= len(steps) <= MAX_STEPS:
+        out.append(Finding(n.rel, "visual", "notebook",
+                           f"{len(steps)} step frames, the contract needs {MIN_STEPS} to {MAX_STEPS}",
+                           "derive it: the naive build, the break, the why, each piece the fix adds"))
+    if numbers != list(range(1, len(steps) + 1)):
+        out.append(Finding(n.rel, "visual", "notebook", f"steps are numbered {numbers}",
+                           "number the steps 1, 2, 3 in reading order"))
+    for s in steps:
+        cell = f"markdown cell {s['cell']}"
+        if len(s["images"]) != 1:
+            out.append(Finding(n.rel, "visual", cell,
+                               f"step {s['number']} holds {len(s['images'])} images",
+                               "one picture per step, in its own cell"))
+        if s["caption_words"] > MAX_CAPTION_WORDS:
+            out.append(Finding(n.rel, "visual", cell,
+                               f"step {s['number']} caption is {s['caption_words']} words, "
+                               f"limit is {MAX_CAPTION_WORDS}",
+                               "say what lit up and why, in two sentences"))
+
+    found = n.beats_present()
+    if "fix" in found:
+        end = found.get("gate", len(n.cells))
+        if not any(s["cell"] < found["fix"] for s in steps):
+            out.append(Finding(n.rel, "visual", "The fix", "no step frame before the fix",
+                               "show the naive build and where it breaks first"))
+        if not any(found["fix"] < s["cell"] < end for s in steps):
+            out.append(Finding(n.rel, "visual", "The fix", "no step frame inside the fix",
+                               "add a frame for each piece the fix adds"))
+
+    prose_words = len(nb.words(nb.strip_code_and_media(n.prose)))
+    if prose_words > MAX_PROSE_WORDS:
+        out.append(Finding(n.rel, "visual", "prose",
+                           f"{prose_words} words of prose, limit is {MAX_PROSE_WORDS}",
+                           "cut what the frames already show"))
+    return out
+
+
+def _content_words(text: str) -> set[str]:
+    return {w.lower().rstrip("s") for w in nb.words(text)
+            if len(w) >= 4 and w.lower() not in STOPWORDS}
+
+
+def _bullets_after(text: str, heading: str) -> list[str]:
+    """The list items directly under a heading, up to the next heading."""
+    body = text.split(heading, 1)[1] if heading in text else ""
+    body = re.split(r"^#{1,6}\s", body, maxsplit=1, flags=re.MULTILINE)[0]
+    return [nb.LIST_ITEM.sub("", l).strip() for l in body.splitlines() if nb.LIST_ITEM.match(l)]
+
+
+def score_reading(n: nb.Notebook, glossary: dict, banned: dict) -> list[Finding]:
+    """Reads like a book a junior can learn from. Pass or fail, never averaged."""
+    if n.vault_dir in LEGACY_VAULTS:
+        return []
+    out: list[Finding] = []
+    add = lambda cell, problem, fix: out.append(Finding(n.rel, "reading", cell, problem, fix))
+    first = n.markdown_cells[0] if n.markdown_cells else ""
+    teaches = [t for t in n.meta.get("teaches", []) if t]
+
+    title = next((t for _, level, t in n.headings() if level == 1), "")
+    if not 2 <= len(teaches) <= 4:
+        add("metadata.vault.teaches", f"{len(teaches)} teaches terms, the contract needs 2 to 4",
+            "list the concepts a reader leaves with, the headline one first")
+    elif teaches[0].lower() not in title.lower():
+        add("title", f"title {title!r} does not name {teaches[0]!r}",
+            "open the title with the concept, then say what it stops or makes possible")
+    count = len(title.split())
+    if not TITLE_WORDS[0] <= count <= TITLE_WORDS[1] or len(title) > TITLE_CHARS:
+        add("title", f"title {title!r} is {count} words and {len(title)} characters",
+            f"{TITLE_WORDS[0]} to {TITLE_WORDS[1]} words, at most {TITLE_CHARS} characters")
+    for word in banned.get("vague_titles", []):
+        if re.search(rf"\b{re.escape(word)}\b", title, re.IGNORECASE):
+            add("title", f"title uses the vague word {word!r}",
+                "say what the reader learns, not where the notebook sits in the course")
+    if title and title != n.meta.get("title"):
+        add("metadata.vault.title", "the title heading and metadata.vault.title differ",
+            "make them the same string")
+
+    learn = _bullets_after(first, "### What you will learn")
+    if not 2 <= len(learn) <= 4:
+        add("opening", f"no 'What you will learn' list of 2 to 4 bullets in the opening cell",
+            "tell the reader what they will be able to do by the end")
+    missing = [t for t in teaches if t.lower() not in " ".join(learn).lower()]
+    if learn and missing:
+        add("opening", f"the learn list never mentions {missing}", "name each teaches term in it")
+    return _reading_headings(n, banned, _content_words(first + " " + " ".join(teaches)), out) \
+        + _reading_flow(n, glossary, banned)
+
+
+def _reading_headings(n: nb.Notebook, banned: dict, scenario: set[str],
+                      out: list[Finding]) -> list[Finding]:
+    """Every heading makes a claim with a subject, and every section opens with a sentence."""
+    vague = {v.lower() for v in banned.get("vague_headings", [])}
+    for index, level, text in n.headings():
+        if level == 1 or text in FIXED_HEADINGS:
+            continue
+        step = nb.STEP.match(f"{'#' * level} {text}")
+        subject = step.group(2) if step else text
+        cell = f"markdown cell {index}"
+        if subject.lower().strip(" .") in vague or len(subject.split()) < MIN_HEADING_WORDS:
+            what = "step title" if step else "heading"
+            out.append(Finding(n.rel, "reading", cell,
+                               f"{what} {subject!r} does not say what it teaches",
+                               f"write a claim of at least {MIN_HEADING_WORDS} words with a subject, "
+                               f"like 'Check a running total before any money moves'"))
+        elif step and not _content_words(subject) & scenario:
+            out.append(Finding(n.rel, "reading", cell,
+                               f"step title {subject!r} names nothing from the scenario",
+                               "use the scenario's own nouns, the refund, the booking, the plan"))
+
+    for name, index in n.beats_present().items():
+        body = nb.HEADING.sub("", n.source_of(index), count=1)
+        sents = nb.flow_sentences(body)
+        if not sents or len(nb.words(sents[0])) < MIN_OPENING_WORDS:
+            opening = sents[0] if sents else ""
+            out.append(Finding(n.rel, "reading", f"markdown cell {index}",
+                               f"section {name!r} opens with a fragment: {opening[:50]!r}",
+                               f"open with a full sentence of at least {MIN_OPENING_WORDS} words "
+                               f"saying what this section shows"))
+    return out
+
+
+def _reading_flow(n: nb.Notebook, glossary: dict, banned: dict) -> list[Finding]:
+    """Sentences long enough to carry a thought, plain words, terms explained where used."""
+    out: list[Finding] = []
+    add = lambda cell, problem, fix: out.append(Finding(n.rel, "reading", cell, problem, fix))
+    blocks = nb.prose_blocks(n.prose)
+    sents = [s for _, parts in blocks for s in parts]
+    lens = [len(nb.words(s)) for s in sents]
+    if lens:
+        mean = sum(lens) / len(lens)
+        short = [s for s, l in zip(sents, lens) if l < SHORT_SENTENCE]
+        if mean < MIN_MEAN_SENTENCE:
+            add("prose", f"mean sentence length is {mean:.1f} words, the floor is {MIN_MEAN_SENTENCE}",
+                "join clipped sentences into ones that carry a whole thought")
+        if len(short) / len(lens) > MAX_SHORT_SHARE:
+            add("prose", f"{len(short) / len(lens):.0%} of sentences are under {SHORT_SENTENCE} words, "
+                f"limit is {MAX_SHORT_SHARE:.0%}", f"rewrite fragments such as {short[0]!r}")
+    for is_item, parts in blocks:
+        pairs = [(a, b) for a, b in zip(parts, parts[1:])
+                 if max(len(nb.words(a)), len(nb.words(b))) < SHORT_SENTENCE]
+        if pairs and not is_item:
+            add("prose", f"two fragments in a row: {pairs[0][0]!r} {pairs[0][1]!r}",
+                "say it as one sentence with a subject and a verb")
+
+    lower = " ".join(sents).lower()
+    for phrase in banned.get("teaching_words", []):
+        if re.search(rf"\b{re.escape(phrase)}\b", lower):
+            add("prose", f"unclear word {phrase!r}", "use the plain word a reader already knows")
+
+    for term, definition in glossary.items():
+        pattern = re.compile(rf"\b{re.escape(term.lower())}\b")
+        first_use = next((s for s in sents if pattern.search(s.lower())), None)
+        anchors = [w for w in nb.words(definition.lower()) if len(w) > 4][:3]
+        if first_use and anchors and not any(a in first_use.lower() for a in anchors):
+            add("prose", f"{term!r} is used before it is explained: {first_use[:60]!r}",
+                f"define it in that sentence: {definition}")
+
+    recap = _bullets_after(n.prose, "### Key terms and traps")
+    if not 3 <= len(recap) <= 5 or not all(b.startswith("**") for b in recap):
+        add("recap", "no 'Key terms and traps' recap of 3 to 5 bullets, each opening with a bold term",
+            "close with the terms and the traps a reader should remember")
+    return out
 
 
 def score_language(n: nb.Notebook, glossary: dict, banned: dict) -> tuple[float, list[Finding]]:
@@ -261,7 +456,8 @@ def estimate_minutes(n: nb.Notebook, config: dict) -> float:
     seconds = (prose_words / config["words_per_minute"] * 60
                + len(code_cells) * config["seconds_per_code_cell"]
                + code_lines * config["seconds_per_code_line"]
-               + outputs * config["seconds_per_output_block"])
+               + outputs * config["seconds_per_output_block"]
+               + len(n.steps()) * config["seconds_per_step_frame"])
     return seconds / 60.0
 
 
@@ -345,6 +541,8 @@ def main() -> int:
             value, findings = fn()
             parts[name] = value
             all_findings.extend(findings)
+        all_findings.extend(score_visual(n))
+        all_findings.extend(score_reading(n, glossary, banned))
         parts["domains"] = domain_score
         minutes[n.vault_dir] = minutes.get(n.vault_dir, 0.0) + estimate_minutes(n, config)
         per_notebook[n.rel] = parts
@@ -393,10 +591,10 @@ def _finish(notebooks, per_notebook, per_vault, minutes, config, findings) -> in
     failing = ({k: v for k, v in totals.items() if v < THRESHOLD}
                | {k: v for k, v in vault_totals.items() if v < THRESHOLD})
 
-    # Domain spread and the recording budget are contract requirements, not
-    # opinions. A weighted average must not be able to outvote them, or a
-    # strong notebook could carry a vault that breaks a rule outright.
-    hard = [f for f in findings if f.dimension in ("domains", "recording")]
+    # Domain spread, the recording budget, the visual derivation and the reading
+    # rules are contract requirements, not opinions. A weighted average must not
+    # be able to outvote them: it carried writing the user rejected to 100.
+    hard = [f for f in findings if f.dimension in ("domains", "recording", "visual", "reading")]
     for finding in hard:
         failing.setdefault(f"{finding.notebook} ({finding.dimension})", 0.0)
 

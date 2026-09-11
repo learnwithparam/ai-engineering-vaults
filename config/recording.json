@@ -4,12 +4,14 @@
     "words_per_minute": "150 is the standard conversational presenting rate. Faster than that and a non native English speaker in the audience loses the thread.",
     "seconds_per_code_line": "1.2 is the marginal cost of a line once the cell is introduced. A fifteen line schema is shown, not read out.",
     "seconds_per_output_block": "9 covers pointing at a result and drawing the conclusion from it.",
-    "seconds_per_code_cell": "15 covers introducing a cell and saying what it is for, before any line is read."
+    "seconds_per_code_cell": "15 covers introducing a cell and saying what it is for, before any line is read.",
+    "seconds_per_step_frame": "20 covers pointing at what lit up in a derivation frame and saying why it had to. The caption words are counted separately, as prose."
   },
   "words_per_minute": 150,
   "seconds_per_code_line": 1.2,
   "seconds_per_output_block": 9.0,
   "seconds_per_code_cell": 15.0,
+  "seconds_per_step_frame": 20.0,
   "vault_budget_minutes": 30.0,
   "hard_min_minutes": 20.0,
   "hard_max_minutes": 40.0

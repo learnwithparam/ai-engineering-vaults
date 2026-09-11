@@ -29,21 +29,29 @@ ROOT = pathlib.Path("path/to/ai-engineering-vaults")   # your clone
 sys.path.insert(0, str(ROOT / "scripts"))
 from nbbuild import SubModule
 
-s = SubModule(vault=2, submodule=1, title="...", domain="threat-hunting",
+TITLE = "Tool calls and the harness: enforce a refund limit in code"
+s = SubModule(vault=2, submodule=1, title=TITLE, domain="threat-hunting",
               framework="langgraph", analogy="a plain English comparison")
+s.meta["teaches"] = ["tool calls", "harness", "running total"]
 
-s.md("# Title\n\n**Scenario:** ...")
-s.beat("mechanics", "| Field | Meaning |\n|---|---|\n| ... | ... |")
-s.beat("picture", "![alt](images/name.svg)")
-s.beat("cost", "```\nformula\n```")          # omit honestly if there is none
-s.beat("failure", "prose")
+s.opening(TITLE, "**Scenario:** a card issuer's assistant refunds 47500 cents ...",
+          ["Read a tool call as a request your code can refuse", "..."])
+s.beat("mechanics", "How the model asks your code to run a function",
+       "A full opening sentence.\n\n| Field | Meaning |\n|---|---|\n| ... | ... |")
+s.step(1, "Run every refund the model asks for", "images/name-step-1.svg", "One or two sentences.")
+s.beat("cost", "What one over-limit refund costs", "...")   # omit if there is no cost model
+s.beat("failure", "The model splits one refund into three", "...")
 s.code("code that breaks", raises=True)       # a real traceback, notebook keeps running
-s.beat("diagnosis", "why, naming a mechanic from beat 1")
-s.beat("fix", "prose")
+s.step(2, "Three small refunds add up to 47500 cents", "images/name-step-2.svg", "...")
+s.beat("diagnosis", "Why the limit in the prompt did not hold", "naming a mechanic from beat 1")
+s.step(3, "The limit is in the prompt, the risk is in the list", "images/name-step-3.svg", "...")
+s.beat("fix", "Check a running total in code before any money moves", "...")
+s.step(4, "Check each refund against the case total", "images/name-step-4.svg", "...")
 s.code("...")                                  # production shape, one function per cell
-s.beat("gate", "prose")
+s.beat("gate", "A test that fails if the limit check breaks", "...")
 s.code("def test_...():\n    ...")
-s.md("### Enterprise exploration\n\n- ...\n\n### Key takeaways\n\n- ...")
+s.md("### Enterprise exploration\n\n- ...?")
+s.recap({"harness": "the ordinary code around the model that decides what runs", "...": "..."})
 
 print(s.validate() or "none")
 s.write(ROOT / "02-multi-agent-orchestration" / "01-name.ipynb")
@@ -67,12 +75,33 @@ speaking time from prose, code and outputs; it has never been timed against a re
 there to catch a vault running long, not to defend a tenth of a minute. At this depth a sub-module
 lands near 9 minutes, so **three sub-modules per vault**.
 
-Per sub-module, aim for about 600 words of prose, 70 lines of code, 7 or 8 code cells. Check with
-`uv run python scripts/score.py` and cut prose first.
+Per sub-module, at most 500 words of prose, 70 lines of code, 7 or 8 code cells, and 3 to 6 step
+frames. Each frame adds about 20 seconds of narration. Check with `uv run python scripts/score.py`
+and cut prose first.
+
+## How to write it
+
+Write it the way a good book chapter reads, for an engineer who has never seen the idea before.
+
+- **The title says what you learn.** Put the concept first, then what it stops or makes possible:
+  "Idempotency keys: stop a retry from booking the same scan twice". Never "Capstone, actions that
+  survive".
+- **Every heading is a claim.** "Why the limit in the prompt did not hold" teaches something before
+  the paragraph starts. "The diagnosis" does not.
+- **Every sentence carries a whole thought.** Join "In the prompt. Ask six times and count." into one
+  sentence with a subject and a verb.
+- **Use the plain word.** Write "the first version", not "the naive road". Write "the call timed
+  out", not "the timeout is honest". A metaphor is allowed only as the declared analogy.
+- **Define a term where you first use it,** and bold it there.
+- **Show the numbers before and after the fix,** as printed by a real run.
 
 ## Rules the scorer enforces
 
-- Seven beats, in order. `cost` may be omitted.
+- Six beats, in order, each opened with `.beat(name, heading, body)`. `cost` may be omitted.
+- The reading rules in `docs/CONTRACT.md`, pass or fail: the title, the learn list, claim headings,
+  full opening sentences, sentence flow, plain words, terms defined where used, and the recap.
+- 3 to 6 step frames, one image each, captions of at most 35 words, at least one before the fix and
+  one inside it. Pass or fail.
 - No code cell over 25 lines. At least six code cells. One `def` or `class` per cell.
 - Prose between consecutive code cells, always.
 - The failure cell really raises. The fix cell really prints a before and after number.
@@ -83,8 +112,24 @@ Per sub-module, aim for about 600 words of prose, 70 lines of code, 7 or 8 code 
 
 ## Diagrams
 
-Write `<vault>/diagrams/<name>.mmd`. Tag nodes with the six roles so colour means something:
-`input`, `store`, `model`, `decision`, `risk`, `output`. Do not render; that is done centrally.
+Write `<vault>/diagrams/<name>.mmd` holding the **final** graph. Tag nodes with the six roles so colour
+means something: `input`, `store`, `model`, `decision`, `risk`, `output`.
+
+Then say which ids light up at each step, as Mermaid comments:
+
+```
+%% step 1: U M T X      the naive build
+%% step 2: B            where it breaks
+%% step 3: M T          naming an id again puts the focus back on it
+%% step 4: P G HARNESS  a subgraph id lights its box
+%% retire 4: T-X B      the naive edge and the breach vanish once the fix lands
+```
+
+Every frame is the same render restyled, so nodes never move between steps. A later id is a dashed
+ghost, and this step's ids glow in their role colour. An edge appears once both ends are lit. Node
+ids are letters and digits only.
+
+Render one vault with `make diagrams VAULT=01`. Frames land in `images/<name>-step-N.svg`.
 
 ## Finishing
 

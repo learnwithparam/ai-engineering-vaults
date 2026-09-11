@@ -1,13 +1,41 @@
-graph LR
+graph TD
   M["Model asks<br/>book_scan once"]:::model
-  K["Key = call id<br/>stable across retries"]:::decision
-  L{"Key already<br/>in the ledger?"}:::decision
-  W["Write the row<br/>and the key together"]:::store
-  R["Return the first<br/>result again"]:::output
-  X["Reply lost<br/>runtime retries"]:::risk
+  I["tool_call_id<br/>stable across retries"]:::input
+  Y["Runtime<br/>retries on timeout"]:::decision
+  L{"Key already<br/>seen?"}:::decision
+  B["book_scan<br/>writes a row"]:::output
+  P["Return the first<br/>result again"]:::output
+  D["Scheduler rows"]:::store
+  F["Ledger on disk<br/>survives a restart"]:::store
+  X["Reply lost<br/>after the write"]:::risk
+  Z["Patient P-4471<br/>booked twice"]:::risk
+  Q["Gate test<br/>5 attempts<br/>1 booking"]:::decision
 
-  M --> K --> L
-  L -->|no| W
-  L -->|yes| R
-  W -.->|"timeout"| X
-  X -.->|"same key"| L
+  M -->|"call"| Y
+  M --> I --> Y
+  Y --> B
+  Y -->|"with the key"| L
+  L -->|"no"| B
+  L -->|"yes"| P
+  B --> D
+  D --> Z
+  B -.->|"timeout"| X
+  X -.->|"retry"| Y
+  F -.-> L
+  Q -.->|"pins"| L
+
+  subgraph SCHEDULER["Lives with the scheduler, not the agent"]
+    L
+    B
+    P
+    D
+    F
+  end
+
+%% step 1: M Y B D
+%% step 2: X Z
+%% step 3: I
+%% step 4: L P SCHEDULER
+%% retire 4: M-Y Y-B Z
+%% step 5: F
+%% step 6: Q

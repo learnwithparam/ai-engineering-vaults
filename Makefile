@@ -101,8 +101,8 @@ test-live: ## Execute every notebook against the real API. Costs money
 record: ## Refresh fixtures from the real API, budget guarded
 	@$(PY) scripts/record.py
 
-diagrams: ## Render every .mmd to SVG and refresh the hash manifest
-	@$(PY) scripts/render_diagrams.py
+diagrams: ## Render every .mmd to SVG and refresh the manifest. VAULT=01 renders one vault
+	@$(PY) scripts/render_diagrams.py $(VAULT)
 
 # ============================================================================
 # Cleanup

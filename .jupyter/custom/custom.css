@@ -177,6 +177,14 @@ body[data-jp-theme-name="JupyterLab Dark"] {
 /* Diagrams are transparent SVGs, so they need breathing room, not a card. */
 .jp-RenderedHTMLCommon img { display: block; margin: 1.4em auto; max-width: 100%; }
 
+/* A step frame is the lesson, so it may leave the 78ch prose measure. It takes
+   its natural width from the SVG, capped where check-diagrams caps a frame. */
+.jp-RenderedHTMLCommon img[src*="-step-"] {
+  max-width: min(1200px, calc(100vw - 460px));
+  max-height: 80vh;
+  margin-left: 0;
+}
+
 /* --------------------------------------------------------------------------
    The callout markers. These carry the teaching rhythm, so they get to look
    like something rather than reading as another paragraph.

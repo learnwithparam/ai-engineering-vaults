@@ -1,18 +1,32 @@
-graph LR
-  U["Agent asks<br/>refund case CB-8842"]:::input
-  M["Model<br/>returns 3 refund calls<br/>as data"]:::model
+graph TD
+  U["Case CB-8842<br/>refund 47500 cents"]:::input
+  M["Model<br/>the prompt says<br/>never above 20000"]:::model
+  T["tool_calls<br/>a list of 3 refunds"]:::input
+  X["Payment API<br/>money leaves"]:::output
+  B["47500 cents paid<br/>every piece under 20000"]:::risk
   P["Parse<br/>arguments are a string"]:::decision
   G{"Running total<br/>within the case limit?"}:::decision
-  X["Payment API<br/>money leaves"]:::output
-  R["Refused<br/>and written down"]:::risk
+  R["Refused<br/>and written down"]:::store
+  Q["Gate test<br/>a split refund<br/>cannot pass"]:::decision
 
-  U --> M
-  M -->|"tool_calls, a list"| P
-  P --> G
+  U --> M --> T
+  T -->|"run every call"| X
+  X --> B
+  T --> P --> G
   G -->|"yes"| X
   G -->|"no"| R
+  Q -.->|"pins"| G
 
   subgraph HARNESS["Your code. The only thing that can execute."]
     P
     G
+    R
   end
+
+%% step 1: U M T X
+%% step 2: B
+%% step 3: M T
+%% step 4: P G HARNESS
+%% retire 4: T-X B
+%% step 5: R
+%% step 6: Q

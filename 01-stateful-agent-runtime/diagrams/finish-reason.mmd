@@ -1,14 +1,29 @@
 graph TD
-  R["Response arrives"]:::input
+  R["Response arrives<br/>text plus finish_reason"]:::input
+  J["try json.loads<br/>except: return no stops"]:::decision
+  E["0 stops planned<br/>nothing raised"]:::risk
   F{"finish_reason?"}:::decision
-  S["stop<br/>use the answer"]:::output
-  T["tool_calls<br/>execute, append, loop"]:::model
-  L["length<br/>REFUSE<br/>the answer is incomplete"]:::risk
-  C["content_filter<br/>REFUSE<br/>a retry will not help"]:::risk
-  P["Parse the content"]:::store
+  S["stop<br/>strip the fence, parse"]:::output
+  L["length<br/>raise Truncated"]:::risk
+  C["content_filter<br/>raise, never retry"]:::risk
+  A["ask_until_complete<br/>grow the budget"]:::model
+  W["Pit wall<br/>gets the plan"]:::output
+  Q["Gate test<br/>length never<br/>reaches the parser"]:::decision
 
+  R --> J --> W
+  J --> E
   R --> F
-  F -->|stop| S --> P
-  F -->|tool_calls| T
-  F -->|length| L
-  F -->|content_filter| C
+  F -->|"stop"| S --> W
+  F -->|"length"| L
+  F -->|"content_filter"| C
+  L -.->|"only this state retries"| A
+  A -.-> R
+  Q -.->|"pins"| L
+
+%% step 1: R J W
+%% step 2: E
+%% step 3: F
+%% step 4: S L C
+%% retire 4: J E
+%% step 5: A
+%% step 6: Q

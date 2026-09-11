@@ -15,16 +15,15 @@ CONFIG = ROOT / "config"
 DOCS = ROOT / "docs"
 BUILD = ROOT / "build"
 
-BEATS = [
-    ("mechanics", "## Mechanics"),
-    ("picture", "## The picture"),
-    ("cost", "## The cost"),
-    ("failure", "## The failure"),
-    ("diagnosis", "## The diagnosis"),
-    ("fix", "## The fix"),
-    ("gate", "## The gate"),
-]
+# A beat is a role, found by the cell tag beat:<name>. The heading is the
+# reader's, so it can say what the section teaches. See decision 008.
+BEATS = ["mechanics", "cost", "failure", "diagnosis", "fix", "gate"]
 OPTIONAL_BEATS = {"cost"}
+HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*$", re.MULTILINE)
+
+# A derivation frame: its own markdown cell, a heading, one picture, a short caption.
+STEP = re.compile(r"^### Step (\d+): (.+)$", re.MULTILINE)
+IMAGE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
 
 
 class Notebook:
@@ -74,17 +73,44 @@ class Notebook:
         return [c.get("cell_type", "") for c in self.cells]
 
     def beats_present(self) -> dict[str, int]:
-        """Beat name to the index of the markdown cell that opens it."""
+        """Beat name to the index of the markdown cell tagged as opening it."""
         found = {}
         for index, cell in enumerate(self.cells):
             if cell.get("cell_type") != "markdown":
                 continue
-            text = self._source(cell)
-            for name, heading in BEATS:
-                if name not in found and re.search(rf"^{re.escape(heading)}\s*$",
-                                                   text, re.MULTILINE):
+            for tag in cell.get("metadata", {}).get("tags", []):
+                name = tag.removeprefix("beat:")
+                if tag.startswith("beat:") and name in BEATS and name not in found:
                     found[name] = index
         return found
+
+    def source_of(self, index: int) -> str:
+        return self._source(self.cells[index])
+
+    def headings(self) -> list[tuple[int, int, str]]:
+        """Every heading as (cell index, level, text), in reading order."""
+        out = []
+        for index, cell in enumerate(self.cells):
+            if cell.get("cell_type") == "markdown":
+                for hashes, text in HEADING.findall(self._source(cell)):
+                    out.append((index, len(hashes), text))
+        return out
+
+    def steps(self) -> list[dict]:
+        """Every step cell, in order, with what the scorer needs to judge it."""
+        out = []
+        for index, cell in enumerate(self.cells):
+            if cell.get("cell_type") != "markdown":
+                continue
+            text = self._source(cell)
+            match = STEP.search(text)
+            if not match:
+                continue
+            caption = strip_code_and_media(text[match.end():])
+            out.append({"cell": index, "number": int(match.group(1)),
+                        "title": match.group(2).strip(), "images": IMAGE.findall(text),
+                        "caption_words": len(words(caption))})
+        return out
 
 
 def all_notebooks() -> list[Notebook]:
@@ -129,6 +155,44 @@ def strip_code_and_media(markdown: str) -> str:
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"^\s*\|.*\|\s*$", " ", text, flags=re.MULTILINE)
     return text
+
+
+LIST_ITEM = re.compile(r"^\s*(?:[-*]|\d+\.)\s+")
+
+
+def prose_blocks(markdown: str) -> list[tuple[bool, list[str]]]:
+    """Paragraphs and list items as (is_list_item, sentences), headings dropped.
+
+    A list item is its own block, so a bullet with no full stop never merges
+    into the next one, and a label list is never read as a run of fragments.
+    """
+    text = re.sub(r"\$\$.*?\$\$", " ", markdown, flags=re.DOTALL)
+    text = strip_code_and_media(re.sub(r"\$[^$\n]+\$", " x ", text))
+    blocks: list[tuple[bool, str]] = []
+    joining = False
+    for line in text.splitlines():
+        s = line.strip()
+        if not s or HEADING.match(s) or s == "---":
+            joining = False
+            continue
+        if LIST_ITEM.match(line):
+            blocks.append((True, LIST_ITEM.sub("", line).strip()))
+            joining = True
+        elif joining:
+            blocks[-1] = (blocks[-1][0], blocks[-1][1] + " " + s)
+        else:
+            blocks.append((False, s))
+            joining = True
+    out = []
+    for is_item, body in blocks:
+        parts = [p.strip() for p in re.split(r"(?<=[.!?])\s+", body.rstrip(":")) if words(p)]
+        if parts:
+            out.append((is_item, parts))
+    return out
+
+
+def flow_sentences(markdown: str) -> list[str]:
+    return [s for _, parts in prose_blocks(markdown) for s in parts]
 
 
 def sentences(text: str) -> list[str]:
