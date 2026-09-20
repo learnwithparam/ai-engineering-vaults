@@ -37,14 +37,18 @@ fatigue, and the author should be able to read it aloud on a screencast without 
 |---|---|
 | Headings and step titles | at least 4 words, saying what the step builds. Never a label from `vague_headings` |
 | First sentence of each step | at least 8 words, saying what we do and why |
-| Mean sentence length | 12 to 22 words |
-| Sentences under 6 words | at most 15%, and never two in a row in a paragraph |
+| Sentence length | at most 28 words, and a mean of at most 22 |
+| Paragraph length | at most 4 sentences |
+| Sentences under 6 words | never two in a row in a paragraph |
+| Money in prose | at most two decimal places and three significant digits, so `$0.0000479` fails and "about 5 cents" passes |
 | Words over three syllables | at most 15% |
 | `words` and `teaching_words` in `config/banned.yml` | none |
 | Em dashes | none |
-| Terms in `config/glossary.yml` | explained in the sentence that first uses them |
+| Terms in `config/glossary.yml` | explained in the sentence that first uses them or the one after |
 
-There is no word cap. Say what the step needs, in full sentences, and stop.
+The two ceilings come from `house-rules.md` Rule 11 and are copied into `config/banned.yml` by
+`house_rules.py --vendor`; `check-prose` fails when the copy drifts. There is no floor and no target
+average, and no cap on the words in a notebook. Say what the step needs, in full sentences, and stop.
 
 ## Code
 

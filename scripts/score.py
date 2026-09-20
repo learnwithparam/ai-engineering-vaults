@@ -160,7 +160,7 @@ def check_reading(n: nb.Notebook, glossary: dict, banned: dict) -> list[Finding]
             opening = sents[0] if sents else ""
             add(f"markdown cell {s['cell']}", f"step {s['number']} opens with a fragment: {opening[:50]!r}",
                 f"open with a full sentence of at least {MIN_OPENING_WORDS} words on what we do and why")
-    return out + _flow(n, glossary, banned)
+    return out + _flow(n, glossary, banned) + _speakable(n, banned)
 
 
 def _flow(n: nb.Notebook, glossary: dict, banned: dict) -> list[Finding]:
@@ -204,6 +204,39 @@ def _flow(n: nb.Notebook, glossary: dict, banned: dict) -> list[Finding]:
             if not any(a in window for a in anchors):
                 add("prose", f"{term!r} is used before it is explained: {sents[at][:60]!r}",
                     f"define it in that sentence or the next: {definition}")
+    return out
+
+
+MONEY = re.compile(r"\$(\d[\d,]*)(?:\.(\d+))?")
+
+
+def _hard_to_say(whole: str, decimals: str | None) -> bool:
+    """More than two decimal places, or more than three significant digits once trailing zeros go."""
+    digits = (whole.replace(",", "") + (decimals or "")).lstrip("0").rstrip("0")
+    return len(decimals or "") > 2 or len(digits) > 3
+
+
+def _speakable(n: nb.Notebook, banned: dict) -> list[Finding]:
+    """The ceilings from house-rules.md, and money a person can say aloud, cell by cell.
+
+    The exact figure stays in the cell output; prose says it at a scale that can be heard.
+    """
+    out: list[Finding] = []
+    add = lambda cell, problem, fix: out.append(Finding(n.rel, "reading", cell, problem, fix))
+    for i, text in enumerate(n.markdown_cells):
+        cell = f"markdown cell {i}"
+        for is_item, parts in nb.prose_blocks(text):
+            for s in parts:
+                if len(nb.words(s)) > banned["max_words"]:
+                    add(cell, f"a sentence has {len(nb.words(s))} words, the ceiling is {banned['max_words']}: {s[:50]!r}",
+                        "split it, one idea to a sentence")
+            if not is_item and len(parts) > banned["max_sentences"]:
+                add(cell, f"a paragraph has {len(parts)} sentences, the ceiling is {banned['max_sentences']}: {parts[0][:50]!r}",
+                    "start a new paragraph at the next idea")
+        for whole, decimals in MONEY.findall(nb.strip_code_and_media(text)):
+            if _hard_to_say(whole, decimals):
+                add(cell, f"the figure ${whole}{'.' + decimals if decimals else ''} cannot be said aloud",
+                    "round it in prose, like 'about 5 cents', and leave the exact figure in the cell output")
     return out
 
 

@@ -30,9 +30,20 @@ watching you build it.
 - **Open each step with what we are doing and why,** in one or two full sentences. Then the code.
 - **Every sentence carries a whole thought.** "In the prompt. Ask six times and count." is two
   fragments. Say it as one sentence with a subject and a verb.
-- **Use the plain technical word.** Write "the call timed out", not "the timeout is honest". Define
-  a term in the sentence that first uses it, and bold it there.
+- **Use the plain technical word.** Write "the call timed out", not "the timeout is honest".
+- **Introduce a term by contrast.** Show the problem first, then bold the term and define it in that
+  sentence or the next. "Asking for a shape in words is only a request. **tool_choice** names the one
+  tool the model may answer through." A definition pasted into the middle of a sentence pushes the
+  verb away from its object.
+- **Hand over between steps by repeating the noun.** A step opens on the noun the last step ended on,
+  not on "however" or "next".
+- **Say money at a scale a person can hear.** The cell output keeps the exact figure. The prose says
+  "about 5 cents a claim" or "about $87 a night", never `$0.0000479`.
 - **Show the numbers.** When a step fixes something, print the result before and after.
+
+`~/.claude/skills/lwp-shared/voice.md` and `house-rules.md` are the language standard. Their
+ceilings are 28 words to a sentence and 4 sentences to a paragraph, and nothing else: no floor, no
+target average. Check with `python3 ~/.claude/skills/lwp-shared/scripts/house_rules.py --voice`.
 
 ## How to name code
 

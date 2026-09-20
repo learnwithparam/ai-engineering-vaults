@@ -1,10 +1,14 @@
 # What must never appear in prose.
 #
-# words, phrases: the house rules AI slop lists, copied by
-#   `house_rules.py --vendor`. scripts/check_prose.py fails when they drift.
+# words, phrases, max_words, max_sentences: the house rules AI slop lists and Rule 11
+#   ceilings, copied by `house_rules.py --vendor`. scripts/check_prose.py fails when
+#   they drift. score.py enforces the two ceilings on every notebook.
 # provider_constants: another provider's numbers. The source this course was
 #   built from teaches Anthropic's figures, and this repo runs on OpenRouter.
 #   Every number in a lesson must be printed from a live response instead.
+
+max_words: 28
+max_sentences: 4
 
 words:
   - delve

@@ -30,7 +30,7 @@ KEY_SHAPES = [
 
 
 def rules_stale(banned: dict) -> list[str]:
-    """`words` and `phrases` in banned.yml are a copy of the house rules. Where the rules live, prove it.
+    """The lists and ceilings in banned.yml are a copy of the house rules. Where the rules live, prove it.
 
     CI has no home directory, so this passes there: drift is caught on a developer machine only.
     """
@@ -39,8 +39,8 @@ def rules_stale(banned: dict) -> list[str]:
         return []
     current = json.loads(subprocess.run(
         [sys.executable, str(HOUSE_RULES), "--vendor"], capture_output=True, text=True, check=True).stdout)
-    return [f"config/banned.yml {key} are out of date: regenerate them with house_rules.py --vendor"
-            for key in ("words", "phrases") if banned[key] != current[key]]
+    return [f"config/banned.yml {key} is out of date: regenerate them with house_rules.py --vendor"
+            for key in ("words", "phrases", "max_words", "max_sentences") if banned[key] != current[key]]
 
 
 def scan_secrets(notebooks: list[nb.Notebook]) -> list[str]:

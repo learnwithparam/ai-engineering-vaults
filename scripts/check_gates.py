@@ -189,6 +189,52 @@ def glossary_window_bites() -> str:
     return ""
 
 
+def speakable_bites() -> str:
+    """The ceilings sit exactly at 28 words and 4 sentences, and money is judged by how it sounds."""
+    import types
+    import score
+    banned = {"max_words": 28, "max_sentences": 4}
+
+    def found(text: str, needle: str) -> bool:
+        stub = types.SimpleNamespace(rel="stub", markdown_cells=[text])
+        return any(needle in f.problem for f in score._speakable(stub, banned))
+
+    sentence = lambda n: " ".join(["word"] * (n - 1)) + " end."
+    paragraph = lambda n: " ".join(["The run stops."] * n)
+    cases = [
+        (sentence(29), "the ceiling is 28", True), (sentence(28), "the ceiling is 28", False),
+        (paragraph(5), "the ceiling is 4", True), (paragraph(4), "the ceiling is 4", False),
+        ("It cost $0.0000479 a claim.", "cannot be said aloud", True),
+        ("It cost $1,234,567 a night.", "cannot be said aloud", True),
+        ("It cost $4.32 a night, or $86.50 a month, or $1,250 a year.", "cannot be said aloud", False),
+    ]
+    for text, needle, expected in cases:
+        if found(text, needle) != expected:
+            return f"speakable: {text[:40]!r} {'was accepted' if expected else 'was rejected'}"
+    print("  speakable  bit as expected (a 29-word sentence, a 5-sentence paragraph, $0.0000479)")
+    return ""
+
+
+def ceiling_drift_bites() -> str:
+    """Edit a ceiling out of step with house-rules.md, confirm check-prose notices, put it back."""
+    if not (pathlib.Path.home() / ".claude/skills/lwp-shared/scripts/house_rules.py").exists():
+        print("  ceilings   not compared with the house rules, none on this machine")
+        return ""
+    banned = CONFIG / "banned.yml"
+    original = banned.read_text()
+    banned.write_text(original.replace("max_words: 28", "max_words: 40"))
+    try:
+        rc, output = run_gate("check_prose.py")
+    finally:
+        banned.write_text(original)
+    if rc == 0 or "max_words is out of date" not in output:
+        return "ceilings: check-prose did NOT notice max_words edited out of step with the house rules"
+    print("  ceilings   bit as expected (max_words edited out of step with house-rules.md)")
+    if run_gate("check_prose.py")[0] != 0:
+        return "ceilings: check-prose still failing after banned.yml was restored"
+    return ""
+
+
 def theme_gate_bites() -> str:
     """Hide one theme file, confirm check-theme notices, put it back."""
     css = ROOT / ".jupyter" / "custom" / "custom.css"
@@ -216,9 +262,9 @@ def main() -> int:
         print(f"  cannot self test: these already fail before planting: {dirty}")
         return 1
 
-    # These two plant at the root and in docs/, so they run before the broken
+    # These three plant at the root, in docs/ and in config/, so they run before the broken
     # vault exists. Their restore check cannot pass while it does.
-    failures = [p for p in (root_inventory_bites(), path_truth_bites()) if p]
+    failures = [p for p in (root_inventory_bites(), path_truth_bites(), ceiling_drift_bites()) if p]
 
     plant_broken()
     outputs = {}
@@ -239,7 +285,7 @@ def main() -> int:
                 print(f"  {'rule':10} bit as expected ({why})")
             else:
                 failures.append(f"rule: {script} did NOT name {why}")
-        for problem in (theme_gate_bites(), glossary_window_bites()):
+        for problem in (theme_gate_bites(), glossary_window_bites(), speakable_bites()):
             if problem:
                 failures.append(problem)
     finally:
@@ -255,7 +301,7 @@ def main() -> int:
 
     for line in failures:
         print(f"  {line}")
-    tested = len(EXPECTED) + len(RULES) + 4
+    tested = len(EXPECTED) + len(RULES) + 6
     print(f"check-gates: {tested} gates tested, {len(failures)} problems")
     return 1 if failures else 0
 
