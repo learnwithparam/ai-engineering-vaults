@@ -19,10 +19,9 @@ from nbcommon import CONFIG, BUILD
 MAX_CODE_LINES = 25
 MIN_STEPS, MIN_FRAMES = 4, 3
 MIN_TITLE_WORDS, MIN_HEADING_WORDS, MIN_OPENING_WORDS = 4, 4, 8
-# Measured in decision 008: the writing the user asked for averages 14.6 words a
-# sentence with 14% under six words; the writing they rejected, about 9 and 22%.
-MIN_MEAN_SENTENCE, MAX_MEAN_SENTENCE = 12, 22
-SHORT_SENTENCE, MAX_SHORT_SHARE = 6, 0.15
+# Ceilings only (decision 010): a floor or a target average made the text robotic.
+MAX_MEAN_SENTENCE = 22
+SHORT_SENTENCE = 6
 MAX_LONG_WORD_SHARE = 0.15
 CLOSING = "Concepts"
 OVERVIEW = "What you will build"
@@ -173,16 +172,9 @@ def _flow(n: nb.Notebook, glossary: dict, banned: dict) -> list[Finding]:
     lens = [len(nb.words(s)) for s in sents]
     if lens:
         mean = sum(lens) / len(lens)
-        short = [s for s, l in zip(sents, lens) if l < SHORT_SENTENCE]
-        if mean < MIN_MEAN_SENTENCE:
-            add("prose", f"mean sentence length is {mean:.1f} words, the floor is {MIN_MEAN_SENTENCE}",
-                "join clipped sentences into ones that carry a whole thought")
         if mean > MAX_MEAN_SENTENCE:
             add("prose", f"mean sentence length is {mean:.1f} words, the ceiling is {MAX_MEAN_SENTENCE}",
                 f"split the longest, starting with {max(sents, key=lambda s: len(nb.words(s)))[:60]!r}")
-        if len(short) / len(lens) > MAX_SHORT_SHARE:
-            add("prose", f"{len(short) / len(lens):.0%} of sentences are under {SHORT_SENTENCE} words, "
-                f"limit is {MAX_SHORT_SHARE:.0%}", f"rewrite fragments such as {short[0]!r}")
     for is_item, parts in blocks:
         pairs = [(a, b) for a, b in zip(parts, parts[1:])
                  if max(len(nb.words(a)), len(nb.words(b))) < SHORT_SENTENCE]
@@ -201,13 +193,17 @@ def _flow(n: nb.Notebook, glossary: dict, banned: dict) -> list[Finding]:
     if any("—" in t or "–" in t for t in n.markdown_cells):
         add("prose", "an em dash or en dash", "restructure the sentence, do not swap in a hyphen")
 
+    # The definition may sit in the sentence that first uses the term or the one right after it,
+    # so the reader can meet the problem before the term (voice.md: introduce a term by contrast).
     for term, definition in glossary.items():
         pattern = re.compile(rf"\b{re.escape(term.lower())}\b")
-        first_use = next((s for s in sents if pattern.search(s.lower())), None)
+        at = next((i for i, s in enumerate(sents) if pattern.search(s.lower())), None)
         anchors = [w for w in nb.words(definition.lower()) if len(w) > 4][:3]
-        if first_use and anchors and not any(a in first_use.lower() for a in anchors):
-            add("prose", f"{term!r} is used before it is explained: {first_use[:60]!r}",
-                f"define it in that sentence: {definition}")
+        if at is not None and anchors:
+            window = " ".join(sents[at:at + 2]).lower()
+            if not any(a in window for a in anchors):
+                add("prose", f"{term!r} is used before it is explained: {sents[at][:60]!r}",
+                    f"define it in that sentence or the next: {definition}")
     return out
 
 

@@ -123,8 +123,6 @@ RULES = [
     ("score.py", "no closing '## Concepts' table", "no concepts table"),
     ("score.py", "step frames after Step 0", "a course shown in one frame"),
     ("score.py", "opens with a fragment", "a step opening on a fragment"),
-    ("score.py", "the floor is 12", "clipped sentences"),
-    ("score.py", "sentences are under 6 words", "too many fragments"),
     ("score.py", "two fragments in a row", "staccato writing"),
     ("score.py", "unclear word 'pin it'", "an invented metaphor"),
     ("score.py", "is used before it is explained", "a term used before its definition"),
@@ -167,6 +165,27 @@ def path_truth_bites() -> str:
     print("  paths      bit as expected (a doc naming a path that does not exist)")
     if run_gate("check_paths.py")[0] != 0:
         return "path truth: still failing after the planted doc was removed"
+    return ""
+
+
+def glossary_window_bites() -> str:
+    """A term may be defined in its first-use sentence or the next one, and no later."""
+    import types
+    import score
+    glossary = {"finish_reason": "the field on a response that says why the model stopped"}
+    next_sentence = "The field on a response says why the model stopped."
+    filler = "The loop reads it before it trusts the reply."
+
+    def findings(*sentences: str) -> list:
+        stub = types.SimpleNamespace(rel="stub", prose=" ".join(sentences), markdown_cells=[])
+        return [f for f in score._flow(stub, glossary, {}) if "before it is explained" in f.problem]
+
+    if findings("Read the finish_reason first, before anything else.", next_sentence):
+        return "glossary: a definition in the next sentence was rejected"
+    if not findings("Read the finish_reason first, before anything else.", filler, next_sentence):
+        return "glossary: a definition two sentences later was accepted"
+    if not findings("A cut-off reply is refused by finish_reason.", filler, filler):
+        return "glossary: a term with no definition was accepted"
     return ""
 
 
@@ -220,13 +239,14 @@ def main() -> int:
                 print(f"  {'rule':10} bit as expected ({why})")
             else:
                 failures.append(f"rule: {script} did NOT name {why}")
-        problem = theme_gate_bites()
-        if problem:
-            failures.append(problem)
+        for problem in (theme_gate_bites(), glossary_window_bites()):
+            if problem:
+                failures.append(problem)
+    finally:
+        # Restore even when a check above raises, or the planted promise stays in the syllabus.
         backup = PLANT / "syllabus.backup"
         if backup.is_file():
             (CONFIG / "syllabus.yml").write_text(backup.read_text())
-    finally:
         shutil.rmtree(PLANT)
 
     restored = [n for n, _, _ in EXPECTED if run_gate(n)[0] != 0]
@@ -235,7 +255,7 @@ def main() -> int:
 
     for line in failures:
         print(f"  {line}")
-    tested = len(EXPECTED) + len(RULES) + 3
+    tested = len(EXPECTED) + len(RULES) + 4
     print(f"check-gates: {tested} gates tested, {len(failures)} problems")
     return 1 if failures else 0
 
