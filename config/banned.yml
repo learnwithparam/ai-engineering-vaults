@@ -1,6 +1,7 @@
 # What must never appear in prose.
 #
-# words: the house rules AI slop list.
+# words, phrases: the house rules AI slop lists, copied by
+#   `house_rules.py --vendor`. scripts/check_prose.py fails when they drift.
 # provider_constants: another provider's numbers. The source this course was
 #   built from teaches Anthropic's figures, and this repo runs on OpenRouter.
 #   Every number in a lesson must be printed from a live response instead.
@@ -83,6 +84,7 @@ teaching_words:
   - the lesson
 
 phrases:
+  - "as an ai"
   - "let's dive in"
   - "in today's world"
   - "buckle up"
@@ -90,12 +92,18 @@ phrases:
   - "the reality is"
   - "it's worth noting"
   - "it's important to note"
+  - "it should be noted"
   - "at its core"
+  - "in the ever-evolving"
   - "without further ado"
   - "in this comprehensive guide"
   - "a testament to"
+  - "navigate the complexities"
   - "stands out as"
-  - "whether you're a beginner"
+  - "serves as a"
+  - "whether you're a beginner or an experienced"
+  - "in today's rapidly evolving"
+  - "in today's fast-paced"
 
 provider_constants:
   - "1,024 tokens"

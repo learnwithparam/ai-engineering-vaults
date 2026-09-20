@@ -6,8 +6,10 @@ real leak path, not a theoretical one.
 """
 from __future__ import annotations
 
+import json
 import pathlib
 import re
+import subprocess
 import sys
 
 import yaml
@@ -16,6 +18,8 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import nbcommon as nb
 from nbcommon import ROOT, CONFIG
 
+HOUSE_RULES = pathlib.Path.home() / ".claude/skills/lwp-shared/scripts/house_rules.py"
+
 KEY_SHAPES = [
     (re.compile(r"sk-or-v1-[A-Za-z0-9]{20,}"), "OpenRouter key"),
     (re.compile(r"sk-ant-[A-Za-z0-9\-_]{20,}"), "Anthropic key"),
@@ -23,6 +27,20 @@ KEY_SHAPES = [
     (re.compile(r"\bAIza[0-9A-Za-z\-_]{30,}"), "Google API key"),
     (re.compile(r"ghp_[A-Za-z0-9]{30,}"), "GitHub token"),
 ]
+
+
+def rules_stale(banned: dict) -> list[str]:
+    """`words` and `phrases` in banned.yml are a copy of the house rules. Where the rules live, prove it.
+
+    CI has no home directory, so this passes there: drift is caught on a developer machine only.
+    """
+    if not HOUSE_RULES.exists():
+        print("check-prose: banned words not compared with the house rules, none on this machine")
+        return []
+    current = json.loads(subprocess.run(
+        [sys.executable, str(HOUSE_RULES), "--vendor"], capture_output=True, text=True, check=True).stdout)
+    return [f"config/banned.yml {key} are out of date: regenerate them with house_rules.py --vendor"
+            for key in ("words", "phrases") if banned[key] != current[key]]
 
 
 def scan_secrets(notebooks: list[nb.Notebook]) -> list[str]:
@@ -91,13 +109,14 @@ def main() -> int:
     secrets = scan_secrets(notebooks)
     prose = scan_prose(notebooks, banned)
     terms = scan_glossary(notebooks, glossary)
+    drift = rules_stale(banned)
 
     for line in secrets:
         print(f"  SECRET  {line}")
-    for line in prose + terms:
+    for line in prose + terms + drift:
         print(f"  {line}")
 
-    total = len(secrets) + len(prose) + len(terms)
+    total = len(secrets) + len(prose) + len(terms) + len(drift)
     print(f"check-prose: {len(notebooks)} notebooks, {total} problems"
           + (f", {len(secrets)} of them secrets" if secrets else ""))
     return 1 if total else 0
