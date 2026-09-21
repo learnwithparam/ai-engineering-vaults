@@ -60,6 +60,15 @@ def main() -> int:
                 f"tracker uses font {head!r} but custom.css never mentions it. "
                 f"The two must agree or the notebook and the chrome will not match")
 
+    # The step-frame width in custom.css is the box the renderer fits every SVG to.
+    box = json.loads((ROOT / "diagrams" / "theme.json").read_text())["frames"]["maxFrameWidth"]
+    rule = re.search(r'img\[src\*="-step-"\]\s*\{[^}]*max-width:\s*min\((\d+)px', css)
+    if not rule:
+        problems.append("custom.css has no max-width: min(<px>, ...) on the -step- image rule")
+    elif int(rule.group(1)) != box:
+        problems.append(f"custom.css caps a step frame at {rule.group(1)}px but theme.json "
+                        f"frames.maxFrameWidth is {box}. They are one number, change both")
+
     if settings.get(THEMES.name, {}).get("theme") != "JupyterLab Dark":
         problems.append("themes settings do not select JupyterLab Dark as the base")
 

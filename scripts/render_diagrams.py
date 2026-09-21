@@ -160,7 +160,8 @@ def frame_css(text: str, theme: dict, n: int) -> str:
 
 
 def _mmdc(source: str, name: str, theme: dict, out: pathlib.Path) -> None:
-    config = {"theme": theme["theme"], "themeVariables": theme["themeVariables"]}
+    config = {"theme": theme["theme"], "themeVariables": theme["themeVariables"],
+              "flowchart": theme["flowchart"]}
     with tempfile.TemporaryDirectory() as tmp:
         tmp_path = pathlib.Path(tmp)
         config_file = tmp_path / "config.json"
@@ -182,17 +183,26 @@ def _mmdc(source: str, name: str, theme: dict, out: pathlib.Path) -> None:
         )
     if result.returncode != 0:
         raise RuntimeError(f"{name}: mmdc failed\n{result.stderr[-800:]}")
-    _real_size(out)
+    _fit_to_box(out, theme)
 
 
-def _real_size(svg: pathlib.Path) -> None:
-    """Swap width="100%" for the viewBox size. Without it an <img> has no
-    natural width and shrinks to the prose column, which made labels 6px."""
+def fitted_size(w: float, h: float, box: dict) -> tuple[int, int]:
+    """The size a w by h diagram is written at: shrunk to fit the box, never enlarged."""
+    scale = min(1.0, box["maxFrameWidth"] / w, box["maxFrameHeight"] / h)
+    return round(w * scale), round(h * scale)
+
+
+def _fit_to_box(svg: pathlib.Path, theme: dict) -> None:
+    """Write the fitted size into the SVG, so no viewer needs a stylesheet to keep it on screen.
+    mmdc's inline max-width is the natural width, so it is rewritten too or it lets the image spread."""
     text = svg.read_text()
     match = re.search(r'viewBox="[-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)"', text)
-    if match:
-        w, h = (round(float(v)) for v in match.groups())
-        svg.write_text(text.replace('width="100%"', f'width="{w}" height="{h}"', 1))
+    if not match:
+        raise RuntimeError(f"{svg.name}: no viewBox, cannot fit it")
+    w, h = fitted_size(float(match.group(1)), float(match.group(2)), theme["frames"])
+    text = text.replace('width="100%"', f'width="{w}" height="{h}"', 1)
+    text = re.sub(r"max-width:\s*[\d.]+px", f"max-width: {w}px", text, count=1)
+    svg.write_text(text)
 
 
 def render(mmd: pathlib.Path, theme: dict) -> None:

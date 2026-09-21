@@ -177,11 +177,11 @@ body[data-jp-theme-name="JupyterLab Dark"] {
 /* Diagrams are transparent SVGs, so they need breathing room, not a card. */
 .jp-RenderedHTMLCommon img { display: block; margin: 1.4em auto; max-width: 100%; }
 
-/* A step frame is the lesson, so it may leave the 78ch prose measure. It takes
-   its natural width from the SVG, capped where check-diagrams caps a frame. */
+/* A step frame is the lesson, so it may leave the 78ch prose measure. The SVG carries
+   its own fitted size (render_diagrams.py), so this only lifts the width cap. The px value
+   is frames.maxFrameWidth in diagrams/theme.json, and check-theme fails if they differ. */
 .jp-RenderedHTMLCommon img[src*="-step-"] {
-  max-width: min(800px, calc(100vw - 460px));
-  max-height: 80vh;
+  max-width: min(900px, calc(100vw - 460px));
   margin-left: 0;
 }
 

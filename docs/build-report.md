@@ -32,7 +32,7 @@ findings. The estimate is advice, not a gate.
 | `score` | 13 course notebooks, no findings |
 | `check-structure` | 13 vaults, 0 problems |
 | `check-notebooks` | 14 notebooks, 0 problems |
-| `check-diagrams` | 35 sources, 96 SVG, 0 problems, every diagram inside 800 by 860 |
+| `check-diagrams` | 35 sources, 96 SVG, 0 problems, every diagram written inside 900 by 700 |
 | `check-prose` | 14 notebooks, 0 problems |
 | `check-fixtures` | 13 notebooks, 0 problems |
 | `check-coverage` | 63 promises across 13 vaults, all kept |

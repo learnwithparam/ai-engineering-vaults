@@ -32,16 +32,18 @@
     "classDef risk fill:#331517,stroke:#f87171,color:#E7E5E4",
     "classDef output fill:#33241A,stroke:#fdba74,color:#E7E5E4"
   ],
+  "flowchart": {"rankSpacing": 28, "nodeSpacing": 30, "padding": 10, "diagramPadding": 8},
   "frames": {
     "note": "How render_diagrams.py cuts a step series into frames. Colour always means role, weight always means time: a dashed ghost is not reached yet, a glow in the role's own colour is what this step added.",
     "ghostOpacity": 0.16,
     "ghostDash": "4 3",
     "nowStroke": "3px",
     "nowEdgeColour": "#E7E5E4",
-    "maxFrameWidth": 800,
-    "maxFrameHeight": 860,
-    "minLabelScale": 0.7,
-    "labelScaleReason": "At 1920 by 1080 the notebook's text column is about 800 px wide, measured on a screenshot, and a wider image is clipped by the cell, not scaled. So a diagram fits in 800 by 860 px, one screen. One that must shrink below 0.7 to fit takes its 16px labels under what survives video compression."
+    "maxFrameWidth": 900,
+    "maxFrameHeight": 700,
+    "baseLabelPx": 16,
+    "minLabelPx": 11,
+    "sizeReason": "The renderer writes each SVG at the size that fits this box, so the picture fits a laptop window in VS Code, GitHub and Colab, none of which load custom.css. Fit wins over label size. A frame that must shrink until its labels are under minLabelPx fails check-diagrams, and the fix is a shorter source or a cut node, never a bigger box."
   },
   "roleMeaning": {
     "input": "something arriving from outside, usually untrusted",

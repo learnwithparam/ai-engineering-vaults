@@ -24,9 +24,10 @@ has.
 | Frames | the design, grown one frame per step in the step that builds it | fewer than 3 frames after Step 0, or out of order |
 | Closing | `## Concepts`: a table of the concept, where it lives in the code, and what it does | missing |
 
-Every diagram in a course fits 800 by 860 pixels with its labels at 70% or more. At 1920 by 1080
-the notebook column is about 800 pixels wide, and it clips anything wider rather than scaling it.
-`check-diagrams` measures every SVG.
+Every SVG is written at the size that fits 900 by 700 pixels, so it fits a laptop window in VS
+Code, GitHub and Colab, which load no stylesheet. A frame whose labels would fall under 11px at that
+size fails. `check-diagrams` asserts the declared size and the label size of every SVG, and
+`check-theme` fails if `custom.css` and `diagrams/theme.json` give the box different widths.
 
 ## Writing
 

@@ -118,9 +118,10 @@ Every frame is the same render restyled, so nodes never move between frames. Ren
 The overview is its own small diagram of the problem, in `diagrams/<name>-overview.mmd` with no
 step directives. Draw the people and systems involved and what goes wrong, never the design.
 
-Every diagram must fit 800 by 860 pixels with labels at 70% or more. A long chain drawn top to
-bottom runs too tall, and drawn left to right it runs too wide. So merge nodes, or split the design
-into two series. `uv run python scripts/check_diagrams.py` measures every SVG.
+`make diagrams` shrinks every SVG to fit 900 by 700 pixels and never enlarges one. A long chain
+drawn top to bottom runs too tall, so it shrinks until its labels fall under 11px and the check
+fails. Merge nodes or split the design into two series. `uv run python scripts/check_diagrams.py`
+measures every SVG.
 
 ## Recording and finishing
 

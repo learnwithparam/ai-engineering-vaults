@@ -13,7 +13,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import nbcommon as nb
 from nbcommon import ROOT
-from render_diagrams import MANIFEST, digest, directive_problems, sources, svgs_for
+from render_diagrams import MANIFEST, digest, directive_problems, fitted_size, sources, svgs_for
 
 
 def main() -> int:
@@ -43,21 +43,31 @@ def main() -> int:
                 f"{svg.relative_to(ROOT)}: the edge label stylesheet is missing. "
                 f"mermaid-cli dropped it. Re-render with make diagrams")
 
-    # A diagram shrinks to fit one screen. Shrunk too far, its labels are lost on
-    # video, and wider than the column it is clipped.
+    # The renderer writes every SVG at the size that fits the box, because VS Code and
+    # GitHub load no stylesheet. So the declared size is asserted, and the labels it leaves.
     box = theme["frames"]
     for svg in sorted(produced):
         if not svg.is_file():
             continue
-        match = re.search(r"viewBox=[\"'][-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)", svg.read_text())
+        text = svg.read_text()
+        match = re.search(r"viewBox=[\"'][-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)", text)
         if not match:
             continue
+        rel = svg.relative_to(ROOT)
         w, h = float(match.group(1)), float(match.group(2))
-        scale = min(1.0, box["maxFrameWidth"] / w, box["maxFrameHeight"] / h)
-        if scale < box["minLabelScale"]:
-            problems.append(
-                f"{svg.relative_to(ROOT)}: {w:.0f} by {h:.0f} shrinks labels to {scale:.0%}, "
-                f"unreadable on video. Change the layout direction, or cut a node")
+        fit_w, fit_h = fitted_size(w, h, box)
+        declared = re.search(r'<svg[^>]* width="([\d.]+)" height="([\d.]+)"', text)
+        spread = re.search(r"<svg[^>]* style=\"[^\"]*max-width:\s*([\d.]+)px", text)
+        if not declared or (float(declared.group(1)), float(declared.group(2))) != (fit_w, fit_h):
+            problems.append(f"{rel}: not written at {fit_w} by {fit_h}, so it can overflow the window. "
+                            f"Run: make diagrams")
+        elif spread and float(spread.group(1)) != fit_w:
+            problems.append(f"{rel}: inline max-width {spread.group(1)}px lets it spread past {fit_w}. "
+                            f"Run: make diagrams")
+        label_px = box["baseLabelPx"] * fit_w / w
+        if label_px < box["minLabelPx"]:
+            problems.append(f"{rel}: {w:.0f} by {h:.0f} fits the box only at {label_px:.1f}px labels, "
+                            f"under {box['minLabelPx']}. Cut a node or shorten the chain")
 
     for stale in sorted(set(manifest) - {m.relative_to(ROOT).as_posix() for m in mmds}):
         problems.append(f"{stale}: in the manifest but the source is gone. Run: make diagrams")

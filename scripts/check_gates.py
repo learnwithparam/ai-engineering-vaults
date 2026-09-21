@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
@@ -128,7 +129,8 @@ RULES = [
     ("score.py", "is used before it is explained", "a term used before its definition"),
     ("check_diagrams.py", "'Z', which is not in the graph", "a step naming a missing node"),
     ("check_diagrams.py", "no source renders it", "an SVG no source renders"),
-    ("check_diagrams.py", "unreadable on video", "a frame too wide to read"),
+    ("check_diagrams.py", "fits the box only at", "a frame too tall to keep readable labels"),
+    ("check_diagrams.py", "not written at", "an SVG whose declared size is not the fitted size"),
 ]
 
 
@@ -235,6 +237,43 @@ def ceiling_drift_bites() -> str:
     return ""
 
 
+def frame_size_bites() -> str:
+    """Put one real frame back at its natural size, confirm check-diagrams notices, restore it."""
+    frame = ROOT / "01-stateful-agent-runtime" / "images" / "agent-loop-step-1.svg"
+    original = frame.read_text()
+    natural = re.search(r'viewBox="[-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)"', original)
+    fitted = re.search(r'<svg[^>]* width="(\d+)" height="(\d+)"', original)
+    frame.write_text(original.replace(f'width="{fitted[1]}" height="{fitted[2]}"',
+                                      f'width="{round(float(natural[1]))}" height="{round(float(natural[2]))}"', 1))
+    try:
+        rc, output = run_gate("check_diagrams.py")
+    finally:
+        frame.write_text(original)
+    if rc == 0 or "not written at" not in output:
+        return "frame size: check-diagrams did NOT notice a frame written at its natural size"
+    print("  frame size bit as expected (a real frame put back at its natural size)")
+    if run_gate("check_diagrams.py")[0] != 0:
+        return "frame size: check-diagrams still failing after the frame was restored"
+    return ""
+
+
+def css_box_bites() -> str:
+    """Edit the step-frame cap in custom.css out of step with theme.json, confirm check-theme notices."""
+    css = ROOT / ".jupyter" / "custom" / "custom.css"
+    original = css.read_text()
+    css.write_text(original.replace("max-width: min(900px", "max-width: min(800px", 1))
+    try:
+        rc, output = run_gate("check_theme.py")
+    finally:
+        css.write_text(original)
+    if rc == 0 or "frames.maxFrameWidth" not in output:
+        return "css box: check-theme did NOT notice custom.css out of step with theme.json"
+    print("  css box    bit as expected (custom.css cap edited out of step with theme.json)")
+    if run_gate("check_theme.py")[0] != 0:
+        return "css box: check-theme still failing after custom.css was restored"
+    return ""
+
+
 def theme_gate_bites() -> str:
     """Hide one theme file, confirm check-theme notices, put it back."""
     css = ROOT / ".jupyter" / "custom" / "custom.css"
@@ -262,9 +301,10 @@ def main() -> int:
         print(f"  cannot self test: these already fail before planting: {dirty}")
         return 1
 
-    # These three plant at the root, in docs/ and in config/, so they run before the broken
+    # These plant at the root, in docs/, in config/ and on a real frame, so they run before the broken
     # vault exists. Their restore check cannot pass while it does.
-    failures = [p for p in (root_inventory_bites(), path_truth_bites(), ceiling_drift_bites()) if p]
+    failures = [p for p in (root_inventory_bites(), path_truth_bites(), ceiling_drift_bites(),
+                                    frame_size_bites(), css_box_bites()) if p]
 
     plant_broken()
     outputs = {}
@@ -301,7 +341,7 @@ def main() -> int:
 
     for line in failures:
         print(f"  {line}")
-    tested = len(EXPECTED) + len(RULES) + 6
+    tested = len(EXPECTED) + len(RULES) + 8
     print(f"check-gates: {tested} gates tested, {len(failures)} problems")
     return 1 if failures else 0
 
