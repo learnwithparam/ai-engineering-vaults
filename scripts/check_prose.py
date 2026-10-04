@@ -18,7 +18,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import nbcommon as nb
 from nbcommon import ROOT, CONFIG
 
-HOUSE_RULES = pathlib.Path.home() / ".claude/skills/lwp-shared/scripts/house_rules.py"
+HOUSE_RULES = pathlib.Path(__file__).resolve().parent / "lwp/house_rules.py"
 
 KEY_SHAPES = [
     (re.compile(r"sk-or-v1-[A-Za-z0-9]{20,}"), "OpenRouter key"),
@@ -32,10 +32,10 @@ KEY_SHAPES = [
 def rules_stale(banned: dict) -> list[str]:
     """The lists and ceilings in banned.yml are a copy of the house rules. Where the rules live, prove it.
 
-    CI has no home directory, so this passes there: drift is caught on a developer machine only.
+    The house rules are vendored in scripts/lwp/, so this runs in CI too.
     """
     if not HOUSE_RULES.exists():
-        print("check-prose: banned words not compared with the house rules, none on this machine")
+        print("check-prose: banned words not compared with the house rules, scripts/lwp/ is missing")
         return []
     current = json.loads(subprocess.run(
         [sys.executable, str(HOUSE_RULES), "--vendor"], capture_output=True, text=True, check=True).stdout)

@@ -18,6 +18,8 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from nbcommon import ROOT, CONFIG, BUILD
 
+HOUSE_RULES = pathlib.Path(__file__).resolve().parent / "lwp/house_rules.py"
+
 PLANT = ROOT / "99-gate-selftest"
 SCRIPTS = ROOT / "scripts"
 
@@ -219,8 +221,8 @@ def speakable_bites() -> str:
 
 def ceiling_drift_bites() -> str:
     """Edit a ceiling out of step with house-rules.md, confirm check-prose notices, put it back."""
-    if not (pathlib.Path.home() / ".claude/skills/lwp-shared/scripts/house_rules.py").exists():
-        print("  ceilings   not compared with the house rules, none on this machine")
+    if not HOUSE_RULES.exists():
+        print("  ceilings   not compared with the house rules, scripts/lwp/ is missing")
         return ""
     banned = CONFIG / "banned.yml"
     original = banned.read_text()

@@ -24,7 +24,7 @@ SKIP_DIRS = {".git", ".venv", "node_modules", ".ipynb_checkpoints"}
 
 def markdown_files() -> list[pathlib.Path]:
     return sorted(p for p in ROOT.rglob("*.md")
-                  if not SKIP_DIRS & set(p.parts))
+                  if not SKIP_DIRS & set(p.parts) and not p.is_relative_to(ROOT / "scripts/lwp"))
 
 
 def ignored(rel: str) -> bool:
