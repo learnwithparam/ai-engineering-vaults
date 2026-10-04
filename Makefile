@@ -84,6 +84,7 @@ check-gates: ## Prove the gates bite, by planting a broken vault and removing it
 	@$(PY) scripts/check_gates.py
 
 check: check-structure check-notebooks check-diagrams check-prose check-paths check-fixtures check-theme check-coverage check-gates score ## Run every gate
+	@python3 scripts/lwp/check-quality.py
 	@echo "$(GREEN)All gates passed$(NC)"
 
 # ============================================================================

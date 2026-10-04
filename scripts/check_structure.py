@@ -17,6 +17,8 @@ ROOT_ALLOWED = {
     "AGENTS.md", "CLAUDE.md", "Makefile", "README.md",
     "build", "config", "diagrams", "docs", "scripts", "vault",
     "env.example", "provider-truth.json", "pyproject.toml", "uv.lock",
+    # Claude Code and the vendored check-quality only look for these at the root.
+    ".claude", "quality-baseline.json",
 }
 VAULT_DIR = re.compile(r"^\d\d-[a-z0-9-]+$")
 

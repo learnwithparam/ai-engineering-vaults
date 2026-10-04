@@ -22,9 +22,13 @@ SPAN = re.compile(r"`([^`\n]+)`")
 SKIP_DIRS = {".git", ".venv", "node_modules", ".ipynb_checkpoints"}
 
 
+# Vendored from lwp-claude-plugins: their paths name that repo, not this one.
+VENDORED = ("scripts/lwp", ".claude/rules")
+
+
 def markdown_files() -> list[pathlib.Path]:
     return sorted(p for p in ROOT.rglob("*.md")
-                  if not SKIP_DIRS & set(p.parts) and not p.is_relative_to(ROOT / "scripts/lwp"))
+                  if not SKIP_DIRS & set(p.parts) and not any(p.is_relative_to(ROOT / v) for v in VENDORED))
 
 
 def ignored(rel: str) -> bool:
