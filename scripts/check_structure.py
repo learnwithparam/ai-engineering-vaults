@@ -19,6 +19,8 @@ ROOT_ALLOWED = {
     "env.example", "provider-truth.json", "pyproject.toml", "uv.lock",
     # Claude Code and the vendored check-quality only look for these at the root.
     ".claude", "quality-baseline.json",
+    # The kit's push hook reads its gate from .agents/repo.json and runs from .githooks/pre-push.
+    ".agents", ".githooks",
 }
 VAULT_DIR = re.compile(r"^\d\d-[a-z0-9-]+$")
 

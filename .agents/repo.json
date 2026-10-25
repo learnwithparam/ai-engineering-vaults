@@ -1,0 +1,5 @@
+{
+  "name": "ai-engineering-vaults",
+  "gate": "make check",
+  "test": "make check"
+}
