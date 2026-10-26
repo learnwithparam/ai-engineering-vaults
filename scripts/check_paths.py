@@ -23,7 +23,7 @@ SKIP_DIRS = {".git", ".venv", "node_modules", ".ipynb_checkpoints"}
 
 
 # Vendored from lwp-claude-plugins: their paths name that repo, not this one.
-VENDORED = ("scripts/lwp", ".claude/rules")
+VENDORED = ("scripts/kaas", ".claude/rules")
 
 
 def markdown_files() -> list[pathlib.Path]:
