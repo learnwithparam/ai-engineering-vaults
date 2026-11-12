@@ -31,3 +31,6 @@ refund-ledger.json
 
 # JupyterLab per-user workspace state
 .jupyter/lab/workspaces/
+
+# Local gate stamp, rewritten on every gate run
+.claude/.gate-ran
