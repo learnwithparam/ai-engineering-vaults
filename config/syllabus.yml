@@ -84,3 +84,11 @@
   measure warm not cold: warm|cold
   latency shape: max\(|slowest|overlap
   batch lane: batch
+
+16:
+  valid time: valid.?time|valid_from|valid_to
+  close never delete: never delete|keeps? (the )?old|valid_to
+  as of lookup: as.of|on a given
+  half open range: half.open
+  overlap check: overlap
+  stale answers counted: stale_answers|stale
