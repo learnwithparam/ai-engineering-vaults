@@ -1,0 +1,21 @@
+graph LR
+  J["New fact<br/>arrives"]:::input
+  O{"Overlaps a<br/>stored fact?"}:::decision
+  X["Close the<br/>old fact"]:::store
+  K["Keep both<br/>rows"]:::store
+  L{"True on the<br/>asked day?"}:::decision
+  C["Context for<br/>the prompt"]:::output
+  S["Stale or<br/>doubled answer"]:::risk
+
+  J --> O
+  O -->|"no"| X
+  X --> K
+  K --> L
+  L -->|"yes"| C
+  O -.->|"check skipped"| S
+  L -.->|"end day ignored"| S
+
+%% step 1: J O X K
+%% step 2: L
+%% step 3: C
+%% step 4: S

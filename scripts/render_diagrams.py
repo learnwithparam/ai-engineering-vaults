@@ -175,8 +175,10 @@ def _mmdc(source: str, name: str, theme: dict, out: pathlib.Path) -> None:
         css_file = tmp_path / "theme.css"
         css_file.write_text(theme["themeCSS"])
 
+        # Pinned: later mermaid-cli releases rewrite the edge-label stylesheet, which check-diagrams
+        # rejects. See docs/decisions/002-mermaid-themecss.md.
         result = subprocess.run(
-            ["npx", "-y", "-p", "@mermaid-js/mermaid-cli", "mmdc",
+            ["npx", "-y", "-p", "@mermaid-js/mermaid-cli@11.4.2", "mmdc",
              "-i", str(source_file), "-o", str(out),
              "-c", str(config_file), "-C", str(css_file), "-b", "transparent"],
             capture_output=True, text=True, timeout=300,

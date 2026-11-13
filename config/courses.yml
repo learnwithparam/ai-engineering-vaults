@@ -86,3 +86,8 @@
   scenario: A data agent for company staff. It acts through one shared service credential, so when an intern's session asked it to export the salary table and email it out, it did. An authorization policy now decides each request before any tool runs.
   mechanics: [a shared credential as the failure, permit and forbid rules matched in code, default deny with a decision reason, a condition on the amount, tests that run without a model]
   vocabulary: [principal, permit and forbid, default deny, decision reason, policy language]
+16:
+  title: Serve Current Facts with a Temporal Memory Store
+  scenario: A B2B support assistant that remembers each customer account's plan, renewal owner and support tier. Every fact carries a valid-from and a valid-to date, so the assistant answers what was true on the day asked, and a change closes the old fact instead of appending over it.
+  mechanics: [valid time on each fact, closing a fact and never deleting it, half-open date ranges for as-of lookups, overlap rejection]
+  vocabulary: [valid time, as-of lookup, half-open range, overlap check]
