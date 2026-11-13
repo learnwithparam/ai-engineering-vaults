@@ -1,0 +1,8 @@
+graph LR
+  A["Account changes arrive<br/>plan, renewal owner, support tier"]:::input
+  N["Each change is added<br/>to the old notes"]:::store
+  M["The assistant answers<br/>from the notes"]:::model
+  E["The customer gets an email<br/>from a person who left"]:::risk
+
+  A --> N --> M
+  M -.->|"goes wrong"| E

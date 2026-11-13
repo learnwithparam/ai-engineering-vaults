@@ -43,6 +43,7 @@ forgetting that.
 | Model Context Protocol for Enterprise System Integration | A stray log line that corrupts the protocol stream |
 | Human-in-the-Loop Governance for High-Risk AI Actions | An irreversible action taken unattended |
 | Cost and Latency Engineering for AI Systems at Volume | A cache saving that never arrives, and fast calls that add up slowly |
+| Serve Current Facts with a Temporal Memory Store | A renewal owner who left still named in an email to the customer |
 
 ## How a course works
 
