@@ -1,0 +1,11 @@
+graph TD
+  S["Staff ask the data agent<br/>for sales, salaries and refunds"]:::input
+  A["The agent acts for each<br/>request it is given"]:::model
+  C["One shared service credential<br/>can do whatever it can do"]:::store
+  E1["An intern exports the salary table<br/>and emails it out"]:::risk
+  E2["A refused request has<br/>no reason anyone can read"]:::risk
+
+  S --> A
+  A --> C
+  C -.->|"goes wrong"| E1
+  A -.->|"goes wrong"| E2

@@ -84,6 +84,12 @@
   measure warm not cold: warm|cold
   latency shape: max\(|slowest|overlap
   batch lane: batch
+15:
+  shared credential: shared credential
+  permit and forbid: forbid
+  default deny: default deny|deny by default
+  decision reason: reason
+  policy language: policy language
 
 16:
   valid time: valid.?time|valid_from|valid_to

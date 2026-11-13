@@ -81,6 +81,11 @@
   mechanics: [prompt caching as a property of the model, measuring warm rather than cold latency, parallel latency is set by the slowest call, a batch lane for work that can wait]
   vocabulary: [prompt caching, warm and cold latency, latency shape, batch lane]
 
+15:
+  title: Authorize Agent Actions with a Policy Evaluator
+  scenario: A data agent for company staff. It acts through one shared service credential, so when an intern's session asked it to export the salary table and email it out, it did. An authorization policy now decides each request before any tool runs.
+  mechanics: [a shared credential as the failure, permit and forbid rules matched in code, default deny with a decision reason, a condition on the amount, tests that run without a model]
+  vocabulary: [principal, permit and forbid, default deny, decision reason, policy language]
 16:
   title: Serve Current Facts with a Temporal Memory Store
   scenario: A B2B support assistant that remembers each customer account's plan, renewal owner and support tier. Every fact carries a valid-from and a valid-to date, so the assistant answers what was true on the day asked, and a change closes the old fact instead of appending over it.

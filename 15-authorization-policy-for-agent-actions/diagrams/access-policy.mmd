@@ -1,0 +1,29 @@
+graph TD
+  R["A request arrives<br/>find the rules that match"]:::input
+  P["Permit rule<br/>matches?"]:::decision
+  F["Forbid rule<br/>matches?"]:::decision
+  X["Deny and record<br/>the forbid reason"]:::risk
+  L["Amount under<br/>the limit?"]:::decision
+  D["Deny by default<br/>and record the reason"]:::risk
+  T["Record the permit reason<br/>and run the tool"]:::output
+  K["Compare with<br/>should_allow"]:::output
+
+  R --> P
+  P -->|"yes"| T
+  R --> F
+  F -->|"yes"| X
+  F -->|"no"| P
+  P -->|"no"| D
+  P -->|"yes"| L
+  L -->|"yes"| T
+  L -->|"no"| D
+  T --> K
+  D --> K
+
+%% step 1: R P T
+%% step 2: D
+%% retire 3: R-P
+%% step 3: F X
+%% retire 4: P-T
+%% step 4: L
+%% step 5: K
