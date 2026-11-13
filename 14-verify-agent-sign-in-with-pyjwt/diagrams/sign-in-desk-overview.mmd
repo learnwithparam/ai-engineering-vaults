@@ -1,0 +1,13 @@
+graph TD
+  E["An employee asks the HR assistant<br/>for a payslip"]:::input
+  A["The agent calls the payroll service<br/>with a signed token"]:::model
+  P["The payroll service<br/>answers the call"]:::store
+  R1["A token meant for payslips<br/>opens the bank-details service"]:::risk
+  R2["An expired token<br/>still gets an answer"]:::risk
+  R3["Any signed token<br/>is believed"]:::risk
+
+  E --> A
+  A --> P
+  A -.->|"goes wrong"| R1
+  P -.->|"goes wrong"| R2
+  P -.->|"goes wrong"| R3

@@ -84,3 +84,10 @@
   measure warm not cold: warm|cold
   latency shape: max\(|slowest|overlap
   batch lane: batch
+14:
+  signature check: decode|signature
+  audience check: audience
+  expiry check: exp|expired
+  algorithm pinning: algorithms|alg
+  scope check: scope
+  delegation: act|on behalf

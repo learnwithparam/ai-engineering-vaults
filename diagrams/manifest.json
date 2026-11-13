@@ -33,5 +33,7 @@
   "12-human-in-the-loop-governance/diagrams/pause-and-resume.mmd": "b4ca5cee99145449",
   "12-human-in-the-loop-governance/diagrams/risk-gate.mmd": "23c36b55456b522d",
   "13-cost-and-latency-at-volume/diagrams/claims-desk-overview.mmd": "a27001c617d92629",
-  "13-cost-and-latency-at-volume/diagrams/claims-lanes.mmd": "6d323e541e731b00"
+  "13-cost-and-latency-at-volume/diagrams/claims-lanes.mmd": "6d323e541e731b00",
+  "14-verify-agent-sign-in-with-pyjwt/diagrams/sign-in-checks.mmd": "fe36423e80d696c1",
+  "14-verify-agent-sign-in-with-pyjwt/diagrams/sign-in-desk-overview.mmd": "06f6889e4a43f39b"
 }
