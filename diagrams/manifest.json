@@ -33,5 +33,7 @@
   "12-human-in-the-loop-governance/diagrams/pause-and-resume.mmd": "b4ca5cee99145449",
   "12-human-in-the-loop-governance/diagrams/risk-gate.mmd": "23c36b55456b522d",
   "13-cost-and-latency-at-volume/diagrams/claims-desk-overview.mmd": "a27001c617d92629",
-  "13-cost-and-latency-at-volume/diagrams/claims-lanes.mmd": "6d323e541e731b00"
+  "13-cost-and-latency-at-volume/diagrams/claims-lanes.mmd": "6d323e541e731b00",
+  "16-temporal-agent-memory/diagrams/fact-timeline.mmd": "6afcc295a327ea62",
+  "16-temporal-agent-memory/diagrams/memory-desk-overview.mmd": "7e3c4a6eaaea64f7"
 }
