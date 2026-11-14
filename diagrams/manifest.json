@@ -39,5 +39,7 @@
   "15-authorization-policy-for-agent-actions/diagrams/access-desk-overview.mmd": "f6282cc1d1bb24aa",
   "15-authorization-policy-for-agent-actions/diagrams/access-policy.mmd": "59c401aedeb8ec55",
   "16-temporal-agent-memory/diagrams/fact-timeline.mmd": "6afcc295a327ea62",
-  "16-temporal-agent-memory/diagrams/memory-desk-overview.mmd": "7e3c4a6eaaea64f7"
+  "16-temporal-agent-memory/diagrams/memory-desk-overview.mmd": "7e3c4a6eaaea64f7",
+  "17-agent-contract-for-any-framework/diagrams/contract-overview.mmd": "94eb73cc7fab059a",
+  "17-agent-contract-for-any-framework/diagrams/contract-runners.mmd": "e4ad27249f267a47"
 }

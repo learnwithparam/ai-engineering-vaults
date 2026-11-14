@@ -105,3 +105,11 @@
   half open range: half.open
   overlap check: overlap
   stale answers counted: stale_answers|stale
+
+17:
+  plain checks over a trace: trace
+  runner interface: run_request
+  two runners: framework
+  names the clause: clause
+  six conformance cases: of 6
+  failure planted: broken|skips the duty

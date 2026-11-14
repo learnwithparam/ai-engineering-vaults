@@ -1,0 +1,24 @@
+graph TD
+  Q["A dispatcher request"]:::input
+  C["Six conformance cases<br/>one per clause"]:::store
+  P["Plain loop runner"]:::model
+  W["Framework-shaped runner<br/>with an adapter"]:::model
+  T["Trace<br/>tool calls and final answer"]:::store
+  K{"Does the trace keep<br/>all six clauses?"}:::decision
+  V["Verdict names the<br/>broken clause"]:::output
+  B["Planted runner that<br/>skips the duty check"]:::risk
+
+  C --> Q
+  Q --> P
+  Q --> W
+  P --> T
+  W --> T
+  T --> K
+  K --> V
+  B -.->|"fails clause 2"| K
+
+%% step 1: Q C
+%% step 2: P T
+%% step 3: K V
+%% step 4: W
+%% step 5: B
