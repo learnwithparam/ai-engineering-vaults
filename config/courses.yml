@@ -81,6 +81,11 @@
   mechanics: [prompt caching as a property of the model, measuring warm rather than cold latency, parallel latency is set by the slowest call, a batch lane for work that can wait]
   vocabulary: [prompt caching, warm and cold latency, latency shape, batch lane]
 
+14:
+  title: Verify Agent Sign-In with PyJWT
+  scenario: Northwind Payroll runs an HR assistant agent. An employee asks it for a payslip, and the agent calls the payroll service for that employee with a signed token. A token meant for the payslip service was replayed against the bank-details service, and an expired token still worked. Without a check, any signed token is believed.
+  mechanics: [signature check with a pinned algorithm, audience and expiry checks, delegation from a named agent to a named employee, scope limited to the call]
+  vocabulary: [signed token, algorithm pinning, audience, delegation, scope]
 15:
   title: Authorize Agent Actions with a Policy Evaluator
   scenario: A data agent for company staff. It acts through one shared service credential, so when an intern's session asked it to export the salary table and email it out, it did. An authorization policy now decides each request before any tool runs.

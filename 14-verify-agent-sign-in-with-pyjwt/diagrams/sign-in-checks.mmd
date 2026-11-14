@@ -1,0 +1,21 @@
+graph TD
+  S["Signature matches the<br/>pinned HS256 key?"]:::decision
+  A["Audience, issuer and<br/>expiry all pass?"]:::decision
+  D["sub names the employee,<br/>act.sub names the agent?"]:::decision
+  C["Scope includes<br/>payslip:read?"]:::decision
+  R["Refuse the call and<br/>say which check failed"]:::risk
+  O["Answer the payslip request"]:::output
+
+  S -->|"yes"| A
+  A -->|"yes"| D
+  D -->|"yes"| C
+  C -->|"yes"| O
+  S -->|"no"| R
+  A -->|"no"| R
+  D -->|"no"| R
+  C -->|"no"| R
+
+%% step 1: S R
+%% step 2: A
+%% step 3: D
+%% step 4: C O
