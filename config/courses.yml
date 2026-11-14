@@ -96,3 +96,9 @@
   scenario: A B2B support assistant that remembers each customer account's plan, renewal owner and support tier. Every fact carries a valid-from and a valid-to date, so the assistant answers what was true on the day asked, and a change closes the old fact instead of appending over it.
   mechanics: [valid time on each fact, closing a fact and never deleting it, half-open date ranges for as-of lookups, overlap rejection]
   vocabulary: [valid time, as-of lookup, half-open range, overlap check]
+
+17:
+  title: Test one agent contract with a framework-free loop
+  scenario: An airline operations desk. A crew-rebooking agent has two tools, get_crew_status and reassign_crew, and a duty-hours rule says no pilot may be assigned past their limit. A framework rewrite passed every demo and then assigned a pilot past the limit, because the old behaviour lived in a prompt and a loop nobody wrote down. Six conformance cases written as plain checks over a trace now prove any runner keeps the behaviour.
+  mechanics: [a behaviour contract as plain checks, one runner interface, replaying the same cases through two runners, a contract failure names the broken clause]
+  vocabulary: [agent contract, runner, trace, conformance case]

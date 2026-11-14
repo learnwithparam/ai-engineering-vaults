@@ -1,0 +1,11 @@
+graph TD
+  D["A dispatcher asks the agent<br/>to rebook crew after a storm"]:::input
+  F["The team moves the agent<br/>to a new framework"]:::input
+  A["The rewritten agent<br/>passes every demo"]:::model
+  E1["A pilot is assigned past<br/>the duty hours limit"]:::risk
+  E2["The old rules lived in a prompt<br/>and a loop nobody wrote down"]:::risk
+
+  D --> A
+  F --> A
+  A -.->|"goes wrong"| E1
+  A -.->|"because"| E2

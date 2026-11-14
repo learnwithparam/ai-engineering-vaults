@@ -46,6 +46,7 @@ forgetting that.
 | Verify Agent Sign-In with PyJWT | A token made for one service reaching another, and an expired token still answered |
 | Authorize Agent Actions with a Policy Evaluator | An intern's session exporting the salary table through a shared credential |
 | Serve Current Facts with a Temporal Memory Store | A renewal owner who left still named in an email to the customer |
+| Test one agent contract with a framework-free loop | A framework rewrite that passed every demo and then assigned a pilot past the duty limit |
 
 ## How a course works
 
