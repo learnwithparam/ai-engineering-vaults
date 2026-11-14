@@ -111,5 +111,5 @@
   runner interface: run_request
   two runners: framework
   names the clause: clause
-  six conformance cases: of 6
+  six conformance cases: conformance case
   failure planted: broken|skips the duty
